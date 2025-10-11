@@ -1,0 +1,5 @@
+.codeblock{position:relative;background:#0b1327;border:1px solid #0e1a36;color:#e6f0ff;border-radius:12px}
+.codeblock pre{margin:0;padding:14px;overflow:auto;font-family:'Fira Code',monospace;font-size:.92rem}
+.btn--copy{position:absolute;right:10px;bottom:10px}
+[data-typewriter] pre code{white-space:pre-wrap}
+.codeblock{margin-bottom:14px}   /* separación entre bloques de código */

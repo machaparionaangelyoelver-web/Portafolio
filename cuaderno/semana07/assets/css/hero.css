@@ -1,0 +1,33 @@
+.hero{position:relative;isolation:isolate;min-height:52vh;display:grid;place-items:center;padding:42px 16px 28px;overflow:hidden}
+.hero__stars,.hero__nebula,.hero__noise{position:absolute;inset:0;pointer-events:none}
+.hero__inner{max-width:1100px;width:94vw;margin:0 auto}
+.hero__block{
+  position:relative;border:1px solid var(--line-dark);border-radius:18px;padding:16px 16px 14px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow:0 10px 22px rgba(0,0,0,.16)
+}
+.hero__title{
+  margin:.1rem 0 .25rem;font-weight:800;line-height:1.1;font-size:clamp(1.4rem, 2.6vw + .9rem, 2.2rem);
+  -webkit-text-fill-color:transparent;
+  background:linear-gradient(90deg,#e6f0ff 0%,#b3d9ff 25%,var(--brand1) 45%,var(--brand2) 65%,var(--brand3) 85%,#e6f0ff 100%);
+  background-clip:text;
+}
+.tw-caret{display:inline-block;width:1ch;color:#e6f0ff;opacity:.85;animation:blink 1s steps(2,end) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero__tagline{font-family:'Fira Code',monospace;opacity:.9;color:var(--muted-hero)}
+.hero__cta{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.hero__nav{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.hero__nav a{color:var(--muted-hero);text-decoration:none;padding:4px 8px;border-radius:10px}
+.hero__nav a:hover{color:var(--ink-hero);background:rgba(255,255,255,.08)}
+
+.orbit{position:absolute;border-radius:50%}
+.orbit--r1{top:-8px;left:-8px;width:40px;height:40px;animation:orbit 10s linear infinite}
+.orbit--r2{bottom:-10px;right:10%;width:36px;height:36px;animation:orbit 12s linear infinite reverse}
+@keyframes orbit{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* Meteoro grande */
+.meteor-big{
+  position:absolute; top:-10vh; left:110vw; width:4px; height:180px; pointer-events:none;
+  background:linear-gradient(180deg, #fff, rgba(255,255,255,0));
+  filter:blur(.4px); transform:rotate(-30deg);
+}

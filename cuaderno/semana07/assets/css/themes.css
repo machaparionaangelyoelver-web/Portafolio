@@ -1,0 +1,40 @@
+/* Paletas: Azul (default) y Lima (inversión clara/oscura) */
+body.theme-blue{
+  /* HERO oscuro */
+  --bg-hero: radial-gradient(1200px 800px at 20% -10%, #111833 0%, #0b1220 38%, #070d1b 100%);
+  --ink-hero:#eaf2ff;
+  --muted-hero:#9db0c9;
+
+  /* Acentos */
+  --brand1:#22d3ee; --brand2:#a78bfa; --brand3:#34d399;
+
+  /* ÁREA de contenido: lima pastel (tintas suaves para que no “pegue” negro) */
+  --area-bg-1:#F1FFE1;      /* lima más suave */
+  --area-bg-2:#E9FFD3;
+  --area-ink:#15361F;       /* verde tinta suave (no negro) */
+  --area-muted:#466451;     /* verde grisáceo */
+  --card:#FFFFFF;
+  --line:#DDECCB;           /* borde claro */
+  --line-dark:rgba(255,255,255,.08);
+  --shadow:0 8px 22px rgba(18, 36, 28, .12); /* sombra más ligera */
+}
+
+body.theme-lime{
+  /* HERO claro */
+  --bg-hero: radial-gradient(1200px 800px at 20% -10%, #eaffd6 0%, #e8ffd1 38%, #defcc2 100%);
+  --ink-hero:#0e1713;
+  --muted-hero:#3e5347;
+
+  --brand1:#34d399; --brand2:#22d3ee; --brand3:#10b981;
+
+  /* Área oscura azulada */
+  --area-bg-1:#0e1426; --area-bg-2:#0a1020;
+  --area-ink:#e6f0ff; --area-muted:#9db0c9;
+  --card:#0f172a; --line:#0e1a36; --line-dark:rgba(0,0,0,.08);
+  --shadow:0 10px 26px rgba(0,0,0,.25);
+}
+
+/* Modo estudio: reduce decoraciones del hero */
+body.study .hero__nebula{opacity:.18}
+body.study .hero__stars{display:none}
+body.study .hero__comets{display:none}

@@ -1,0 +1,8 @@
+.hero__stars{opacity:.35}
+.hero__nebula{background:
+  radial-gradient(250px 150px at 10% 20%, rgba(34,211,238,.14) 0%, transparent 60%),
+  radial-gradient(200px 150px at 85% 30%, rgba(167,139,250,.16) 0%, transparent 60%),
+  radial-gradient(300px 250px at 50% 100%, rgba(52,211,153,.12) 0%, transparent 70%);
+  mix-blend-mode:screen}
+.hero__noise{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");opacity:.5}
+.hero__comets{position:absolute;inset:0}

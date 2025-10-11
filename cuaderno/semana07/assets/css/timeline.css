@@ -1,0 +1,25 @@
+/* Timeline horizontal */
+.h-timeline{
+  display:grid; grid-auto-flow:column; grid-auto-columns: clamp(220px, 28vw, 300px);
+  gap:12px; overflow-x:auto; padding:10px 6px; margin:0;
+  list-style:none; scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+}
+.h-timeline::-webkit-scrollbar{height:8px}
+.h-timeline::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:10px}
+
+.snaps-inline > *{scroll-snap-align:start}
+
+.h-item{
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  box-shadow:0 6px 18px rgba(16,54,31,.08);
+  padding:12px; color:var(--area-ink);
+  position:relative;
+}
+.h-item::before{
+  content:""; position:absolute; left:12px; top:-8px; width:18px; height:18px; border-radius:50%;
+  background:linear-gradient(180deg, var(--brand1), var(--brand2));
+  box-shadow:0 0 0 3px rgba(255,255,255,.7);
+}
+.h-item h3{margin:.1rem 0 .25rem; font-size:1rem}
+.h-item p{margin:0; color:var(--area-muted); font-size:.92rem}

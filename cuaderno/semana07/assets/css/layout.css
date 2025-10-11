@@ -1,0 +1,94 @@
+/* Topbar compacta */
+.topbar{
+  position:sticky; top:0; z-index:60; backdrop-filter:blur(8px);
+  background:linear-gradient(180deg, rgba(7,13,27,.72), rgba(7,13,27,.25));
+  border-bottom:1px solid var(--line-dark);
+}
+.topbar__inner{
+  max-width:1120px; margin:0 auto; padding:4px 10px;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+}
+.topbar__logos img{width:26px;height:26px;border-radius:8px;border:1px solid var(--line-dark);object-fit:cover;margin-right:6px}
+.topbar__brand{font-weight:700; font-size:.95rem}
+.topbar__nav a{color:var(--muted-hero);text-decoration:none;padding:4px 8px;border-radius:10px;font-size:.94rem}
+.topbar__nav a:hover{color:var(--ink-hero);background:rgba(255,255,255,.08)}
+.topbar__progress{height:2px;background:linear-gradient(90deg,var(--brand1),var(--brand2));transform-origin:left;transform:scaleX(0)}
+
+/* Área de contenido con ANIMACIÓN visible */
+.content{
+  position:relative; overflow:hidden;
+  background:linear-gradient(180deg, var(--area-bg-1) 0%, var(--area-bg-2) 100%);
+  color:var(--area-ink);
+}
+.content::before,
+.content::after{
+  content:""; position:absolute; inset:auto -15% auto -15%; height:70%;
+  pointer-events:none; filter: blur(22px);
+}
+.content::before{
+  top:-8%; 
+  background:
+    radial-gradient(40% 60% at 18% 20%, rgba(52,211,153,.22), transparent 60%),
+    radial-gradient(30% 40% at 80% 18%, rgba(34,211,238,.22), transparent 60%);
+  animation: floatA 16s ease-in-out infinite alternate;
+}
+.content::after{
+  bottom:-10%;
+  background:
+    radial-gradient(38% 50% at 30% 80%, rgba(167,139,250,.18), transparent 65%),
+    radial-gradient(22% 35% at 75% 70%, rgba(52,211,153,.18), transparent 65%);
+  animation: floatB 20s ease-in-out infinite alternate-reverse;
+}
+@keyframes floatA{from{transform:translateY(0)}to{transform:translateY(36px)}}
+@keyframes floatB{from{transform:translateY(0)}to{transform:translateY(-32px)}}
+
+/* Secciones SIN “card” exterior */
+.section{max-width:1120px;margin:0 auto;padding:22px 16px}
+.section__title{margin:0 0 12px}
+
+/* Grilla de tarjetas internas */
+.info-cards{
+  display:grid; gap:16px;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+}
+.i-card{
+  display:grid; gap:10px; align-content:start;
+  padding:14px; border:1px solid var(--line); border-radius:14px; background:#fff;
+  box-shadow:0 6px 18px rgba(16,54,31,.08);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.i-card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(16,54,31,.12) }
+.i-card h3{margin:.1rem 0 .1rem; font-size:1rem; color:var(--area-ink)}
+.i-card p{margin:0; color:var(--area-muted); font-size:.94rem}
+.i-card img{
+  width:100%; border:1px solid var(--line); border-radius:10px;
+  margin-top:2px;   /* más aire */
+}
+
+/* Grillas diversas */
+.grid-2{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:860px){.grid-2{grid-template-columns:1fr}}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--line-dark);background:#0b1220;color:#b7c8dd}
+.site-footer__inner{max-width:1120px;margin:0 auto;padding:16px 12px;display:flex;gap:10px;align-items:center}
+
+/* Canvas de fondo en el área de contenidos */
+.content{position:relative; overflow:hidden}
+.content-bubbles{
+  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.8;
+}
+/* Asegura que las secciones estén encima del canvas */
+.section, .site-footer{position:relative; z-index:1}
+
+
+/* Capas animadas del contenido */
+.content{position:relative; overflow:hidden}
+.ambient-layer{
+  position:absolute; inset:0; pointer-events:none; display:block;
+}
+.ambient-lowpoly{ z-index:0; opacity:.75; }
+.ambient-meteors{ z-index:1; opacity:.9; }
+
+/* Asegura que las secciones estén arriba de los canvas */
+.section, .site-footer{ position:relative; z-index:2 }

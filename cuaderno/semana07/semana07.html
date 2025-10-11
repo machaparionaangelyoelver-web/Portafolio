@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📘 Cuaderno Digital — Semana 07</title>
+  <meta name="description" content="Semana 07: Hooks (useState, useEffect, useRef, useMemo, useCallback, Context), composición Padre-Hijo y children. Teoría, hooks, timeline horizontal, ejemplos, evidencias y contacto." />
+  <meta name="theme-color" content="#0B1320" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/hero.css" />
+  <link rel="stylesheet" href="assets/css/particles.css" />
+  <link rel="stylesheet" href="assets/css/timeline.css" />
+  <link rel="stylesheet" href="assets/css/stepper.css" />
+  <link rel="stylesheet" href="assets/css/code.css" />
+  <link rel="stylesheet" href="assets/css/gallery.css" />
+  <link rel="stylesheet" href="assets/css/contact.css" />
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="icon" href="assets/imagenes/semana07_imagenes/ui/icons.svg" />
+</head>
+<body class="theme-blue">
+
+  <!-- TOPBAR compacta -->
+  <header class="topbar" role="navigation" aria-label="Barra superior">
+    <div class="topbar__inner">
+      <div class="topbar__brandwrap">
+        <div class="topbar__logos">
+          <img src="assets/imagenes/semana07_imagenes/logos/uncp.jpg" alt="UNCP" />
+          <img src="assets/imagenes/semana07_imagenes/logos/logoFIS.png" alt="FIS" />
+        </div>
+        <strong class="topbar__brand">Semana 07</strong>
+      </div>
+      <nav class="topbar__nav">
+        <a href="#teoria">Teoría</a>
+        <a href="#hooks">Hooks</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#contacto">Comunícate</a>
+        <a class="btn btn--ghost" id="btnCuaderno" href="../../cuaderno.html" title="Ir al Cuaderno">📘 Cuaderno</a>
+      </nav>
+    </div>
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <!-- HERO (typewriter + meteoro) -->
+  <header id="hero" class="hero" role="banner" aria-label="Portada">
+    <canvas id="fxStars" class="hero__stars" aria-hidden="true"></canvas>
+    <div class="hero__nebula" aria-hidden="true"></div>
+    <div class="hero__noise" aria-hidden="true"></div>
+
+    <div class="hero__inner" data-parallax>
+      <div class="hero__block" id="heroBlock">
+        <h1 class="hero__title">
+          <span>Semana 07 · </span><span id="typeWriter"></span>
+          <span class="tw-caret" aria-hidden="true">|</span>
+        </h1>
+        <p class="hero__tagline" id="heroMorph"
+           data-phrases='["useState • useEffect • useRef","useMemo • useCallback","Context y composición","Patrones de UI reutilizables"]'>
+          useState • useEffect • useRef
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" id="btnInforme" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/d5fd866803630589cea1ee250e4079a865cfa0a3/semana07.md"
+             title="Abrir Informe 07">Ver Informe 07</a>
+          <a class="btn btn--secondary" id="btnCuaderno2" href="../../cuaderno.html" title="Ir al Cuaderno">Cuaderno</a>
+        </div>
+
+        <div class="hero__orbits" aria-hidden="true">
+          <div class="orbit orbit--r1"><img src="assets/imagenes/semana07_imagenes/ui/spark.svg" alt="" /></div>
+          <div class="orbit orbit--r2"><img src="assets/imagenes/semana07_imagenes/ui/spark.svg" alt="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="hero__nav" aria-label="Secciones">
+      <a href="#teoria">Teoría</a>
+      <a href="#hooks">Hooks</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#ejemplos">Ejemplos</a>
+      <a href="#evidencias">Evidencias</a>
+      <a href="#contacto">Comunícate</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO (secciones SIN card grande) -->
+  <main id="content" class="content" role="main">
+  <!-- FONDOS ANIMADOS -->
+  <canvas id="contentLowpoly" class="ambient-layer ambient-lowpoly" aria-hidden="true"></canvas>
+  <canvas id="contentMeteors" class="ambient-layer ambient-meteors" aria-hidden="true"></canvas>
+
+  <!-- TEORÍA -->
+  ...
+
+    <!-- TEORÍA -->
+    <section id="teoria" class="section">
+      <h2 class="section__title">📖 Teoría — Composición y buenas prácticas</h2>
+      <div class="info-cards">
+        <article class="i-card">
+          <h3>Composición con children</h3>
+          <p>Separa <strong>contenedores</strong> (layout) de <strong>hojas</strong> (UI). El padre decide la disposición; los hijos solo dibujan.</p>
+          <img src="assets/imagenes/semana07_imagenes/conceptos/concepto_01.png" alt="Patrones de composición">
+        </article>
+        <article class="i-card">
+          <h3>Comunicación Padre y Hijo</h3>
+          <p>El padre pasa <em>props</em>; el hijo notifica con <code>callbacks</code>. Para hermanos, eleva estado o usa Context.</p>
+        </article>
+        <article class="i-card">
+          <h3>Prop Drilling y Context</h3>
+          <p>Si pasas props por muchos niveles, crea un <code>Context</code> y segmenta por dominio para limitar renders.</p>
+        </article>
+        <article class="i-card">
+          <h3>Rendimiento</h3>
+          <p><code>React.memo</code> para componentes puros, <code>useMemo</code> para cálculos, <code>useCallback</code> para handlers.</p>
+          <img src="assets/imagenes/semana07_imagenes/conceptos/concepto_02.png" alt="Memoización y rendimiento">
+        </article>
+      </div>
+    </section>
+
+    <!-- HOOKS -->
+    <section id="hooks" class="section">
+      <h2 class="section__title">🪝 Hooks esenciales</h2>
+      <div class="info-cards">
+        <article class="i-card">
+          <h3>useState</h3>
+          <p>Estado local cercano al componente. Útil para inputs y UI inmediata.</p>
+          <img src="assets/imagenes/semana07_imagenes/hooks/useState_flujo.png" alt="useState flujo">
+        </article>
+        <article class="i-card">
+          <h3>useEffect</h3>
+          <p>Efectos sincronizados con el ciclo de vida. Declara dependencias y limpia recursos en el return.</p>
+          <img src="assets/imagenes/semana07_imagenes/hooks/useEffect_ciclo.png" alt="useEffect ciclo">
+        </article>
+        <article class="i-card">
+          <h3>useRef</h3>
+          <p>Valores mutables y referencias a nodos sin provocar render.</p>
+          <img src="assets/imagenes/semana07_imagenes/hooks/useRef_diagrama.png" alt="useRef diagrama">
+        </article>
+        <article class="i-card">
+          <h3>useMemo y useCallback</h3>
+          <p>Memorizan <strong>valor</strong> y <strong>función</strong> respectivamente. Evitan trabajo y nuevas identidades.</p>
+          <img src="assets/imagenes/semana07_imagenes/hooks/useMemo_vs_useCallback.png" alt="useMemo vs useCallback">
+        </article>
+        <article class="i-card">
+          <h3>Context</h3>
+          <p>Comparte estado y políticas. Usa múltiples Providers para escalar por módulo.</p>
+          <img src="assets/imagenes/semana07_imagenes/hooks/context_provider_tree.png" alt="Context providers">
+        </article>
+      </div>
+    </section>
+
+    <!-- TIMELINE HORIZONTAL -->
+    <section id="timeline" class="section">
+      <h2 class="section__title">🗓️ Línea de tiempo (horizontal)</h2>
+      <ol class="h-timeline snaps-inline" aria-label="Hitos de aprendizaje">
+        <li class="h-item"><h3>Inicio</h3><p>Repaso Semana 06 y objetivos.</p></li>
+        <li class="h-item"><h3>Composición</h3><p>Children, slots y patrones.</p></li>
+        <li class="h-item"><h3>Hooks base</h3><p>useState • useEffect • useRef.</p></li>
+        <li class="h-item"><h3>Rendimiento</h3><p>useMemo y useCallback • React.memo.</p></li>
+        <li class="h-item"><h3>Entrega</h3><p>Evidencias y conclusiones.</p></li>
+      </ol>
+    </section>
+
+    <!-- EJEMPLOS -->
+    <section id="ejemplos" class="section">
+      <h2 class="section__title">💡 Ejemplos — Padre/Hijo y Hooks</h2>
+      <div class="grid-2">
+        <div class="codeblock" data-typewriter>
+<pre><code>{`function Panel({ title, children }) {
+  return (
+    &lt;section className="panel"&gt;
+      &lt;h3&gt;{title}&lt;/h3&gt;
+      &lt;div&gt;{children}&lt;/div&gt;
+    &lt;/section&gt;
+  );
+}`}</code></pre>
+          <button class="btn btn--copy" data-copy='function Panel({ title, children }) {
+  return (
+    <section className="panel">
+      <h3>{title}</h3>
+      <div>{children}</div>
+    </section>
+  );
+}'>Copiar</button>
+        </div>
+        <div class="codeblock">
+<pre><code>{`import { useState, useCallback } from 'react';
+
+function Parent(){
+  const [count, setCount] = useState(0);
+  const inc = useCallback(() => setCount(c => c + 1), []);
+  return &lt;Child value={count} onInc={inc} /&gt;;
+}
+
+function Child({ value, onInc }){
+  return &lt;button onClick={onInc}&gt;{value}&lt;/button&gt;;
+}`}</code></pre>
+          <button class="btn btn--copy" data-copy='import { useState, useCallback } from "react";
+function Parent(){ const [count, setCount] = useState(0); const inc = useCallback(()=>setCount(c=>c+1),[]); return <Child value={count} onInc={inc}/> }
+function Child({ value, onInc }){ return <button onClick={onInc}>{value}</button>; }'>Copiar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="section">
+      <h2 class="section__title">🖼️ Evidencias</h2>
+      <div class="masonry" id="masonry" data-slim>
+        <figure class="masonry__item"><img src="assets/imagenes/semana07_imagenes/evidencias/evidencia_01.jpg" alt="Evidencia 01" /><figcaption>Evidencia 01</figcaption></figure>
+        <figure class="masonry__item"><img src="assets/imagenes/semana07_imagenes/evidencias/evidencia_02.jpg" alt="Evidencia 02" /><figcaption>Evidencia 02</figcaption></figure>
+        <figure class="masonry__item"><img src="assets/imagenes/semana07_imagenes/evidencias/evidencia_03.jpg" alt="Evidencia 03" /><figcaption>Evidencia 03</figcaption></figure>
+        <figure class="masonry__item"><img src="assets/imagenes/semana07_imagenes/evidencias/evidencia_04.jpg" alt="Evidencia 04" /><figcaption>Evidencia 04</figcaption></figure>
+      </div>
+
+      <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visor de imagen">
+        <button class="lightbox__close" id="lbClose" aria-label="Cerrar">×</button>
+        <img id="lbImg" alt="" />
+        <p id="lbCap" class="lightbox__caption"></p>
+        <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Anterior">‹</button>
+        <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+      <h2 class="section__title">📫 Comunícate</h2>
+      <div class="contact-grid contact-grid--3">
+        <a class="c-card" href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener"><div class="c-icon">🐙</div><div class="c-body"><div class="c-k">GitHub</div><div class="c-v nowrap">github.com/machaparionaangelyoelver-web</div></div></a>
+        <a class="c-card" href="mailto:machaparionaangelyoelver@gmail.com"><div class="c-icon">✉️</div><div class="c-body"><div class="c-k">Correo</div><div class="c-v nowrap">machaparionaangelyoelver@gmail.com</div></div></a>
+        <a class="c-card" href="tel:+51934907255"><div class="c-icon">📞</div><div class="c-body"><div class="c-k">Llama/WhatsApp</div><div class="c-v nowrap">+51 934 907 255</div></div></a>
+        <a class="c-card" href="https://instagram.com/ange_lyoel" target="_blank" rel="noopener"><div class="c-icon">📷</div><div class="c-body"><div class="c-k">Instagram</div><div class="c-v nowrap">@ange_lyoel</div></div></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <img src="assets/imagenes/semana07_imagenes/logos/uncp.jpg" alt="UNCP" height="36" />
+      <img src="assets/imagenes/semana07_imagenes/logos/logoFIS.png" alt="FIS" height="36" />
+      <p>Hecho por Angel Yoelver Macha · UNCP</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="assets/js/nav_guard.js" defer></script>
+  <script src="assets/js/reveal.js" defer></script>
+  <script src="assets/js/parallax.js" defer></script>
+  <script src="assets/js/particles.js" defer></script>
+  <script src="assets/js/morph.js" defer></script>
+  <script src="assets/js/typewriter.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
+  <script src="assets/js/ambient_lowpoly.js" defer></script>
+<script src="assets/js/ambient_meteors.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* Masonry compacto — evidencias pequeñas */
+#evidencias .masonry {
+  columns: 8 120px;          /* 👉 Miniaturas ~90px */
+  column-gap: 10px;
+  width: 200%;
+  margin: 0 auto;
+  padding: 10px 6px;
+}
+@media (max-width: 1024px){ #evidencias .masonry { columns: 6 150px; } }
+@media (max-width: 768px) { #evidencias .masonry { columns: 4 150px; } }
+@media (max-width: 480px) { #evidencias .masonry { columns: 3 150px; } }
+
+.masonry__item {
+  break-inside: avoid;
+  margin: 0 0 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.masonry__item:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+
+.masonry__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.masonry__item figcaption {
+  text-align: center;
+  color: var(--area-muted);
+  font-size: .72rem;
+  margin-top: 3px;
+  line-height: 1.1;
+}
+
+/* Lightbox (igual) */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:80}
+.lightbox.is-open{display:flex}
+.lightbox img{max-width:88vw;max-height:80vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.4);border:2px solid #fff}
+.lightbox__caption{color:#fff;text-align:center;font-size:.9rem;margin-top:8px}
+.lightbox__close{position:absolute;top:18px;right:18px;background:#fff;border:0;border-radius:50%;width:34px;height:34px;font-size:22px;cursor:pointer}
+.lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:0;border-radius:8px;padding:8px 10px;font-size:22px;cursor:pointer}
+.lightbox__nav--prev{left:18px} .lightbox__nav--next{right:18px}

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📗 Semana 08 — Parcial & Consolidado</title>
+  <meta name="description" content="Semana 08: Parcial y consolidado del primer tramo. Diseño animado, fondo dinámico, logo orbitando, timeline de aprendizajes, evidencias y navegación al Cuaderno." />
+  <meta name="theme-color" content="#0B1320" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =====================
+       🎨 TOKENS & RESET
+       ===================== */
+    :root{
+      --bg:#0B1320;
+      --bg-2:#0b1220;
+      --txt:#E6F6FF;
+      --muted:#9CC2D6;
+      --primary:#0EA5E9;   /* sky */
+      --accent:#14B8A6;    /* teal */
+      --purple:#7C3AED;
+      --card:#0f1a31cc;    /* translucent */
+      --glass:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.12);
+      --shadow: 0 10px 30px rgba(2,8,23,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+      --radius: 18px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--txt);
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, "Plus Jakarta Sans", Arial;
+      background: radial-gradient(1200px 800px at 10% 10%, #0f1c3c 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 90% 90%, #05142c 0%, transparent 60%),
+                  linear-gradient(160deg, #06122a, #0b1320 60%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1150px, 92vw); margin-inline:auto}
+
+    /* =====================
+       🌌 BACKGROUND LAYERS
+       ===================== */
+    .bg-anim{
+      position:fixed; inset:0; pointer-events:none; z-index:-2;
+      background:
+        radial-gradient(  600px 600px at 20% 15%, rgba(20,184,166,0.18), transparent 60%),
+        radial-gradient(  800px 800px at 80% 85%, rgba(14,165,233,0.18), transparent 60%),
+        conic-gradient(from var(--spin, 0deg), rgba(124,58,237,0.12), rgba(14,165,233,0.12), rgba(20,184,166,0.12), rgba(124,58,237,0.12));
+      filter:saturate(1.1);
+      animation: hue 16s linear infinite;
+    }
+    @keyframes hue{to{--spin:360deg}}
+
+    /* Stars canvas sits underneath content */
+    #spaceCanvas{position:fixed; inset:0; z-index:-1; filter:drop-shadow(0 0 2px rgba(255,255,255,0.3));}
+
+    /* =====================
+       🧭 NAV BAR
+       ===================== */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 0; position:sticky; top:0; backdrop-filter:blur(8px);
+      background:linear-gradient(180deg, rgba(4,9,20,0.65), rgba(4,9,20,0));
+      z-index:5; border-bottom:1px solid var(--border);
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border:1px solid var(--border);
+      border-radius:999px; background:var(--glass); box-shadow:var(--shadow);
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      font-weight:600; letter-spacing:.2px
+    }
+    .back:hover{transform:translateY(-1px); background:rgba(20,184,166,0.15); border-color:rgba(20,184,166,0.35)}
+
+    /* =====================
+       🚀 HERO with animated logo
+       ===================== */
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center; padding:22px 0 16px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr; padding-top:10px}}
+
+    .logoOrbit{
+      width:min(380px, 70vw); aspect-ratio:1/1; place-self:center; position:relative;
+      display:grid; place-items:center; filter: drop-shadow(0 20px 40px rgba(0,0,0,.35));
+    }
+    .logoOrbit .core{
+      width:56%; aspect-ratio:1/1; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, #1fe1d6 0%, #00bcd4 20%, #0ea5e9 55%, #0b1320 58%);
+      box-shadow: inset 0 0 40px rgba(255,255,255,0.08), 0 0 120px rgba(14,165,233,0.28);
+      position:relative; overflow:hidden;
+      animation:pulse 3.2s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+    .logoOrbit .ring{
+      position:absolute; inset:0; border-radius:50%;
+      border:2px dashed rgba(255,255,255,0.18);
+      animation: spin 18s linear infinite;
+    }
+    .logoOrbit .satellite{position:absolute; width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 0 16px rgba(255,255,255,.6)}
+    .logoOrbit .satellite:nth-child(1){ top:8%; left:50%; transform:translate(-50%,-50%)}
+    .logoOrbit .satellite:nth-child(2){ bottom:6%; left:16%}
+    .logoOrbit .satellite:nth-child(3){ top:22%; right:10%}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .heroCopy h1{
+      font-family:"Plus Jakarta Sans", Inter, system-ui; font-weight:800; line-height:1.1;
+      font-size:clamp(28px, 4vw, 48px);
+      margin:0 0 10px; letter-spacing:.3px
+    }
+    .heroCopy p{color:var(--muted); margin:0 0 18px; font-size:clamp(14px, 1.6vw, 18px)}
+
+    .btns{display:flex; flex-wrap:wrap; gap:12px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px;
+      background:linear-gradient(180deg, rgba(20,184,166,.18), rgba(14,165,233,.18));
+      border:1px solid var(--border); font-weight:700; letter-spacing:.2px; box-shadow:var(--shadow);
+      transition:transform .2s ease, filter .2s ease, background .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px); filter:saturate(1.15)}
+
+    /* =====================
+       📚 SECTIONS
+       ===================== */
+    section{margin:24px 0 30px}
+    .sectionTitle{display:flex; align-items:center; gap:10px; margin-bottom:12px}
+    .sectionTitle h2{margin:0; font-family:"Plus Jakarta Sans"; font-size:clamp(20px, 2.8vw, 28px)}
+    .badge{padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--glass); font-weight:700; font-size:12px; letter-spacing:.3px}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);
+      transform: translateY(4px) translateZ(0);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+    }
+    .card:hover{transform: translateY(0) ; box-shadow:0 12px 40px rgba(10,15,25,.45)}
+
+    .grid{display:grid; gap:14px}
+    .grid.cols-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+    .grid.cols-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+    @media (max-width:900px){.grid.cols-3{grid-template-columns:1fr}.grid.cols-2{grid-template-columns:1fr}}
+
+    .list{margin:0; padding-left:18px}
+    .list li{margin:6px 0}
+
+    /* Tilt effect target */
+    .tilt{will-change: transform; transform-style:preserve-3d}
+    .tilt .tilt-inner{transform: translateZ(30px)}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:18px}
+    .timeline::before{content:""; position:absolute; left:6px; top:2px; bottom:2px; width:2px; background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0))}
+    .timeline .item{position:relative; margin:0 0 14px}
+    .timeline .item::before{content:""; position:absolute; left:-12px; top:.35em; width:10px; height:10px; border-radius:50%; background:linear-gradient(180deg, #1fe1d6, #0ea5e9); box-shadow:0 0 12px rgba(31,225,214,.7)}
+
+    /* Gallery */
+    /* Contenedor de la galería */
+    .gallery{
+       display:grid;
+       grid-template-columns: repeat(4, minmax(0,1fr));
+       gap:10px;
+     /* 👇 Altura responsive para cada imagen */
+        --item-h: clamp(160px, 24vw, 320px);
+    }
+
+/* Cada imagen de la galería */
+      .gallery img{
+         width:100%;
+         height:var(--item-h);   /* antes: 140px */
+         object-fit:cover;
+         border-radius:12px;
+         border:1px solid var(--border);
+        filter:contrast(1.05) saturate(1.05);
+       }
+
+
+   /* .gallery{display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:10px}*/
+   /* .gallery img{width:100%; height:140px; object-fit:cover; border-radius:12px; border:1px solid var(--border); filter:contrast(1.05) saturate(1.05)}*/
+    @media (max-width:900px){.gallery{grid-template-columns: repeat(2, minmax(0,1fr))}}
+
+    /* Scroll reveal */
+    .reveal{opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1; transform: none}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border); padding:20px 0; color:var(--muted); font-size:14px}
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce){
+      .logoOrbit .ring, .logoOrbit .core, .bg-anim{animation:none}
+      .card, .btn, .back{transition:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔮 Background layers -->
+  <div class="bg-anim" aria-hidden="true"></div>
+  <canvas id="spaceCanvas" aria-hidden="true"></canvas>
+
+  <header class="container nav">
+    <!-- ✅ Cuaderno: dos niveles arriba -->
+      <a class="btn btn-primary" title="Ir al Cuaderno general" href="../../cuaderno.html" data-hardnav>📘 Cuaderno</a>
+    <div style="display:flex; align-items:center; gap:10px">
+      <span class="badge">Semana 08</span>
+      <span class="badge">Parcial y Consolidado</span>
+    </div>
+  </header>
+
+  <section class="container hero">
+    <div class="logoOrbit reveal" style="--d:0s">
+      <div class="ring"></div>
+      <div class="ring" style="inset: -10px; opacity:.8; animation-duration:24s"></div>
+      <div class="ring" style="inset: -22px; opacity:.5; animation-duration:36s"></div>
+      <div class="core" title="Logotipo Semana 08">
+        <!-- Puedes reemplazar este SVG con tu logo PNG/SVG local -->
+        <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="mix-blend-mode:screen">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1fe1d6"/>
+              <stop offset="60%" stop-color="#0ea5e9"/>
+              <stop offset="100%" stop-color="#7C3AED"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="50" r="42" stroke="url(#g)" stroke-width="3" opacity=".4"/>
+          <text x="50" y="56" text-anchor="middle" font-size="34" font-weight="800" font-family="Plus Jakarta Sans, Inter, Arial" fill="#ffffff">S08</text>
+        </svg>
+      </div>
+      <div class="satellite"></div>
+      <div class="satellite"></div>
+      <div class="satellite"></div>
+    </div>
+
+    <div class="heroCopy reveal">
+      <h1>📗 Semana 08 — Parcial  y  Consolidado</h1>
+      <p>Resumen de lo aprendido en el primer tramo y guía express para tu <strong>parcial</strong>. Animaciones suaves, logo orbitando y fondo dinámico 🌌.</p>
+      <div class="btns">
+        <a class="btn" href="#parcial">📝 Guía del Parcial</a>
+        <a class="btn" href="#aprendido">📚 Lo Aprendido</a>
+        <a class="btn" href="#evidencias">🖼️ Evidencias</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📝 Guía del Parcial -->
+  <section id="parcial" class="container reveal">
+    <div class="sectionTitle"><span class="badge">Examen</span><h2>Guía del parcial</h2></div>
+    <div class="grid cols-2">
+      <article class="card tilt">
+        <div class="tilt-inner">
+          <h3 style="margin-top:0">Alcance tentativo</h3>
+          <ul class="list">
+            <li>HTML semántico + accesibilidad básica (landmarks, alt, aria-label).</li>
+            <li>CSS: layout (grid/flex), variables, transiciones y animaciones.</li>
+            <li>JavaScript: DOM, eventos, módulos básicos y buenas prácticas.</li>
+            <li>React: <em>componentes padre/hijo</em>, <code>children</code> y <strong>hooks</strong> esenciales (<code>useState</code>, <code>useEffect</code>).</li>
+            <li>Buenas prácticas de performance y organización de assets.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card tilt">
+        <div class="tilt-inner">
+          <h3 style="margin-top:0">Formato & tips</h3>
+          <ul class="list">
+            <li>Tiempo: <strong>60 min</strong> — entrega en repositorio/GitHub Pages.</li>
+            <li>Incluye <strong>README</strong> breve con captura y pasos de ejecución.</li>
+            <li>Reutiliza tu sistema de <strong>tokens CSS</strong> y componentes.</li>
+            <li>Valida accesos directos .</li>
+            <li>Cuida el <strong>responsive</strong> (mobile‑first) y <em>prefers‑reduced‑motion</em>.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 📚 Lo aprendido (consolidado) -->
+  <section id="aprendido" class="container reveal">
+    <div class="sectionTitle"><span class="badge">Consolidado</span><h2>Lo aprendido en este tramo</h2></div>
+    <div class="grid cols-3">
+      <article class="card tilt"><div class="tilt-inner"><h3>HTML + Semántica</h3><p>Estructuras limpias, encabezados jerárquicos, roles y etiquetas accesibles.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>CSS Grid/Flex</h3><p>Layouts responsivos, <em>auto-fit</em>/<em>minmax</em>, tarjetas y barras flotantes.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>Animaciones</h3><p>Transiciones, keyframes, micro‑interacciones y partículas de fondo.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>JS DOM + Eventos</h3><p>Interacciones, listeners, delegación y utilidades modulares.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>React: Props y Children</h3><p>Composición, reutilización y contratos claros entre componentes.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>Hooks esenciales</h3><p><code>useState</code>, <code>useEffect</code>, patrones de estado derivado y limpieza.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>Estructura de proyecto</h3><p>Convenciones de carpetas, alias de assets e index de exportación.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>Versionado</h3><p>Commits atómicos, mensajes claros, despliegue y cache busting.</p></div></article>
+      <article class="card tilt"><div class="tilt-inner"><h3>Buenas prácticas</h3><p>Accesibilidad, performance, SEO básico y DX mantenible.</p></div></article>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0">Timeline de hitos</h3>
+      <div class="timeline">
+        <p class="item"><strong>Semana 01–02:</strong> Fundamentos HTML/CSS y maquetado base.</p>
+        <p class="item"><strong>Semana 03–04:</strong> JS al DOM, eventos, primeras animaciones.</p>
+        <p class="item"><strong>Semana 05:</strong> Node/npm + tooling (conceptual) y práctica guiada.</p>
+        <p class="item"><strong>Semana 06:</strong> UI con micro‑interacciones y partículas.</p>
+        <p class="item"><strong>Semana 07:</strong> React: props, children y hooks.</p>
+        <p class="item"><strong>Semana 08:</strong> Consolidado + parcial.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🖼️ Evidencias / galería -->
+  <section id="evidencias" class="container reveal">
+    <div class="sectionTitle"><span class="badge">Evidencias</span><h2>Capturas y entregables</h2></div>
+    <div class="gallery">
+      <!-- Reemplaza src con tus imágenes reales -->
+      <img src="img/cap01.png" alt="Evidencia 01" loading="lazy"/>
+      <img src="img/cap02.png" alt="Evidencia 02" loading="lazy"/>
+      <img src="img/cap03.png" alt="Evidencia 03" loading="lazy"/>
+      <img src="img/cap04.png" alt="Evidencia 04" loading="lazy"/>
+    </div>
+  </section>
+
+  <!-- ✍️ Reflexión -->
+  <section class="container reveal">
+    <div class="sectionTitle"><span class="badge">Reflexión</span><h2>Aprendizajes clave</h2></div>
+    <article class="card">
+      <p style="margin:0">Identifiqué qué partes de mi stack domino y cuáles debo reforzar antes del parcial. Consolidé mi sistema de diseño (tokens, componentes, patrones) para acelerar desarrollo y mantener consistencia.</p>
+    </article>
+  </section>
+
+  <footer class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:10px">
+      <small>© 2025 — Macha Pariona Angel Yoelver • UNCP</small>
+      <a class="back" href="#top">▲ Arriba</a>
+    </div>
+  </footer>
+
+  <script>
+    // 🌠 Stars & Meteors (Canvas)
+    // ==============================
+    const canvas = document.getElementById('spaceCanvas');
+    const ctx = canvas.getContext('2d', { alpha:true });
+    let W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let stars = [], meteors = [], starCount = 180;
+
+    function resize(){
+      W = canvas.width = Math.floor(innerWidth * DPR);
+      H = canvas.height = Math.floor(innerHeight * DPR);
+    }
+    window.addEventListener('resize', resize); resize();
+
+    function rand(min, max){ return Math.random() * (max - min) + min }
+
+    function spawnStars(){
+      stars = [];
+      for(let i=0;i<starCount;i++){
+        stars.push({ x: rand(0, W), y: rand(0, H), r: rand(0.4, 1.8)*DPR, v: rand(.02, .08)*DPR });
+      }
+    }
+    spawnStars();
+
+    function spawnMeteor(){
+      const side = Math.random() < .5 ? 'left':'right';
+      meteors.push({ x: side==='left' ? -50*DPR : W+50*DPR, y: rand(0, H*0.4), vx: side==='left' ? rand(3,5)*DPR : -rand(3,5)*DPR, vy: rand(1.2, 2.2)*DPR, life: 0, max: rand(40, 70)});
+    }
+    setInterval(()=>{ if(Math.random() < .55) spawnMeteor() }, 2200);
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+
+      // Glow backdrop
+      const g = ctx.createRadialGradient(W*0.8, H*0.2, 0, W*0.8, H*0.2, Math.max(W,H)*0.8);
+      g.addColorStop(0, 'rgba(20,184,166,0.05)');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+
+      // Stars twinkle
+      for(const s of stars){
+        s.y += s.v; if(s.y > H) { s.y = 0; s.x = rand(0,W) }
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,' + rand(0.5, 0.9) + ')'; ctx.fill();
+      }
+
+      // Meteors
+      for(let i=meteors.length-1;i>=0;i--){
+        const m=meteors[i]; m.x += m.vx; m.y += m.vy; m.life++;
+        const trail = ctx.createLinearGradient(m.x, m.y, m.x - m.vx*10, m.y - m.vy*10);
+        trail.addColorStop(0, 'rgba(255,255,255,0.9)');
+        trail.addColorStop(1, 'rgba(14,165,233,0)');
+        ctx.strokeStyle = trail; ctx.lineWidth = 2*DPR; ctx.beginPath();
+        ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.vx*8, m.y - m.vy*8); ctx.stroke();
+        if(m.life > m.max || m.x < -80*DPR || m.x > W+80*DPR || m.y > H+80*DPR){ meteors.splice(i,1) }
+      }
+
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+
+    // ==============================
+    // 🎭 Tilt (micro‑interacción)
+    // ==============================
+    const tilts = document.querySelectorAll('.tilt');
+    tilts.forEach(el=>{
+      const damp = 18; // menor = más intenso
+      el.addEventListener('mousemove', (e)=>{
+        const r = el.getBoundingClientRect();
+        const cx = r.left + r.width/2, cy = r.top + r.height/2;
+        const dx = (e.clientX - cx) / r.width;  // -0.5..0.5 aprox
+        const dy = (e.clientY - cy) / r.height; // -0.5..0.5 aprox
+        el.style.transform = `rotateX(${(-dy*damp)}deg) rotateY(${(dx*damp)}deg)`;
+      });
+      el.addEventListener('mouseleave', ()=>{ el.style.transform = '' });
+    });
+
+    // ==============================
+    // 👀 Scroll Reveal
+    // ==============================
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{ if(ent.isIntersecting){ ent.target.classList.add('in'); io.unobserve(ent.target); } })
+    }, { threshold:.12 });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+  </script>
+</body>
+</html>

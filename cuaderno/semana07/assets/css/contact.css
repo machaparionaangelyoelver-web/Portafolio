@@ -1,0 +1,20 @@
+.contact-grid{display:grid;gap:12px}
+.contact-grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.contact-grid--3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.contact-grid--3{grid-template-columns:1fr}}
+
+.c-card{
+  display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--area-ink);
+  background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px;
+  box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
+}
+.c-card:hover{transform:translateY(-1px)}
+
+.c-icon{font-size:18px; line-height:1}
+.c-body{display:grid; gap:2px}
+.c-k{font-weight:800; color:var(--area-ink); font-size:.98rem}
+.c-v{color:var(--area-muted); font-size:.92rem}
+
+/* contenedor de sección */
+.section.card{border-radius:20px}
+.section__title{color:var(--area-ink)}
