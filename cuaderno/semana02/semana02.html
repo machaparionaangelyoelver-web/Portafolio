@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portafolio · Semana 2 — HTML & CSS (Básico + Avanzado)</title>
+  <meta name="description" content="Semana 2: HTML básico/avanzado y CSS básico/avanzado. Semántica, accesibilidad, layout moderno y responsive.">
+  <link rel="icon" href="assets/logos/uncp.png">
+  <link rel="stylesheet" href="assets/css/semana02.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="top-in">
+      <a class="brand" href="../../cuaderno.html" title="Volver al Cuaderno">
+        <img src="assets/logos/uncp.png" alt="UNCP">
+        <img src="assets/logos/fis.png" alt="FIS">
+      </a>
+      <div class="title">Portafolio · Semana 2</div>
+      <nav class="actions">
+        <a class="btn" href="../../cuaderno.html">← Volver</a>
+        <a class="btn accent" href="assets/pdf/Sem02_HTML_CSS.pdf" target="_blank" rel="noopener">📄 Ver PDF</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO (rediseño) -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <canvas id="canvasFx" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <div class="hero-slab reveal">
+      <span class="eyebrow">SEMANA 2 · HTML &amp; CSS</span>
+      <h1>HTML básico/avanzado <span class="sep">y</span> CSS básico/avanzado</h1>
+
+      <p class="intro">
+        Consolidé <strong>semántica y accesibilidad</strong> con HTML5; en CSS dominé
+        <strong>cascada</strong>, <strong>selectores</strong> y <strong>layout moderno</strong> (Flex/Grid)
+        con <strong>responsive</strong> fluido.
+      </p>
+
+      <ul class="badges">
+        <li>Semántica</li><li>Accesibilidad</li><li>Formularios</li>
+        <li>Cascada &amp; especificidad</li><li>Flex &amp; Grid</li><li>Responsive</li>
+      </ul>
+
+      <div class="cta-row">
+        <a class="btn accent" href="#temas">Ver temas</a>
+        <!-- Informe02 → GitHub -->
+        <a
+          class="btn outline"
+          id="informeBtn"
+          href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/f6db34f8ed9768623996568e8c4b2c1d951b4cc1/semana02.md"
+          target="_blank"
+          rel="noopener"
+          onclick="window.open(this.href,'_blank','noopener'); return false;"
+        >📘 Informe02</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBNAV pegajosa -->
+  <nav class="subnav">
+    <div class="subnav-in">
+      <a href="#temas">Temas</a>
+      <a href="#evidencias">Evidencias</a>
+      <a href="#reflexion">Reflexión</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <!-- TEMAS (flip-cards pro) -->
+    <section id="temas" class="section">
+      <h2 class="reveal">Temas relevantes</h2>
+      <p class="topics-intro reveal">
+        Estructura semántica, accesibilidad práctica, formularios productivos y un CSS
+        que escale: <strong>cascada</strong>, <strong>selectores</strong>, <strong>Flex/Grid</strong> y <strong>responsive</strong>.
+      </p>
+
+      <div class="grid">
+        <!-- 1 HTML básico -->
+        <article class="card flip pro reveal" tabindex="0" aria-label="HTML básico">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/sem02-html-basic.webp" alt="HTML básico">
+              <span class="chip">HTML</span>
+              <h3>HTML básico</h3>
+            </div>
+            <div class="back">
+              <h4>Lo esencial</h4>
+              <ul>
+                <li>Estructura: <code>&lt;header&gt; &lt;main&gt; &lt;footer&gt;</code>.</li>
+                <li>Texto, listas, tablas, enlaces e imágenes.</li>
+                <li>Jerarquía de encabezados y atributos clave.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 HTML semántico / accesibilidad -->
+        <article class="card flip pro reveal" tabindex="0" aria-label="Semántica y accesibilidad">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/sem02-html-semantic.webp" alt="Semántica y accesibilidad">
+              <span class="chip">HTML+</span>
+              <h3>Semántica y  accesibilidad</h3>
+            </div>
+            <div class="back">
+              <h4>Práctico</h4>
+              <ul>
+                <li><strong>Landmarks ARIA y foco:</strong> Usa roles como <code>main</code>, <code>nav</code> y asegura foco visible.</li>
+                <li><strong>Texto alternativo:</strong> Describe imágenes con <code>alt</code> útil y preciso.</li>
+                <li><strong>Lector de pantalla:</strong> HTML bien estructurado y encabezados en orden lógico.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 Formularios -->
+        <article class="card flip pro reveal" tabindex="0" aria-label="Formularios">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/sem02-html-forms.webp" alt="Formularios">
+              <span class="chip">HTML</span>
+              <h3>Formularios</h3>
+            </div>
+            <div class="back">
+              <h4>Productividad</h4>
+              <ul>
+                <li><code>&lt;label&gt;</code> asociada y estados de error.</li>
+                <li>Tipos nativos: <code>email</code>, <code>tel</code>, <code>date</code>…</li>
+                <li>Mensajes de ayuda accesibles.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 CSS básico -->
+        <article class="card flip pro reveal" tabindex="0" aria-label="CSS básico">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/sem02-css-basic.webp" alt="CSS básico">
+              <span class="chip">CSS</span>
+              <h3>CSS básico</h3>
+            </div>
+            <div class="back">
+              <h4>Fundamentos</h4>
+              <ul>
+                <li>Box model, tipografía y color.</li>
+                <li>Herencia, cascada y prioridades.</li>
+                <li>Selectores simples y combinadores.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 Flex & Grid -->
+        <article class="card flip pro reveal" tabindex="0" aria-label="Flex y Grid">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/sem02-css-layout.webp" alt="Flex y Grid">
+              <span class="chip">Layout</span>
+              <h3>Flex y  Grid</h3>
+            </div>
+            <div class="back">
+              <h4>Layout moderno</h4>
+              <ul>
+                <li>Grillas con <code>auto-fit</code> + <code>minmax()</code>.</li>
+                <li>Alineación y ordenado flexible.</li>
+                <li>Plantillas reutilizables.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 CSS avanzado -->
+        <article class="card flip pro reveal" tabindex="0" aria-label="CSS avanzado">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/sem02-css-advanced.webp" alt="CSS avanzado">
+              <span class="chip">CSS+</span>
+              <h3>CSS avanzado</h3>
+            </div>
+            <div class="back">
+              <h4>Potencia</h4>
+              <ul>
+                <li>Variables como design tokens.</li>
+                <li><code>clamp()</code>, <code>min()</code>/<code>max()</code>.</li>
+                <li>Estados accesibles (<code>:focus-visible</code>).</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="section">
+      <h2 class="reveal">Evidencias / Apuntes</h2>
+      <p class="topics-intro reveal">Imágenes que resumen mis resultados de la semana.</p>
+      <div class="evid-grid">
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/sem02-lab-semantic.png" alt="Estructura semántica">
+          <figcaption>Semántica + landmarks</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/sem02-lab-selectors.png" alt="Especificidad y selectores">
+          <figcaption>Especificidad &amp; selectores</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/sem02-lab-responsive.png" alt="Responsive moderno">
+          <figcaption>Responsive con Grid + clamp()</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- REFLEXIÓN -->
+    <section id="reflexion" class="section">
+      <div class="reflect-grid">
+        <article class="reflect-card reveal">
+          <h2>Reflexión</h2>
+          <ul>
+            <li>La <strong>semántica</strong> reduce fricción para personas y lectores de pantalla.</li>
+            <li>Entender <strong>cascada/especificidad</strong> evita parches y CSS repetido.</li>
+            <li><strong>Flex/Grid + funciones</strong> simplifican el responsive de verdad.</li>
+          </ul>
+        </article>
+        <article class="reflect-card reveal alt">
+          <h2>Conclusión</h2>
+          <p>
+            Una base cuidada en HTML/CSS permite componentes claros, accesibles
+            y escalables, con menos código y mejor rendimiento.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact">
+      <h2 class="reveal">Comunícate conmigo</h2>
+
+      <div class="contact-grid reveal">
+        <a class="contact-item" href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener" aria-label="Mi GitHub">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.55v-2.1c-3.22.7-3.9-1.39-3.9-1.39-.53-1.36-1.3-1.72-1.3-1.72-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.21 1.79 1.21 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.57-.29-5.28-1.29-5.28-5.74 0-1.27.46-2.31 1.21-3.13-.12-.3-.52-1.52.11-3.17 0 0 .98-.31 3.21 1.2.93-.26 1.93-.39 2.93-.39s2 .13 2.93.39c2.23-1.51 3.21-1.2 3.21-1.2.63 1.65.23 2.87.11 3.17.75.82 1.21 1.86 1.21 3.13 0 4.46-2.72 5.45-5.31 5.74.42.36.8 1.06.8 2.15v3.18c0 .3.2.66.8.55A11.5 11.5 0 0 0 12 .5z"/></svg>
+          </span>
+          <div class="txt"><strong>GitHub</strong><small>machaparionaangelyoelver-web</small></div>
+        </a>
+
+        <a class="contact-item" href="mailto:machaparionaangelyoelver@gmail.com" aria-label="Escríbeme por correo personal">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12 4 6.01V6h16zM4 18V8.24l7.4 5.55a1 1 0 0 0 1.2 0L20 8.24V18H4z"/></svg>
+          </span>
+          <div class="txt"><strong>Correo personal</strong><small>machaparionaangelyoelver@gmail.com</small></div>
+        </a>
+
+        <a class="contact-item" href="mailto:e_2021200788i@uncp.edu.pe" aria-label="Escríbeme por correo institucional">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12 4 6.01V6h16zM4 18V8.24l7.4 5.55a1 1 0 0 0 1.2 0L20 8.24V18H4z"/></svg>
+          </span>
+          <div class="txt"><strong>Correo institucional</strong><small>e_2021200788i@uncp.edu.pe</small></div>
+        </a>
+
+        <a class="contact-item" href="tel:+51934907255" aria-label="Llamar al número 934 907 255">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57.13.34.06.73-.2 1l-2.25 2.22z"/></svg>
+          </span>
+          <div class="txt"><strong>Lláma/WhatsApp</strong><small>+51 934 907 255</small></div>
+        </a>
+      </div>
+
+      <div class="social-row reveal" aria-label="Redes sociales">
+        <a class="social github" href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener">@machaparionaangelyoelver-web</a>
+        <a class="social ig" href="#" target="_blank" rel="noopener">@usuario</a>
+        <a class="social mail" href="mailto:machaparionaangelyoelver@gmail.com">Correo</a>
+        <a class="social tel" href="tel:+51934907255">+51 934 907 255</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- CRÉDITO -->
+  <div class="credit-bar">
+    Hecho por <strong>Angel Yoelver Macha</strong> · Portafolio Semana 2 · UNCP – FIS · 2025
+  </div>
+
+  <script src="assets/js/semana02.js"></script>
+</body>
+</html>

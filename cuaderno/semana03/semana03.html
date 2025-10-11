@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portafolio · Semana 3</title>
+  <meta name="description" content="Semana 3: Bootstrap vs Tailwind, Grid/Flex, componentes reutilizables y responsive profesional.">
+  <link rel="icon" href="assets/logos/uncp.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="top-in">
+      <a class="brand" href="../../cuaderno.html" title="Volver al Cuaderno">
+        <img src="assets/logos/uncp.png" alt="UNCP">
+        <img src="assets/logos/fis.png" alt="FIS">
+      </a>
+      <div class="title">Portafolio · Semana 3</div>
+      <nav class="actions">
+        <a class="btn" href="../../cuaderno.html">← Volver</a>
+        <a class="btn accent" href="assets/pdf/Sem03_FrameworksCSS.pdf" target="_blank" rel="noopener">📄 Ver PDF</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <canvas id="canvasFx" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <div class="hero-card reveal">
+      <span class="eyebrow">Semana 3 · CSS moderno</span>
+      <h1>Bootstrap, Tailwind y Layouts de Siguiente Nivel</h1>
+      <p class="intro short">
+        Comparé enfoques: <strong>componentes prehechos</strong> vs
+        <strong>utilidades atómicas</strong>. Practiqué Grid/Flex para maquetar rápido
+        y armé componentes limpios, accesibles y responsivos.
+      </p>
+      <div class="cta-row">
+        <a class="btn accent" href="#temas">Explorar temas</a>
+        <a class="btn" href="#laboratorio">Laboratorio</a>
+
+        <!-- INFORME03 -> GITHUB (link correcto) -->
+        <a
+          class="btn outline"
+          id="informeBtn"
+          href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/f6db34f8ed9768623996568e8c4b2c1d951b4cc1/semana03.md"
+          target="_blank"
+          rel="noopener"
+          onclick="window.open(this.href,'_blank','noopener'); return false;"
+        >📘 Informe03</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- TEMAS -->
+    <section id="temas" class="section">
+      <h2 class="reveal">Temas relevantes</h2>
+      <div class="callout-pro reveal">
+        <p>
+          Foco en <strong>productividad de estilos</strong> y <strong>calidad visual</strong>:
+          elección de framework, patrones de layout, utilidades que evitan CSS extra,
+          <strong>componentización</strong> y <strong>responsive</strong> sólido.
+        </p>
+      </div>
+
+      <div class="grid">
+        <!-- 1 -->
+        <article class="card pro flip reveal" tabindex="0" aria-label="Bootstrap 5">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/bootstrap.gif" alt="Bootstrap">
+              <span class="chip">Framework</span>
+              <h3>Bootstrap 5</h3>
+            </div>
+            <div class="back">
+              <h4>Cuándo usarlo</h4>
+              <ul>
+                <li>Necesitas <strong>componentes listos</strong> (navbars, modals, toasts).</li>
+                <li>Diseño consistente con <strong>tema</strong> y variables SASS.</li>
+                <li>Prototipos rápidos con utilidades integradas.</li>
+              </ul>
+              <p>Ideal para plazos cortos y equipos que prefieren convenciones fuertes.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 2 -->
+        <article class="card pro flip reveal" tabindex="0" aria-label="Tailwind CSS">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/tailwind.gif" alt="Tailwind CSS">
+              <span class="chip">Utilidades</span>
+              <h3>Tailwind CSS</h3>
+            </div>
+            <div class="back">
+              <h4>Ventajas</h4>
+              <ul>
+                <li><strong>Utility-first</strong>: menos CSS a mano.</li>
+                <li><strong>Purge</strong> reduce peso en producción.</li>
+                <li>Escala con <strong>design tokens</strong> y componentes.</li>
+              </ul>
+              <p>Perfecto para diseño a medida y sistemas de diseño personalizados.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 3 -->
+        <article class="card pro flip reveal" tabindex="0" aria-label="Grid y Flexbox">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/gridflex.gif" alt="CSS Grid y Flexbox">
+              <span class="chip">Layout</span>
+              <h3>Grid &amp; Flex</h3>
+            </div>
+            <div class="back">
+              <h4>Patrones clave</h4>
+              <ul>
+                <li>Grillas <strong>responsive</strong> con <code>repeat(auto-fit,minmax())</code>.</li>
+                <li>Flex para ejes y <strong>alineación</strong> rápida.</li>
+                <li>Tipografía fluida con <code>clamp()</code>.</li>
+              </ul>
+              <p>Grid define estructura; Flex resuelve alineación.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 4 -->
+        <article class="card pro flip reveal" tabindex="0" aria-label="Componentización">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/componentes.gif" alt="Componentización">
+              <span class="chip">Arquitectura</span>
+              <h3>Componentes</h3>
+            </div>
+            <div class="back">
+              <h4>Buenas prácticas</h4>
+              <ul>
+                <li>Estados: <code>:hover</code>, <code>:focus-visible</code> y ARIA.</li>
+                <li>Variantes por <strong>intención, tamaño y estado</strong>.</li>
+                <li>Composición &gt; herencia para reutilizar estilos.</li>
+              </ul>
+              <p>Diseño consistente nace de componentes pequeños y fiables.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 5 -->
+        <article class="card pro flip reveal" tabindex="0" aria-label="Utilidades CSS">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/utilidades.webp" alt="Utilidades">
+              <span class="chip">Productividad</span>
+              <h3>Utilidades</h3>
+            </div>
+            <div class="back">
+              <h4>Atajos reales</h4>
+              <ul>
+                <li>Clases para <strong>espaciados</strong> y <strong>display</strong> comunes.</li>
+                <li>Tokens: colores, radios, sombras, z-index.</li>
+                <li>Mixins/funciones si usas SASS o PostCSS.</li>
+              </ul>
+              <p>Menos hojas CSS separadas, más velocidad y coherencia.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 6 -->
+        <article class="card pro flip reveal" tabindex="0" aria-label="Responsive avanzado">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/responsive.webp" alt="Responsive">
+              <span class="chip">Mobile-First</span>
+              <h3>Responsive Pro</h3>
+            </div>
+            <div class="back">
+              <h4>Estrategias</h4>
+              <ul>
+                <li><strong>Mobile-first</strong> con breakpoints incrementales.</li>
+                <li>Contenedores fluidos + <strong>aspect-ratio</strong>.</li>
+                <li>Imágenes <strong>WebP</strong> y <code>loading="lazy"</code>.</li>
+              </ul>
+              <p>La performance es parte del diseño: menos reflows, más fluidez.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LABORATORIO -->
+    <section id="laboratorio" class="section">
+      <h2 class="reveal">Prácticas guiadas</h2>
+
+      <!-- 1 -->
+      <article class="lab reveal">
+        <div class="lab-text">
+          <h3>Grid responsive (auto-fit)</h3>
+          <p>Maquetación fluida sin media queries extra.</p>
+
+          <div class="code-card">
+            <div class="code-toolbar">
+              <span>CSS</span>
+              <div class="tools">
+                <button class="code-btn copy" data-target="#code-grid" title="Copiar">⧉</button>
+              </div>
+            </div>
+            <pre id="code-grid" class="code-block"><code>.container{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+}</code></pre>
+          </div>
+        </div>
+
+        <figure class="shot tilt">
+          <img loading="lazy" src="assets/images/lab-grid.png" alt="Grilla responsive auto-fit">
+          <figcaption>Grilla que refluye 1–N columnas según ancho.</figcaption>
+        </figure>
+      </article>
+
+      <!-- 2 -->
+      <article class="lab reveal">
+        <div class="lab-text">
+          <h3>Flex con wrap + gap</h3>
+          <p>Filas de tarjetas con salto ordenado y separación nativa.</p>
+
+          <div class="code-card">
+            <div class="code-toolbar">
+              <span>CSS</span>
+              <div class="tools">
+                <button class="code-btn copy" data-target="#code-flex" title="Copiar">⧉</button>
+              </div>
+            </div>
+            <pre id="code-flex" class="code-block"><code>.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:stretch;
+}</code></pre>
+          </div>
+        </div>
+
+        <figure class="shot tilt">
+          <img loading="lazy" src="assets/images/lab-flex.png" alt="Fila con flex-wrap y gap">
+          <figcaption>Cards alineadas; el espacio se reparte y hace wrap limpio.</figcaption>
+        </figure>
+      </article>
+
+      <!-- 3 -->
+      <article class="lab reveal">
+        <div class="lab-text">
+          <h3>Botón componible</h3>
+          <p>Variantes por intención y tamaño sin duplicar CSS.</p>
+
+          <div class="code-card">
+            <div class="code-toolbar">
+              <span>CSS</span>
+              <div class="tools">
+                <button class="code-btn copy" data-target="#code-btn" title="Copiar">⧉</button>
+              </div>
+            </div>
+            <pre id="code-btn" class="code-block"><code>.btn{ --pad:10px 16px; --bg:#19b394; --bg-h:#0fa387; }
+.btn{ padding:var(--pad); background:var(--bg); border-radius:12px; color:#fff }
+.btn:hover{ background:var(--bg-h) }
+.btn.sm{ --pad:8px 12px; font-size:.9rem }
+.btn.ghost{ background:transparent; border:1px solid #b6d1ff; color:#1f2b3b }</code></pre>
+          </div>
+        </div>
+
+        <figure class="shot tilt">
+          <img loading="lazy" src="assets/images/lab-btn.png" alt="Variantes de botón">
+          <figcaption>Variantes: normal, <em>sm</em> y <em>ghost</em>.</figcaption>
+        </figure>
+      </article>
+
+      <!-- 4 -->
+      <article class="lab reveal">
+        <div class="lab-text">
+          <h3>Tailwind: mental model</h3>
+          <p>Componer UI con utilidades evita CSS huérfano.</p>
+
+          <div class="code-card">
+            <div class="code-toolbar">
+              <span>HTML</span>
+              <div class="tools">
+                <button class="code-btn copy" data-target="#code-tw" title="Copiar">⧉</button>
+              </div>
+            </div>
+            <pre id="code-tw" class="code-block"><code>&lt;button class="inline-flex items-center gap-2 px-4 py-2 rounded-xl
+               bg-teal-600 hover:bg-teal-500 text-white font-semibold shadow"&gt;
+  Acción
+&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+
+        <figure class="shot tilt">
+          <img loading="lazy" src="assets/images/lab-tw.png" alt="Botón con utilidades Tailwind">
+          <figcaption>Construcción por utilidades; sin CSS extra.</figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="section">
+      <h2 class="reveal">Evidencias de prácticas</h2>
+      <p class="topics-intro reveal">Capturas del trabajo realizado.</p>
+      <div class="evid-grid">
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/trabajos/pague01.png" alt="Tarjeta Custom Domains">
+          <figcaption>pague01 · Custom Domains</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/trabajos/pague02.png" alt="Tarjeta Never Sleeps">
+          <figcaption>pague02 · Never Sleeps</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/trabajos/pague03.png" alt="Tarjeta Dedicated">
+          <figcaption>pague03 · Dedicated</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img loading="lazy" src="assets/images/trabajos/index.png" alt="Página principal con 3 callouts">
+          <figcaption>index · Página principal (3 callouts)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact">
+      <h2 class="reveal">Comunícate conmigo</h2>
+
+      <div class="contact-grid reveal">
+        <a class="contact-item" href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener" aria-label="Mi GitHub">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.55v-2.1c-3.22.7-3.9-1.39-3.9-1.39-.53-1.36-1.3-1.72-1.3-1.72-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.21 1.79 1.21 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.57-.29-5.28-1.29-5.28-5.74 0-1.27.46-2.31 1.21-3.13-.12-.3-.52-1.52.11-3.17 0 0 .98-.31 3.21 1.2.93-.26 1.93-.39 2.93-.39s2 .13 2.93.39c2.23-1.51 3.21-1.2 3.21-1.2.63 1.65.23 2.87.11 3.17.75.82 1.21 1.86 1.21 3.13 0 4.46-2.72 5.45-5.31 5.74.42.36.8 1.06.8 2.15v3.18c0 .3.2.66.8.55A11.5 11.5 0 0 0 12 .5z"/></svg>
+          </span>
+          <div class="txt"><strong>GitHub</strong><small>machaparionaangelyoelver-web</small></div>
+        </a>
+
+        <a class="contact-item" href="mailto:machaparionaangelyoelver@gmail.com" aria-label="Escríbeme por correo">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.01L12 12 4 6.01V6h16zM4 18V8.24l7.4 5.55a1 1 0 0 0 1.2 0L20 8.24V18H4z"/></svg>
+          </span>
+          <div class="txt"><strong>Correo personal</strong><small>machaparionaangelyoelver@gmail.com</small></div>
+        </a>
+
+        <a class="contact-item" href="tel:+51934907255" aria-label="Llamar al número 934 907 255">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57.13.34.06.73-.2 1l-2.25 2.22z"/></svg>
+          </span>
+          <div class="txt"><strong>Lláma/WhatsApp</strong><small>+51 934 907 255</small></div>
+        </a>
+
+        <a class="contact-item" href="https://instagram.com/ange_lyoel" target="_blank" rel="noopener" aria-label="Mi Instagram">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5z"/></svg>
+          </span>
+          <div class="txt"><strong>Instagram</strong><small>@ange_lyoel</small></div>
+        </a>
+      </div>
+
+      <div class="social-row reveal" aria-label="Redes sociales">
+        <a class="social github" href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener">@machaparionaangelyoelver-web</a>
+        <a class="social ig" href="https://instagram.com/ange_lyoel" target="_blank" rel="noopener">@ange_lyoel</a>
+        <a class="social mail" href="mailto:machaparionaangelyoelver@gmail.com">Correo</a>
+        <a class="social tel" href="tel:+51934907255">+51 934 907 255</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- CRÉDITO -->
+  <div class="credit-bar">
+    Hecho por <strong>Angel Yoelver Macha</strong> · Portafolio Semana 3 · UNCP – FIS · 2025
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
