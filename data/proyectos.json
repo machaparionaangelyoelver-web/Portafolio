@@ -1,0 +1,25 @@
+
+[
+  {
+    "titulo": "Portal de Trámites — Municipalidad Distrital de San Juan de Jarpa (Chupaca)",
+    "descripcion": "Portal institucional con ventanilla virtual para licencias, pagos y reclamos. Incluye accesibilidad, SEO y PWA.",
+    "fecha": "2025-08-20",
+    "estado": "En curso",
+    "progreso": 50,
+    "tags": ["Web", "Gobierno Local", "Trámites", "PWA", "Accesibilidad"],
+    "imagen": "assets/thumbs/portal-jarpa.jpg",
+    "url": "https://github.com/tuusuario/portal-jarpa",
+    "docs": "assets/docs/portal-jarpa.pdf"
+  },
+  {
+    "titulo": "Chatbot Agrícola MAIZ — Hualhuas",
+    "descripcion": "Chatbot agrícola para siembra y cosecha de maíz. WeatherAPI + base agronómica + panel y SCRUM.",
+    "fecha": "2025-08-21",
+    "estado": "Concluido",
+    "progreso": 100,
+    "tags": ["Chatbot", "IA", "Agricultura", "Clima", "SCRUM"],
+    "imagen": "assets/thumbs/chatbot-maiz.jpg",
+    "url": "https://github.com/tuusuario/chatbot-maiz",
+    "docs": "assets/docs/chatbot-maiz.pdf"
+  }
+]

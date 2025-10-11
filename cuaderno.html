@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cuaderno — Desarrollo de Aplicaciones Web</title>
+  <meta name="theme-color" content="#f5f8ff" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ====== PALETA CLARA PASTEL ====== */
+    :root{
+      --bg:#f5f8ff;            /* base clara */
+      --ink:#0d1321;           /* texto principal */
+      --muted:#41536b;         /* texto secundario */
+      --panel:#ffffffcc;       /* vidrio claro */
+      --card:#ffffffd9;        /* tarjeta */
+      --line:#dfe8ff;          /* bordes sutiles */
+      --acc:#3a86ff;           /* azul pastel */
+      --acc2:#7bd389;          /* verde lima pastel */
+      --shadow:0 18px 70px rgba(21, 41, 95, .12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; background:var(--bg); color:var(--ink);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased
+    }
+    a{color:var(--acc);text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:24px 28px}
+
+    /* ====== NAV ====== */
+    .nav{
+      position:sticky; top:0; z-index:80;
+      backdrop-filter:blur(10px) saturate(1.1);
+      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.65));
+      border-bottom:1px solid var(--line)
+    }
+    .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-title{
+      font-weight:800; letter-spacing:.3px;
+      background:linear-gradient(90deg,var(--acc),var(--acc2));
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .brand-logos{display:flex;align-items:center;gap:10px;opacity:.95}
+    .brand-logos img{height:28px;width:auto;border-radius:6px;display:block}
+    .menu{display:flex;gap:14px;flex-wrap:wrap}
+    .menu a{padding:8px 12px;border-radius:10px;color:var(--ink);font-weight:600}
+    .menu a[aria-current="page"]{outline:1px solid #bcd4ff;background:#eaf2ff}
+
+    /* ====== HERO CON ANIMACIÓN ====== */
+    .hero-wrap{position:relative; isolation:isolate}
+    /* Capa de auroras/blobs animados */
+    .aurora{
+      position:absolute; inset:0; z-index:-1; overflow:hidden;
+      filter:blur(40px) saturate(1.2);
+    }
+    .blob{
+      position:absolute; width:52vmax; height:52vmax; border-radius:50%;
+      opacity:.65; transform:translate(-50%, -50%);
+      mix-blend-mode:multiply; will-change:transform;
+      animation: float 22s ease-in-out infinite alternate;
+    }
+    /* Gradientes pastel muy suaves (sin imagen) */
+    .b1{left:18%; top:18%;
+      background:radial-gradient(closest-side, #b3e5fc 0%, #90caf9 35%, transparent 70%);
+      animation-duration: 24s;
+    }
+    .b2{left:78%; top:22%;
+      background:radial-gradient(closest-side, #c8ffd4 0%, #9be6ad 40%, transparent 70%);
+      animation-duration: 28s;
+    }
+    .b3{left:60%; top:76%;
+      background:radial-gradient(closest-side, #ffd6e7 0%, #ffb3c7 35%, transparent 70%);
+      animation-duration: 26s;
+    }
+    .b4{left:24%; top:72%;
+      background:radial-gradient(closest-side, #fff7b1 0%, #ffe27a 40%, transparent 72%);
+      animation-duration: 30s;
+    }
+    @keyframes float{
+      0%{ transform:translate(-50%,-50%) scale(1)}
+      50%{ transform:translate(-47%,-53%) scale(1.06)}
+      100%{ transform:translate(-52%,-48%) scale(1)}
+    }
+
+    .hero{
+      display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;
+      min-height:56vh;padding-top:18px
+    }
+    .glass{
+      background:var(--panel);
+      border:1px solid var(--line); border-radius:22px; padding:24px; box-shadow:var(--shadow)
+    }
+    .chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #cfe0ff;color:#2a3a59;background:#f3f8ff}
+    h1{font-family:Poppins,Inter;font-weight:800;font-size:42px;line-height:1.06;margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+    .toolbar{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;margin-top:12px}
+    .search{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid #cfe0ff;background:#fff}
+    .search input{width:100%;background:transparent;border:0;outline:0;color:var(--ink);font-size:15px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid #cfe0ff;background:#fff;color:var(--ink);cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--acc),#9fd0ff);color:#0b1220;border:0}
+
+    /* Mascota robot (ligeramente más pequeña en claro) */
+    .robot{
+      aspect-ratio: 16/10; border-radius:22px; overflow:hidden;
+      background:linear-gradient(180deg,#ffffffcc,#ffffffee);
+      border:1px solid var(--line); box-shadow:var(--shadow);
+      display:grid; place-items:center; position:relative
+    }
+    .robot svg{width:75%; max-width:460px; animation:float2 6s ease-in-out infinite}
+    @keyframes float2{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .scan{position:absolute; inset:auto 0 14% 0; height:2px; background:linear-gradient(90deg,transparent,#3a86ff,#7bd389,transparent);
+      filter:drop-shadow(0 0 6px #82b7ff); animation:scan 2.8s linear infinite}
+    @keyframes scan{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+    /* ====== TIMELINE ====== */
+    .section{margin-top:26px}
+    .timeline{position:relative;margin:14px 0}
+    .timeline:before{content:"";position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#cfe0ff,#b7cdfc)}
+    .week{position:relative;display:grid;grid-template-columns:60px 1fr;gap:16px;margin:0 0 18px;transform:translateY(14px);opacity:0}
+    .week.show{transform:none;opacity:1;transition:all .7s cubic-bezier(.2,.7,.2,1)}
+    .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#a7c8ff,#7db8ff);border:2px solid #fff;margin:8px 0 0 16px;box-shadow:0 0 0 6px rgba(123,179,255,.22)}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 35px rgba(5,12,26,.10)
+    }
+    .card h3{margin:.2rem 0 .4rem;font-family:Poppins}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin:.25rem 0 .6rem}
+    .badge{font-size:12px;padding:4px 8px;border:1px solid #cfe0ff;border-radius:999px;color:#2a3a59;background:#f3f8ff}
+    .status-ok{border-color:#8dd4b0;background:#eafff7;color:#1f5a47}
+    .status-wip{border-color:#e3d28a;background:#fff9d9;color:#6b5a16}
+    .content{display:grid;gap:8px}
+    .row{display:grid;grid-template-columns:160px 1fr;gap:10px}
+    .row strong{color:#2a3a59}
+    .pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid #cfe0ff;color:#2a3a59;background:#ffffff}
+    .thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .thumb{width:120px;height:72px;border-radius:10px;overflow:hidden;border:1px solid #e6eeff;background:#fff}
+    .thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(1.03)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+    /* ====== ATAJOS ====== */
+    .grid3{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);margin-top:18px}
+    .link{transition:transform .18s ease, box-shadow .22s ease,border-color .2s ease;display:block}
+    .link:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(6,14,30,.12);border-color:#cfe0ff}
+
+    /* ====== FOOTER ====== */
+    .footer{border-top:1px solid var(--line);color:#546681;background:linear-gradient(0deg,rgba(255,255,255,.9),rgba(255,255,255,.65))}
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="inner container" style="padding-left:0;padding-right:0">
+      <div class="brand">
+        <span class="brand-title">Portafolio</span>
+        <span class="brand-logos">
+          <!-- Asegúrate que existan estas rutas según tu carpeta /assets -->
+          <img src="assets/logo-uncp.png" alt="UNCP" />
+          <img src="assets/logo-fis.jpg" alt="FIS" />
+        </span>
+      </div>
+      <div class="menu">
+        <a href="index.html">Portada</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="cuaderno.html" aria-current="page">Cuaderno</a>
+        <a href="bibliografia.html">Bibliografía</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO con animación pastel -->
+  <div class="hero-wrap">
+    <!-- Capa animada (sin imágenes) -->
+    <div class="aurora" aria-hidden="true">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+      <div class="blob b4"></div>
+    </div>
+
+    <main class="container" id="contenido" role="main">
+      <section class="hero">
+        <div class="glass">
+          <span class="chip">Cuaderno de aprendizaje</span>
+          <h1>Desarrollo de Aplicaciones Web</h1>
+          <p class="muted">
+            Registro semanal de temas clave (HTML/CSS, JavaScript, APIs, backend, auth, deploy), ejercicios de laboratorio y reflexión:
+            <em>¿Qué aprendí?</em> · <em>¿Cómo lo aprendí?</em> · <em>¿Cómo lo aplico?</em>
+          </p>
+          <div class="toolbar">
+            <label class="search" aria-label="Buscar en semanas">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#3a86ff" /><path d="M20 20L17 17" stroke="#3a86ff" /></svg>
+              <input id="q" type="search" placeholder="Busca por tema, etiqueta o evidencia…" autocomplete="off">
+            </label>
+            <button class="btn" id="btnExpand">Expandir todo</button>
+            <button class="btn primary" onclick="window.print()">Exportar PDF</button>
+          </div>
+        </div>
+
+        <!-- Robot animado -->
+        <aside class="robot" aria-label="Mascota del portafolio">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0%" stop-color="#3a86ff"/><stop offset="100%" stop-color="#7bd389"/>
+              </linearGradient>
+            </defs>
+            <!-- cuerpo -->
+            <rect x="50" y="60" rx="14" ry="14" width="100" height="90" fill="url(#g1)" opacity="0.15" stroke="#3a86ff" />
+            <!-- cabeza -->
+            <rect x="65" y="25" rx="12" ry="12" width="70" height="45" fill="url(#g1)" opacity="0.25" stroke="#7bd389" />
+            <!-- antena -->
+            <line x1="100" y1="18" x2="100" y2="8" stroke="#7bd389" stroke-width="3"/>
+            <circle cx="100" cy="6" r="3" fill="#7bd389"/>
+            <!-- ojos -->
+            <circle cx="85" cy="45" r="6" fill="#3a86ff"/>
+            <circle cx="115" cy="45" r="6" fill="#3a86ff"/>
+            <!-- sonrisa -->
+            <path d="M85 55 Q100 65 115 55" stroke="#3a86ff" fill="none" stroke-width="2"/>
+            <!-- brazos -->
+            <rect x="35" y="78" width="12" height="40" rx="6" fill="url(#g1)" opacity="0.25" />
+            <rect x="153" y="78" width="12" height="40" rx="6" fill="url(#g1)" opacity="0.25" />
+            <!-- luces -->
+            <circle cx="75" cy="95" r="4" fill="#7bd389"/>
+            <circle cx="100" cy="95" r="4" fill="#7bd389"/>
+            <circle cx="125" cy="95" r="4" fill="#7bd389"/>
+          </svg>
+          <div class="scan"></div>
+        </aside>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="section">
+        <div id="timeline" class="timeline"></div>
+      </section>
+
+      <!-- Atajos -->
+      <section class="grid3">
+        <a class="card link" href="proyectos.html">
+          <h3>📁 Proyectos</h3>
+          <p class="muted">Repositorios, despliegues y resultados.</p>
+        </a>
+        <a class="card link" href="bibliografia.html">
+          <h3>📚 Bibliografía</h3>
+          <p class="muted">Fuentes y referencias por módulo.</p>
+        </a>
+        <a class="card link" href="index.html">
+          <h3>🏠 Portada</h3>
+          <p class="muted">Resumen y navegación principal.</p>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">Hecho con 💚 + 💙 y GitHub Pages.</div>
+  </footer>
+
+  <script>
+    // Helpers
+    const $ = (s,sc=document)=>sc.querySelector(s);
+    const el = (t,c)=>{const n=document.createElement(t); if(c) n.className=c; return n;};
+    const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,'');
+
+    // Tarjeta de semana
+    function weekCard(s, i){
+      const wrap = el('div','week reveal');
+      const dot = el('div','dot');
+      const body = el('div','card');
+
+      const h3 = el('h3'); h3.textContent = `Semana ${s.numero ?? '—'} — ${s.titulo ?? ''}`;
+      const meta = el('div','meta');
+
+      if(s.fecha){ const b = el('span','badge'); b.textContent = s.fecha; meta.appendChild(b); }
+      if(s.estado){
+        const b = el('span','badge '+(s.estado === 'completado' ? 'status-ok':'status-wip'));
+        b.textContent = s.estado === 'completado' ? 'Completado' : 'En curso';
+        meta.appendChild(b);
+      }
+      if(Array.isArray(s.etiquetas)){
+        s.etiquetas.slice(0,6).forEach(t=>{ const p = el('span','pill'); p.textContent = t; meta.appendChild(p); });
+      }
+
+      const content = el('div','content');
+      const r1 = el('div','row'); r1.innerHTML = `<strong>Temas:</strong><div>${s.temas || '—'}</div>`;
+      const r2 = el('div','row'); r2.innerHTML = `<strong>Ejercicios:</strong><div>${s.ejercicios || '—'}</div>`;
+      const r3 = el('div','row'); r3.innerHTML = `<strong>Reflexión:</strong><div>${s.reflexion || '—'}</div>`;
+      content.append(r1,r2,r3);
+
+      // Acciones
+      const actions = el('div','actions');
+      const open = el('a','btn primary'); open.textContent = 'Abrir semana';
+      open.href = s.href || '#'; open.rel='noopener';
+      actions.appendChild(open);
+
+      body.append(h3, meta, content, actions);
+      wrap.append(dot, body);
+      return wrap;
+    }
+
+    // Semanas 1–8 con tus títulos/temas y rutas
+    const semanas = [
+      { numero:1, titulo:"Introducción",
+        etiquetas:["presentación","entorno","git básico"],
+        temas:"Presentación del curso y setup del entorno; repositorios y flujo básico de trabajo.",
+        ejercicios:"Configurar entorno y repositorio inicial.",
+        href:"cuaderno/semana01/semana01.html" },
+      { numero:2, titulo:"HTML básico y avanzado · CSS básico y avanzado",
+        etiquetas:["HTML","CSS","semántica","responsive"],
+        temas:"Estructura semántica, formularios y accesibilidad; CSS selectors y layout (Flex/Grid).",
+        ejercicios:"Maquetar landing responsive con tipografías y grid.",
+        href:"cuaderno/semana02/semana02.html" },
+      { numero:3, titulo:"Bootstrap y Tailwind (práctica)",
+        etiquetas:["Bootstrap","Tailwind","componentes"],
+        temas:"Sistemas de utilidades y componentes; grid y responsive con utilidades.",
+        ejercicios:"Reconstruir una sección con Bootstrap y otra con Tailwind.",
+        href:"cuaderno/semana03/semana03.html" },
+      { numero:4, titulo:"JavaScript básico y avanzado (práctica)",
+        etiquetas:["JS","DOM","fetch","módulos"],
+        temas:"Variables, funciones, arrays, objetos, DOM, eventos, fetch y módulos.",
+        ejercicios:"Retos: DOM, fetch de JSON y render dinámico.",
+        href:"cuaderno/semana04/semana04.html" },
+      { numero:5, titulo:"Práctica · Instalación Vite · React · Next.js",
+        etiquetas:["Vite","React","Next.js","npm"],
+        temas:"Scaffolding con Vite, bundling; overview de React/Next.",
+        ejercicios:"Crear proyecto con Vite y levantar en local.",
+        href:"cuaderno/semana05/semana05.html" },
+      { numero:6, titulo:"Fundamentos y componentes de React (práctica)",
+        etiquetas:["React","componentes","props","JSX"],
+        temas:"Componentes funcionales, props, composición y JSX.",
+        ejercicios:"Armar componentes y listas; props/children.",
+        href:"cuaderno/semana06/semana06.html" },
+      { numero:7, titulo:"Hooks: useState / useEffect / useContext / useRef",
+        etiquetas:["React","Hooks","estado","ciclo de vida"],
+        temas:"Gestión de estado y efectos; context global; referencias.",
+        ejercicios:"Mini-apps para practicar cada hook.",
+        href:"cuaderno/semana07/semana07.html" },
+      { numero:8, titulo:"Consolidado · Primer Parcial",
+        etiquetas:["evaluación","síntesis","repaso"],
+        temas:"Repaso general de contenidos y prácticas; evaluación parcial.",
+        ejercicios:"Checklist de evidencias y mejoras.",
+        href:"cuaderno/semana08/semana08.html" },
+    ];
+
+    const timeline = document.getElementById('timeline');
+
+    function render(arr){
+      timeline.innerHTML = '';
+      arr.forEach((s,i)=> timeline.appendChild(weekCard(s,i)));
+
+      // Aparición al hacer scroll
+      const io = new IntersectionObserver((ents)=>{
+        ents.forEach(ent=>{
+          if(ent.isIntersecting){ ent.target.classList.add('show'); io.unobserve(ent.target); }
+        });
+      },{threshold:.16});
+      timeline.querySelectorAll('.week').forEach(w=>io.observe(w));
+    }
+
+    // Buscar (contiene)
+    const q = document.getElementById('q');
+    q.addEventListener('input', ()=>{
+      const t = norm(q.value.trim());
+      if(!t){ render(semanas); return; }
+      const fil = semanas.filter(s=>{
+        const hay = [s.titulo,s.temas,s.ejercicios,(s.etiquetas||[]).join(' ')].map(x=>norm(x)).join(' ');
+        return hay.includes(t);
+      });
+      render(fil);
+    });
+
+    // Expandir/colapsar todo (si luego vuelves a usar <details>)
+    document.getElementById('btnExpand').addEventListener('click', ()=>{
+      const all = timeline.querySelectorAll('details');
+      if(!all.length) return; // no hay details en esta versión
+      const anyClosed = [...all].some(d=>!d.open);
+      all.forEach(d=>d.open = anyClosed);
+    });
+
+    // Inicial
+    render(semanas);
+  </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio — Macha Pariona Angel Yoelver</title>
+  <meta name="description" content="Portafolio de Macha Pariona Angel Yoelver (UNCP). Proyectos, cuaderno y reflexión." />
+  <meta name="theme-color" content="#0a0f1a" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    :root{
+      --bg:#0a0f1a; --bg2:#0c1426; --glass:rgba(10,16,28,.55);
+      --txt:#ecf2ff; --muted:#a9b8d6;
+      --line:#20304e; --acc:#6ab6ff; --acc2:#7cf3d1;
+      --shadow:0 12px 50px rgba(3,10,24,.55);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:
+      radial-gradient(1400px 700px at -20% -20%, #0f1a35 10%, transparent 55%),
+      radial-gradient(900px 700px at 120% -10%, #0d1b34 10%, transparent 55%),
+      var(--bg);
+      color:var(--txt); font-family:Inter,system-ui,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased}
+    a{color:var(--acc);text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:24px 28px}
+
+    /* ===== TOP BAR (logo + menú) ===== */
+    .topbar{
+      position:sticky; top:0; z-index:60; backdrop-filter:blur(10px) saturate(1.1);
+      background:linear-gradient(180deg, rgba(10,16,28,.9), rgba(10,16,28,.6));
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .row{display:grid;grid-template-columns:220px 1fr; gap:18px; align-items:center; padding:12px 18px}
+    .brand{display:flex; align-items:center; gap:12px; white-space:nowrap}
+    .brand img{width:34px;height:34px;border-radius:6px;border:1px solid #2a3c63; background:#0f172a}
+    .brand span{font-family:Poppins,Inter; font-weight:800; letter-spacing:.3px;
+      background:linear-gradient(90deg,var(--acc),var(--acc2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .menu{display:flex; gap:14px; justify-content:flex-end; flex-wrap:wrap}
+    .menu a{padding:8px 12px;border-radius:10px;color:var(--txt);font-weight:700}
+    .menu a:hover{background:rgba(123,202,255,.1)}
+    .menu a[aria-current="page"]{outline:1px solid #2a3c63;background:rgba(106,165,255,.12)}
+
+    /* ===== HERO ===== */
+    .hero-wrap{position:relative; isolation:isolate}
+    .hero-bg{
+      position:absolute; inset:0; z-index:-1;
+      background:
+        linear-gradient(180deg, rgba(6,10,18,.42), rgba(6,10,18,.85) 65%),
+        url('https://i0.wp.com/sistemasuncp.edu.pe/wp-content/uploads/2023/04/Pabellon-C-facultad-de-ingenieria-de-sistemas.jpg?resize=1080%2C500&ssl=1') center/cover no-repeat;
+      filter:saturate(1.05) contrast(1.02);
+    }
+    .hero{
+      padding:64px 0 40px; min-height:72vh; display:grid; grid-template-columns:1.05fr 1fr; gap:24px; align-items:center;
+    }
+    .glass{
+      background:linear-gradient(180deg, var(--glass), rgba(12,18,34,.55));
+      border:1px solid rgba(76, 111, 170, .45);
+      border-radius:22px; padding:24px; box-shadow:var(--shadow)
+    }
+    .chip{display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:6px 10px; border-radius:999px;
+      border:1px solid #2e4472; color:#cfe2ff; background:rgba(20,30,55,.55)}
+    h1{font-family:Poppins,Inter; font-weight:800; font-size:44px; line-height:1.04; margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+
+    /* ===== Botón principal (único) ===== */
+    .btn-main{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:14px 28px; font-size:18px; font-weight:700; border-radius:14px;
+      color:#0b1120; background:linear-gradient(90deg,#6ab6ff,#7cf3d1);
+      box-shadow:0 8px 28px rgba(108,175,255,.35), 0 0 18px rgba(124,243,209,.35);
+      border:0; text-decoration:none; transition:transform .18s ease, box-shadow .22s ease;
+    }
+    .btn-main:hover{transform:translateY(-3px) scale(1.03); box-shadow:0 14px 40px rgba(106,182,255,.55), 0 0 22px rgba(124,243,209,.45)}
+    .btn-main::before{content:"👨‍💻"; font-size:20px}
+
+    .hero-figure{
+      aspect-ratio: 16/10.5; border-radius:22px;
+      background:linear-gradient(180deg,#0b1428,#071024);
+      border:1px solid #23365b; box-shadow:var(--shadow);
+      display:grid; place-items:center; overflow:hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .figure-inner{padding:18px; text-align:center}
+    .figure-inner p{margin:6px 0 0; color:var(--muted)}
+
+    /* ===== STATS ===== */
+    .section{margin-top:24px}
+    .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+    .kpi{background:linear-gradient(180deg,#0b1428,#0a1222); border:1px solid #1b2b4c; border-radius:16px; padding:16px; text-align:center; transform:translateY(10px); opacity:0}
+    .kpi .icon{display:inline-flex; width:38px; height:38px; border-radius:11px; align-items:center; justify-content:center; margin-bottom:8px;
+      background:linear-gradient(180deg,#101c36,#0f1b34); border:1px solid #24406f}
+    .kpi .big{font-size:30px; font-weight:800}
+    .kpi small{color:var(--muted)}
+
+    /* ===== CARDS ===== */
+    .grid{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    .card.link{
+      padding:20px; border-radius:18px; border:1px solid #223658; background:linear-gradient(180deg,#0c162c,#0a1222);
+      transition:transform .2s ease, box-shadow .25s ease, border-color .2s ease; transform:translateY(12px); opacity:0
+    }
+    .card.link:hover{transform:translateY(2px); box-shadow:0 22px 60px rgba(5,12,26,.5); border-color:#2a4a86}
+    .card h3{font-family:Poppins; margin:0 0 6px}
+    .card p{margin:.2rem 0 0; color:var(--muted)}
+    .card .thumb{aspect-ratio:16/9; border-radius:12px; overflow:hidden; border:1px solid #23365b; margin-bottom:10px}
+    .thumb img{width:100%; height:100%; object-fit:cover; filter:saturate(1.05)}
+
+    /* ===== FOOTER ===== */
+    .footer{border-top:1px solid var(--line); color:#aabbd1; background:linear-gradient(0deg, rgba(10,16,28,.9), rgba(10,16,28,.45))}
+    .footer .container{padding:22px 28px}
+
+    /* Reveal on scroll */
+    .reveal.show{transform:none; opacity:1; transition:all .7s cubic-bezier(.2,.7,.2,1)}
+    @media (max-width:1024px){
+      .topbar .row{grid-template-columns:1fr}
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      h1{font-size:36px}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOP BAR -->
+  <header class="topbar" role="banner" aria-label="Barra superior">
+    <div class="row">
+      <a class="brand" href="index.html" aria-label="Inicio">
+        <!-- Coloca tu logo en assets/logo-uncp.png -->
+        <img src="assets/logo-uncp.png" alt="Logo UNCP" onerror="this.style.visibility='hidden'">
+        <span>Portafolio • UNCP Sistemas</span>
+      </a>
+      <nav class="menu" role="navigation" aria-label="Enlaces principales">
+        <a href="index.html" aria-current="page">Portada</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="cuaderno.html">Cuaderno</a>
+        <a href="bibliografia.html">Bibliografía</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <main class="container" id="contenido" role="main">
+      <section class="hero">
+        <div class="glass">
+          <span class="chip">Bienvenida e Introducción</span>
+          <h1>¡Hola! Soy <span style="background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent">Macha Pariona Angel Yoelver</span></h1>
+          <p class="muted">
+            Estudiante de Ing. de Sistemas - UNCP (Huancayo, Perú). Aquí documento mis proyectos, aprendizajes semanales y reflexiones.
+          </p>
+          <!-- ÚNICO BOTÓN -->
+          <a class="btn-main" href="sobre-mi.html">Sobre mí</a>
+        </div>
+
+        <!-- Tu foto personal (assets/foto-perfil.jpg) -->
+        <figure class="hero-figure">
+          <div class="figure-inner">
+            <img src="assets/foto-perfil.jpg" alt="Macha Pariona Angel Yoelver" width="880" height="420" loading="lazy">
+            <p class="muted">Portafolio - UNCP Ingeniería de Sistemas</p>
+          </div>
+        </figure>
+      </section>
+
+      <!-- KPIs (automáticos desde data/*.json) -->
+      <section class="section">
+        <div class="kpis">
+          <div class="kpi reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 7h5l2 2h11v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="#7fb2ff"/></svg>
+            </div>
+            <div class="big" id="kpi-proy">—</div>
+            <small>Proyectos</small>
+          </div>
+
+          <div class="kpi reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#7cf3d1"/></svg>
+            </div>
+            <div class="big" id="kpi-conc">—</div>
+            <small>Concluidos</small>
+          </div>
+
+          <div class="kpi reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#7fb2ff"/><path d="M16 3v4M8 3v4M3 11h18" stroke="#7fb2ff"/></svg>
+            </div>
+            <div class="big" id="kpi-sems">—</div>
+            <small>Semanas</small>
+          </div>
+
+          <div class="kpi reveal">
+            <div class="icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z" stroke="#7cf3d1"/></svg>
+            </div>
+            <div class="big" id="kpi-ref">—</div>
+            <small>Fuentes</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- TARJETAS DESTACADAS -->
+      <section class="section">
+        <div class="grid" id="cards">
+          <a class="card link reveal" href="proyectos.html">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Código en editor" />
+            </div>
+            <h3>📁 Proyectos</h3>
+            <p>Aplicaciones web, repositorios y aprendizajes clave.</p>
+          </a>
+
+          <a class="card link reveal" href="cuaderno.html">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1200&auto=format&fit=crop" alt="Laptop programando JavaScript" />
+            </div>
+            <h3>📝 Cuaderno</h3>
+            <p>Temas de DAW, procedimientos y reflexión semanal.</p>
+          </a>
+
+          <a class="card link reveal" href="bibliografia.html">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1200&auto=format&fit=crop" alt="Documentación técnica" />
+            </div>
+            <h3>📚 Bibliografía</h3>
+            <p>Fuentes consultadas y reflexión final.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">Hecho con 💙 y GitHub Pages. © <span id="anio"></span> Macha Pariona Angel Yoelver — Huancayo, Perú</div>
+  </footer>
+
+  <script>
+    // === KPIs automáticos desde JSON con soporte flexible y fallback ===
+    const NOW = Date.now();
+    const Q = `?v=${NOW}`; // bust de caché
+    const FALLBACK = { proyectos: 2, concluidos: 1, semanas: 6, fuentes: 0 };
+
+    async function safeJson(url){
+      try{
+        const r = await fetch(url + Q, { cache: 'no-store' });
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        return await r.json();
+      }catch(e){
+        console.warn('No se pudo cargar', url, e);
+        return null;
+      }
+    }
+
+    // Extrae array según estructura común: [], {items:[]}, {semanas:[]}, {entries:[]}
+    function asArray(data){
+      if(!data) return [];
+      if(Array.isArray(data)) return data;
+      if(Array.isArray(data.items)) return data.items;
+      if(Array.isArray(data.semanas)) return data.semanas;
+      if(Array.isArray(data.entries)) return data.entries;
+      return [];
+    }
+
+    (async () => {
+      const [proyRaw, cuadernoRaw, biblioRaw] = await Promise.all([
+        safeJson('data/proyectos.json'),
+        safeJson('data/cuaderno.json'),
+        safeJson('data/bibliografia.json')
+      ]);
+
+      const proyArr = asArray(proyRaw);
+      const cuadArr = asArray(cuadernoRaw);
+      const bibArr  = asArray(biblioRaw);
+
+      // Conteos (si no hay datos, usa fallback que tú me diste)
+      const proyectos  = proyArr.length || FALLBACK.proyectos;
+      const concluidos = (proyArr.length
+        ? proyArr.filter(p => String((p.estado||'')).toLowerCase() === 'concluido').length
+        : FALLBACK.concluidos);
+      const semanas    = cuadArr.length || FALLBACK.semanas;
+      const fuentes    = bibArr.length  || FALLBACK.fuentes;
+
+      const set = (id,val)=>{ const el=document.getElementById(id); if(el) el.textContent = val; };
+      set('kpi-proy', proyectos);
+      set('kpi-conc', concluidos);
+      set('kpi-sems', semanas);
+      set('kpi-ref',  fuentes);
+    })();
+
+    // Año dinámico
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{ if(ent.isIntersecting){ ent.target.classList.add('show'); obs.unobserve(ent.target);} });
+    },{threshold:.18});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>

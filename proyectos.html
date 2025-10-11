@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyectos — Portafolio</title>
+  <meta name="description" content="Proyectos de Macha Pariona Angel Yoelver — UNCP Ingeniería de Sistemas." />
+  <meta name="theme-color" content="#f3f7ff" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Paleta clara pastel */
+      --bg:#f7fbff; --card:#ffffff; --line:#e2eaf7;
+      --txt:#0f1b2d; --muted:#56709b;
+      --acc:#2b7fff; --acc2:#34d3a1;
+      --shadow:0 12px 40px rgba(16, 70, 180,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,Segoe UI,Roboto,Arial;-webkit-font-smoothing:antialiased}
+    a{color:var(--acc);text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:24px 28px}
+
+    /* ===== Fondo animado claro (sin imagen) ===== */
+    body::before,
+    body::after{
+      content:""; position:fixed; inset:-20%; z-index:-2; pointer-events:none;
+      background:
+        radial-gradient(45% 35% at 20% 15%, rgba(43,127,255,.18), transparent 55%),
+        radial-gradient(40% 35% at 80% 25%, rgba(52,211,161,.18), transparent 60%),
+        radial-gradient(50% 30% at 30% 75%, rgba(255,184,41,.15), transparent 60%),
+        radial-gradient(40% 40% at 80% 85%, rgba(255,107,107,.10), transparent 65%);
+      filter:blur(30px);
+      animation: floaty 22s linear infinite;
+      transform:translateZ(0);
+    }
+    body::after{
+      z-index:-3; opacity:.45; filter:blur(50px) saturate(1.1);
+      background:
+        conic-gradient(from 0deg at 50% 50%, rgba(43,127,255,.08), rgba(52,211,161,.08), rgba(255,184,41,.07), rgba(43,127,255,.08));
+      background-size:200% 200%;
+      animation: wave 18s linear infinite;
+    }
+    @keyframes floaty{
+      0%{transform:translate(-2%, -2%) scale(1.02)}
+      50%{transform:translate(2%, 1%) scale(1.05)}
+      100%{transform:translate(-2%, -2%) scale(1.02)}
+    }
+    @keyframes wave{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    @media (prefers-reduced-motion: reduce){
+      body::before,body::after{animation:none}
+    }
+
+    /* ================= NAV ================= */
+    .nav{
+      position:sticky;top:0;z-index:80;
+      backdrop-filter:saturate(1.1) blur(8px);
+      background:rgba(255,255,255,.7);
+      border-bottom:1px solid var(--line)
+    }
+    .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-family:"Plus Jakarta Sans";font-weight:800;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .menu{display:flex;gap:10px;flex-wrap:wrap}
+    .menu a{padding:8px 12px;border-radius:10px;color:var(--txt);font-weight:600}
+    .menu a[aria-current="page"]{outline:1px solid #cfe0ff;background:#eff6ff}
+    .logos{display:flex;align-items:center;gap:10px}
+    .logo{height:32px;width:auto;filter:drop-shadow(0 1px 3px rgba(0,0,0,.1))}
+    @media (max-width:520px){.logos{display:none}}
+
+    /* ================= HERO ================= */
+    .hero{padding:20px 0 6px}
+    .title{display:flex;flex-wrap:wrap;gap:14px;align-items:end;justify-content:space-between}
+    .title h1{font-family:"Plus Jakarta Sans";font-size:38px;margin:0}
+    .kpis{display:flex;gap:10px;flex-wrap:wrap}
+    .kpi{min-width:130px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;text-align:center;box-shadow:var(--shadow)}
+    .kpi .big{font-weight:800;font-size:24px}
+    .kpi small{color:var(--muted)}
+
+    .toolbar{margin-top:14px;display:grid;grid-template-columns:1fr auto auto;gap:10px}
+    .search{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+    .search input{flex:1;background:transparent;border:0;outline:0;color:var(--txt)}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#245;cursor:pointer;user-select:none}
+    .chip.active{background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;border-color:transparent;font-weight:700}
+    .sort{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#123;box-shadow:var(--shadow)}
+
+    /* ================= GRID ================= */
+    .grid{
+      display:grid; gap:16px; margin-top:16px;
+      grid-template-columns:repeat(auto-fill, minmax(320px, 360px)); /* tarjetas no crecen a full */
+      justify-content:center; /* centra cuando hay 1 tarjeta */
+    }
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      overflow:hidden;box-shadow:var(--shadow);
+      display:grid;grid-template-rows:auto 1fr; /* alturas consistentes */
+      transition:transform .2s ease
+    }
+    .card:hover{transform:translateY(-3px)}
+    .thumb{aspect-ratio:16/9;background:#f2f6ff;position:relative;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(1.02)}
+    .status{
+      position:absolute; top:10px; left:10px; padding:6px 10px; border-radius:999px;
+      font-weight:700; font-size:11px; line-height:1; letter-spacing:.2px; white-space:nowrap
+    }
+    /* mismo tamaño visual para ambos estados */
+    .status[data-estado="En curso"]{border:1px solid #b7cffb; background:#eef4ff; color:#245}
+    .status[data-estado="Concluido"]{border:1px solid #b9e6c5; background:#ecfff2; color:#194a2a}
+
+    .body{padding:14px;display:flex;flex-direction:column;gap:10px}
+    .card h3{margin:0;font-family:"Plus Jakarta Sans";font-size:18px}
+    .desc{color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .tags{display:flex;gap:6px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#345}
+
+    .progress{height:8px;border-radius:999px;background:#eef3ff;border:1px solid #dbe7ff;overflow:hidden}
+    .progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));width:0%}
+    .meta{display:flex;justify-content:space-between;color:#627aa5;font-size:12px}
+
+    .actions{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:#0f1b2d;font-weight:700;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--acc),#bfe0ff);color:#0b1220;border:0}
+
+    .empty{border:1px dashed #bcd3ff;background:#fff;border-radius:16px;padding:22px;text-align:center;color:#56709b}
+    .footer{border-top:1px solid var(--line);color:#4b5d7e;background:rgba(255,255,255,.7);margin-top:20px}
+
+    /* ========= Modal “ver más” ========= */
+    dialog#more{
+      width:min(920px,96vw);border:1px solid var(--line);border-radius:18px;padding:0;background:#fff;
+      box-shadow:0 18px 80px rgba(16, 50, 120, .18)
+    }
+    .more-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
+    .more-head h2{margin:0;font-family:"Plus Jakarta Sans";font-size:22px}
+    .more-body{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px}
+    .more-body section{background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:12px}
+    .more-body h3{margin:0 0 6px 0;font-size:14px;color:#1c2b4d}
+    .badge{display:inline-block;margin-right:6px;margin-bottom:6px;padding:6px 10px;border-radius:999px;background:#eef5ff;border:1px solid #d7e6ff;color:#274}
+    .more-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}
+    .close{all:unset;cursor:pointer;padding:6px 10px;border-radius:8px;background:#eef3ff;border:1px solid #dbe7ff}
+    @media (max-width:820px){.more-body{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="inner container" style="padding-left:0;padding-right:0">
+      <div class="logos">
+        <img class="logo" src="assets/logo-uncp.jpg" alt="UNCP">
+        <img class="logo" src="assets/logo-fis.jpg" alt="Facultad de Ingeniería de Sistemas">
+      </div>
+      <div class="brand">Portafolio</div>
+      <div class="menu">
+        <a href="index.html">Portada</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="proyectos.html" aria-current="page">Proyectos</a>
+        <a href="cuaderno.html">Cuaderno</a>
+        <a href="bibliografia.html">Bibliografía</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <main class="container">
+    <section class="hero">
+      <div class="title">
+        <h1>Proyectos</h1>
+        <div class="kpis">
+          <div class="kpi"><div class="big" id="k-total">—</div><small>Total</small></div>
+          <div class="kpi"><div class="big" id="k-curso">—</div><small>En curso</small></div>
+          <div class="kpi"><div class="big" id="k-done">—</div><small>Concluidos</small></div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#6aa5ff"/><path d="M20 20L17 17" stroke="#6aa5ff"/></svg>
+          <input id="q" type="search" placeholder="Buscar por título, descripción o tags…">
+        </label>
+        <div class="filters" id="estado-filters">
+          <span class="chip active" data-estado="Todos">Todos</span>
+          <span class="chip" data-estado="En curso">En curso</span>
+          <span class="chip" data-estado="Concluido">Concluido</span>
+        </div>
+        <select id="sort" class="sort">
+          <option value="recientes">Recientes primero</option>
+          <option value="antiguos">Antiguos primero</option>
+          <option value="progreso">Mayor progreso</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section id="grid" class="grid"></section>
+    <section id="empty" class="empty" style="display:none;margin-top:14px">No se encontraron proyectos con esos criterios.</section>
+  </main>
+
+  <footer class="footer"><div class="container">Hecho con 💙 y GitHub Pages.</div></footer>
+
+  <!-- Modal Ver más -->
+  <dialog id="more">
+    <div class="more-head">
+      <h2 id="more-title">Título</h2>
+      <button class="close" onclick="document.getElementById('more').close()">Cerrar</button>
+    </div>
+    <div class="more-body" id="more-body"></div>
+    <div class="more-actions" id="more-actions"></div>
+  </dialog>
+
+  <script>
+  const $ = (s,ctx=document)=>ctx.querySelector(s);
+  const $$ = (s,ctx=document)=>[...ctx.querySelectorAll(s)];
+  const clamp=(v,min=0,max=100)=>Math.max(min,Math.min(max,Number(v||0)));
+
+  /* IDs únicos por proyecto -> corrige “Ver más” con filtros/orden */
+  let DATA=[
+    {
+      "id":"jarpa",
+      "titulo":"Portal de Trámites — Municipalidad Distrital de San Juan de Jarpa (Chupaca)",
+      "descripcion":"Portal institucional con ventanilla virtual para trámites, noticias y transparencia. WCAG, SEO y PWA.",
+      "fecha":"2025-08-20",
+      "estado":"En curso",
+      "progreso":62,
+      "tags":["Web","Gobierno Local","Trámites","PWA","Accesibilidad"],
+      "imagen":"assets/thumbs/portal-jarpa.jpg",
+      "url":"https://github.com/tuusuario/portal-jarpa",
+      "docs":"assets/docs/portal-jarpa.pdf",
+      "stack":["Next.js","Tailwind","Supabase","Vercel","PWAs"],
+      "objetivos":[
+        "Digitalizar la recepción y seguimiento de expedientes.",
+        "Mejorar el cumplimiento de transparencia y accesibilidad (WCAG AA).",
+        "Optimizar tiempos de respuesta y publicación de edictos/noticias."
+      ],
+      "funciones":[
+        "Ventanilla virtual con firma y validación básica.",
+        "Tablero para mesa de partes (priorización y SLA).",
+        "Buscador de trámites por código y DNI."
+      ],
+      "logros":[
+        "Arquitectura base con App Router y SSR.",
+        "Prototipo de seguimiento público implementado.",
+        "Core de componentes accesibles (teclado/lectores)."
+      ],
+      "contacto":{"demo":"#","soporte":"mailto:soporte@jarpa.gob.pe"}
+    },
+    {
+      "id":"chatbot-maiz",
+      "titulo":"Chatbot Agrícola MAIZ — Hualhuas",
+      "descripcion":"Chatbot agrícola concluido: WeatherAPI + base agronómica + panel y SCRUM. Soporte a siembra y cosecha de maíz.",
+      "fecha":"2025-08-21",
+      "estado":"Concluido",
+      "progreso":100,
+      "tags":["Chatbot","IA","Agricultura","Clima","SCRUM"],
+      "imagen":"assets/thumbs/chatbot-maiz.jpg",
+      "url":"https://github.com/tuusuario/chatbot-maiz",
+      "docs":"assets/docs/chatbot-maiz.pdf",
+      "stack":["Node.js","Express","SQLite","WeatherAPI","Bootstrap"],
+      "objetivos":[
+        "Asistir a productores con recomendaciones diarias.",
+        "Alertar plagas (tizón tardío) según clima local.",
+        "Historial de preguntas y panel de métricas."
+      ],
+      "funciones":[
+        "FAQ + preguntas libres con base de datos de buenas prácticas.",
+        "Widget de clima por distrito con umbrales.",
+        "Exportación de reportes PDF."
+      ],
+      "logros":[
+        "100% historias de usuario cerradas (SPRINT 1-3).",
+        "Despliegue en servidor local municipal.",
+        "Satisfacción piloto >90% (encuesta interna)."
+      ],
+      "contacto":{"demo":"#","soporte":"mailto:agro@hualhuas.pe"}
+    }
+  ];
+
+  let filtroEstado="Todos",busqueda="",orden="recientes";
+
+  function formatFecha(s){
+    if(!s) return "";
+    const d=new Date(s);
+    if(Number.isNaN(d.getTime())) return "";
+    return d.toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'});
+  }
+
+  function cardHTML(p){
+    const prog=clamp(p.progreso);
+    const fechaTxt=formatFecha(p.fecha);
+    const img=p.imagen || "assets/thumbs/placeholder.jpg";
+    return `
+      <div class="thumb">
+        <img loading="lazy" src="${img}" alt="${p.titulo}"
+             onerror="this.onerror=null;this.src='assets/thumbs/placeholder.jpg'">
+        <span class="status" data-estado="${p.estado}">${p.estado}</span>
+      </div>
+      <div class="body">
+        <h3>${p.titulo}</h3>
+        <p class="desc">${p.descripcion}</p>
+        <div class="tags">${(p.tags||[]).map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+        <div class="progress" aria-label="Progreso ${prog}%"><span style="width:${prog}%"></span></div>
+        <div class="meta"><span>${fechaTxt}</span><span>${prog}%</span></div>
+        <div class="actions">
+          ${p.url?`<a class="btn primary" href="${p.url}" target="_blank" rel="noopener">Repositorio</a>`:""}
+          ${p.docs?`<a class="btn" href="${p.docs}" target="_blank" rel="noopener">Docs</a>`:""}
+          <button class="btn" data-action="more" data-id="${p.id}">Ver más</button>
+        </div>
+      </div>`;
+  }
+
+  function render(items){
+    const grid=$("#grid");
+    grid.innerHTML="";
+    if(!items.length){$("#empty").style.display="";return;}
+    $("#empty").style.display="none";
+    const frag=document.createDocumentFragment();
+    items.forEach(p=>{
+      const art=document.createElement("article");
+      art.className="card";
+      art.innerHTML=cardHTML(p);
+      frag.appendChild(art);
+    });
+    grid.appendChild(frag);
+  }
+
+  function apply(){
+    let res=DATA.slice();
+    if(filtroEstado!=="Todos"){res=res.filter(p=>p.estado===filtroEstado);}
+    if(busqueda){
+      const q=busqueda.toLowerCase();
+      res=res.filter(p=>[p.titulo,p.descripcion,(p.tags||[]).join(" ")].join(" ").toLowerCase().includes(q));
+    }
+    switch(orden){
+      case "antiguos":  res.sort((a,b)=>new Date(a.fecha)-new Date(b.fecha)); break;
+      case "progreso":  res.sort((a,b)=>clamp(b.progreso)-clamp(a.progreso)); break;
+      case "az":        res.sort((a,b)=>a.titulo.localeCompare(b.titulo)); break;
+      case "za":        res.sort((a,b)=>b.titulo.localeCompare(a.titulo)); break;
+      default:          res.sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+    }
+    render(res);
+    $("#k-total").textContent=DATA.length;
+    $("#k-curso").textContent=DATA.filter(x=>x.estado==="En curso").length;
+    $("#k-done").textContent=DATA.filter(x=>x.estado==="Concluido").length;
+  }
+
+  function list(items){
+    return items && items.length
+      ? '<ul style="margin:6px 0 0 18px;padding:0">' + items.map(li=>`<li>${li}</li>`).join('') + '</ul>'
+      : '<p style="margin:0;color:#789">—</p>';
+  }
+  function chips(items){ return (items||[]).map(t=>`<span class="badge">${t}</span>`).join(''); }
+
+  function openMore(p){
+    $("#more-title").textContent=p.titulo;
+    $("#more-body").innerHTML = `
+      <section>
+        <h3>Objetivos</h3>
+        ${list(p.objetivos)}
+      </section>
+      <section>
+        <h3>Funciones / Módulos</h3>
+        ${list(p.funciones)}
+      </section>
+      <section>
+        <h3>Stack</h3>
+        ${chips(p.stack)}
+      </section>
+      <section>
+        <h3>Logros</h3>
+        ${list(p.logros)}
+      </section>`;
+    const actions=$("#more-actions"); actions.innerHTML="";
+    if(p.url){ const a=document.createElement('a'); a.className='btn primary'; a.href=p.url; a.target='_blank'; a.rel='noopener'; a.textContent='Repositorio'; actions.appendChild(a); }
+    if(p.docs){ const d=document.createElement('a'); d.className='btn'; d.href=p.docs; d.target='_blank'; d.rel='noopener'; d.textContent='Documentación'; actions.appendChild(d); }
+    if(p.contacto?.demo){ const dm=document.createElement('a'); dm.className='btn'; dm.href=p.contacto.demo; dm.textContent='Demo'; actions.appendChild(dm); }
+    if(p.contacto?.soporte){ const sp=document.createElement('a'); sp.className='btn'; sp.href=p.contacto.soporte; sp.textContent='Soporte'; actions.appendChild(sp); }
+    const dlg=$("#more"); if(typeof dlg.showModal==="function"){ dlg.showModal(); } else { dlg.setAttribute('open',''); }
+  }
+
+  /* Delegación: funciona con filtros/orden (usa data-id único) */
+  document.addEventListener('click', (e)=>{
+    const moreBtn = e.target.closest('button[data-action="more"]');
+    if(moreBtn){
+      const id = moreBtn.dataset.id;
+      const proj = DATA.find(x=>String(x.id)===String(id));
+      if(proj) openMore(proj);
+    }
+  });
+
+  /* Eventos UI */
+  window.addEventListener('DOMContentLoaded',()=>{
+    apply();
+    $$(".chip").forEach(c=>c.addEventListener('click',()=>{
+      $$(".chip").forEach(x=>x.classList.remove('active'));
+      c.classList.add('active'); filtroEstado=c.dataset.estado; apply();
+    }));
+    $("#sort").addEventListener('change',e=>{orden=e.target.value;apply();});
+    $("#q").addEventListener('input',e=>{busqueda=e.target.value;apply();});
+  });
+  </script>
+</body>
+</html>

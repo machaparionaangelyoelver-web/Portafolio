@@ -1,0 +1,59 @@
+[
+  {
+    "semana": 1,
+    "titulo": "Introducción al curso y setup",
+    "fecha_inicio": "2025-07-14",
+    "fecha_fin": "2025-07-20",
+    "resumen": "Instalación de entorno, Git/GitHub y estructura del portafolio.",
+    "temas": ["Git básico", "GitHub Pages", "HTML5 semántico", "Accesibilidad"],
+    "evidencias": [
+      "assets/cuaderno/sem1-notas.pdf",
+      "assets/cuaderno/sem1-capturas.zip"
+    ]
+  },
+  {
+    "semana": 2,
+    "titulo": "CSS moderno y layout",
+    "fecha_inicio": "2025-07-21",
+    "fecha_fin": "2025-07-27",
+    "resumen": "Grid, Flexbox y diseño responsive. Paleta y tokens.",
+    "temas": ["CSS Grid", "Flexbox", "Variables CSS", "Responsive"],
+    "evidencias": ["assets/cuaderno/sem2-ejercicios.zip"]
+  },
+  {
+    "semana": 3,
+    "titulo": "JavaScript DOM y componentes",
+    "fecha_inicio": "2025-07-28",
+    "fecha_fin": "2025-08-03",
+    "resumen": "Manipulación del DOM y componentes reutilizables.",
+    "temas": ["DOM API", "Eventos", "Módulos ES"],
+    "evidencias": ["assets/cuaderno/sem3-componentes.zip"]
+  },
+  {
+    "semana": 4,
+    "titulo": "Fetch API y JSON",
+    "fecha_inicio": "2025-08-04",
+    "fecha_fin": "2025-08-10",
+    "resumen": "Consumo de datos para KPIs y tarjetas.",
+    "temas": ["Fetch", "JSON", "Manejo de errores"],
+    "evidencias": ["assets/cuaderno/sem4-fetch.json"]
+  },
+  {
+    "semana": 5,
+    "titulo": "Accesibilidad y performance",
+    "fecha_inicio": "2025-08-11",
+    "fecha_fin": "2025-08-17",
+    "resumen": "Buenas prácticas WCAG y optimización.",
+    "temas": ["A11y", "Lighthouse", "Lazy loading"],
+    "evidencias": ["assets/cuaderno/sem5-lighthouse-report.pdf"]
+  },
+  {
+    "semana": 6,
+    "titulo": "Despliegue y CI/CD",
+    "fecha_inicio": "2025-08-18",
+    "fecha_fin": "2025-08-24",
+    "resumen": "Publicación en GitHub Pages y automatización.",
+    "temas": ["GitHub Actions", "Versionado", "Cache busting"],
+    "evidencias": ["assets/cuaderno/sem6-actions.yml"]
+  }
+]

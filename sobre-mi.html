@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sobre mí — Macha Pariona Angel Yoelver</title>
+  <meta name="description" content="Perfil de Macha Pariona Angel Yoelver — UNCP Ingeniería de Sistemas. Habilidades, intereses, herramientas, línea de tiempo y contacto." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Tipografías: títulos + texto -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0f1a; --panel:#0f1c36; --card:#0c162a; --line:#1c2c4c;
+      --txt:#e9f0ff; --muted:#a3b5d6;
+      --acc:#6ab6ff; --acc2:#7cf3d1; --accent:#7aa8ff;
+      --shadow:0 22px 80px rgba(4,12,26,.6);
+
+      --hero-photo:url('assets/fondo.jpg');
+      /* FONDO HERO 4K — cambia por la foto de tu facultad si quieres 
+      --hero-photo:url('https://images.unsplash.com/photo-1518773553398-650c184e0bb3?q=80&w=2400&auto=format&fit=crop');
+      /* Ejemplo UNCP:
+      --hero-photo:url('https://i0.wp.com/sistemasuncp.edu.pe/wp-content/uploads/2023/04/Pabellon-C-facultad-de-ingenieria-de-sistemas.jpg?resize=2400,1350&ssl=1');
+      */
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--txt);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;-webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:"Plus Jakarta Sans",Inter,system-ui}
+    a{color:var(--acc);text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:24px 28px}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:90;backdrop-filter:blur(10px) saturate(1.1);
+      background:linear-gradient(180deg, rgba(10,16,28,.92), rgba(10,16,28,.66));border-bottom:1px solid var(--line)}
+    .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand img{width:28px;height:28px;border-radius:6px;border:1px solid #2a3c63;background:#0f172a}
+    .brand span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .menu{display:flex;gap:14px;flex-wrap:wrap}
+    .menu a{padding:8px 12px;border-radius:10px;color:var(--txt);font-weight:600}
+    .menu a[aria-current="page"]{outline:1px solid #2a3c63;background:rgba(106,165,255,.12)}
+
+    /* HERO */
+    .hero-wrap{position:relative; isolation:isolate}
+    .hero-bg{
+      position:absolute; inset:0; z-index:-2;
+      background:
+        linear-gradient(180deg, rgba(6,10,18,.25), rgba(6,10,18,.88) 70%),
+        var(--hero-photo) center/cover no-repeat;
+      filter:saturate(1.05) contrast(1.02);
+    }
+    .hero-bg:after{content:""; position:absolute; inset:0; z-index:-1; opacity:.14;
+      background-image: radial-gradient(1px 1px at 20px 20px, #7cf3d1 50%, transparent 50%),
+                        radial-gradient(1px 1px at 60px 60px, #6ab6ff 50%, transparent 50%);
+      background-size: 80px 80px;}
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:26px; align-items:center; min-height:66vh; padding:28px 0 36px;}
+
+    .glass{
+      position:relative;background:linear-gradient(180deg, rgba(20,30,55,.58), rgba(12,22,42,.66));
+      border:1px solid rgba(76,111,170,.45); border-radius:28px; padding:30px; box-shadow:var(--shadow)
+    }
+    .ribbon{
+      position:absolute; left:50%; transform:translateX(-50%); top:-26px;
+      display:flex; align-items:center; gap:10px; padding:10px 16px;
+      border-radius:14px; border:1px solid #2a3f66; background:linear-gradient(180deg, rgba(15,25,48,.92), rgba(12,20,38,.92));
+      box-shadow:0 10px 30px rgba(8,16,28,.45)
+    }
+    .ribbon img{width:36px;height:36px;border-radius:8px;border:1px solid #27406a;background:#0f172a}
+    .ribbon b{font-weight:800;letter-spacing:.25px}
+
+    .chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #2e4676;color:#cfe2ff;background:rgba(20,30,55,.55)}
+    h1{font-weight:800;font-size:48px;line-height:1.05;margin:.5rem 0 1rem}
+    .muted{color:var(--muted)}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;font-weight:800;border:1px solid #2a3f67;background:transparent;color:var(--txt);cursor:pointer;transition:transform .18s ease, box-shadow .22s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{background:linear-gradient(90deg,var(--acc),#bfe0ff);color:#0b1220;border:0}
+    .btn.whats{border-color:#22d366;color:#22d366}
+    .btn.whats::before{content:"🟢";}
+
+    /* Panel derecha */
+    .profile{background:linear-gradient(180deg,#0b1428,#0a1222);border:1px solid #21365b;border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+    .p-top{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid #2b426d;background:rgba(18,28,52,.65);font-weight:700}
+    .id-card{display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:center}
+    .avatar{width:160px;height:160px;border-radius:18px;overflow:hidden;border:1px solid #28406c;background:#0f172a}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .p-list{display:grid;gap:10px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .row b{min-width:86px;color:#a9c4ff}
+
+    /* Secciones */
+    .section{margin-top:30px}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+    .card{background:linear-gradient(180deg,rgba(20,30,55,.78),rgba(12,20,38,.94));border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 12px 38px rgba(5,12,26,.35)}
+    .card h2{margin:.2rem 0 .8rem;font-weight:800}
+
+    /* Habilidades */
+    .skills{display:grid;gap:14px}
+    .skill{display:grid;grid-template-columns:170px 1fr 60px;gap:12px;align-items:center}
+    .bar{height:12px;border-radius:999px;background:#112038;border:1px solid #223a63;overflow:hidden}
+    .bar > span{display:block;height:100%;width:55%;background:linear-gradient(90deg,var(--acc),var(--acc2));box-shadow:0 4px 16px rgba(106,182,255,.35)}
+    .pct{font-weight:800;color:#cfe0ff;text-align:right}
+
+    /* Chips */
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip2{padding:8px 10px;border-radius:999px;border:1px solid #304a7a;background:rgba(18,30,56,.6);color:#cfe4ff}
+
+    /* Timeline */
+    .timeline{position:relative;margin-top:6px}
+    .timeline:before{content:"";position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#274170,#1b2b4c)}
+    .item{position:relative;display:grid;grid-template-columns:60px 1fr;gap:16px;margin:0 0 16px}
+    .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#86c8ff,#6ab6ff);border:2px solid #0c1427;margin:6px 0 0 16px;box-shadow:0 0 0 4px rgba(106,182,255,.18)}
+    .item .body{background:linear-gradient(180deg,rgba(20,30,55,.78),rgba(12,20,38,.95));border:1px solid var(--line);border-radius:14px;padding:14px}
+    .body h3{margin:.2rem 0 .35rem}
+    .body .small{color:#a9b8d6;font-size:14px}
+
+    /* Contacto */
+    .contact{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .form{display:grid;gap:10px}
+    .field{display:grid;gap:6px}
+    .field input,.field textarea{background:#0e1c35;border:1px solid #243a63;border-radius:12px;color:var(--txt);padding:12px 14px}
+    .field textarea{min-height:120px;resize:vertical}
+    .form .row2{display:flex;gap:10px;flex-wrap:wrap}
+    .btn.send{background:linear-gradient(90deg,#8cc7ff,#bfe0ff);color:#0b1120;border:0}
+    .links{display:grid;gap:10px}
+    .linkcard{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid #243a63;background:#0e1c35;border-radius:12px}
+    .linkcard b{color:#d9e6ff}
+
+    .footer{border-top:1px solid var(--line);color:#aabbd1;background:linear-gradient(0deg,rgba(10,16,28,.9),rgba(10,16,28,.45))}
+
+    @media (max-width:1024px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .id-card{grid-template-columns:1fr}
+      .skill{grid-template-columns:1fr 1fr 60px}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="inner container" style="padding-left:0;padding-right:0">
+      <div class="brand">
+        <img src="assets/logo-uncp.png" alt="UNCP" onerror="this.style.visibility='hidden'"><span>Portafolio</span>
+      </div>
+      <div class="menu">
+        <a href="index.html">Portada</a>
+        <a href="sobre-mi.html" aria-current="page">Sobre mí</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="cuaderno.html">Cuaderno</a>
+        <a href="bibliografia.html">Bibliografía</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <main class="container">
+      <section class="hero">
+        <!-- Presentación -->
+        <div class="glass">
+          <div class="ribbon">
+            <img src="assets/logo-uncp.png" alt="UNCP" onerror="this.style.visibility='hidden'">
+            <img src="assets/logo-sistemas.png" alt="Sistemas" onerror="this.style.visibility='hidden'">
+            <b>UNCP • Ingeniería de Sistemas</b>
+          </div>
+
+          <span class="chip">Perfil</span>
+          <h1>Hola, soy <span style="background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent">Macha Pariona Angel Yoelver</span></h1>
+          <p class="muted">
+            Estudiante de <strong>Ingeniería de Sistemas</strong> — <em>Universidad Nacional del Centro del Perú</em> (9.º semestre).  
+            Enfoque en desarrollo de aplicaciones web, accesibilidad y despliegue continuo.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="assets/CV-Macha-Pariona.pdf" download>Descargar CV</a>
+            <a class="btn whats" href="https://wa.me/51934907255?text=Hola%20Macha%2C%20te%20escribo%20desde%20tu%20portafolio%20web." target="_blank" rel="noopener">Contactar</a>
+          </div>
+        </div>
+
+        <!-- Identidad / Contacto rápido -->
+        <aside class="profile" aria-label="Identificación">
+          <div class="p-top">
+            <span class="pill">📍 Huancayo — Perú</span>
+            <span class="pill">🎓 UNCP • Ingeniería de Sistemas</span>
+            <span class="pill">📚 9.º semestre</span>
+          </div>
+          <div class="id-card">
+            <div class="avatar"><img src="assets/foto-perfil.jpg" alt="Macha Pariona"></div>
+            <div class="p-list">
+              <div class="row"><b>Inst.:</b> <a href="mailto:e_2021200788i@uncp.edu.pe">e_2021200788i@uncp.edu.pe</a></div>
+              <div class="row"><b>Pers.:</b> <a href="mailto:machaparionaangelyoelver@gmail.com">machaparionaangelyoelver@gmail.com</a></div>
+              <div class="row"><b>GitHub:</b> <a href="https://github.com/tuusuario" target="_blank" rel="noopener">github.com/tuusuario</a></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- HABILIDADES + INTERESES & HERRAMIENTAS -->
+      <section class="section">
+        <div class="grid">
+          <article class="card">
+            <h2>Habilidades técnicas</h2>
+            <div class="skills">
+              <div class="skill"><strong>HTML/CSS</strong><div class="bar"><span style="width:60%"></span></div><div class="pct">60%</div></div>
+              <div class="skill"><strong>JavaScript</strong><div class="bar"><span style="width:56%"></span></div><div class="pct">56%</div></div>
+              <div class="skill"><strong>Python/Django</strong><div class="bar"><span style="width:52%"></span></div><div class="pct">52%</div></div>
+              <div class="skill"><strong>SQL</strong><div class="bar"><span style="width:54%"></span></div><div class="pct">54%</div></div>
+              <div class="skill"><strong>Git/GitHub</strong><div class="bar"><span style="width:62%"></span></div><div class="pct">62%</div></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Intereses</h2>
+            <div class="chips">
+              <span class="chip2">Frontend moderno (SPA)</span>
+              <span class="chip2">Accesibilidad (a11y)</span>
+              <span class="chip2">UX limpia</span>
+              <span class="chip2">APIs REST</span>
+              <span class="chip2">Automatización CI/CD</span>
+              <span class="chip2">Bases de datos</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Herramientas</h2>
+            <div class="chips">
+              <span class="chip2">VS Code</span>
+              <span class="chip2">Git & GitHub</span>
+              <span class="chip2">HTML • CSS • JS</span>
+              <span class="chip2">Python • Django/Flask</span>
+              <span class="chip2">SQL • SQLite/MySQL</span>
+              <span class="chip2">Postman</span>
+              <span class="chip2">Docker (básico)</span>
+              <span class="chip2">Figma (UI)</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- METAS DE APRENDIZAJE -->
+      <section class="section">
+        <article class="card">
+          <h2>Metas de aprendizaje</h2>
+          <ul>
+            <li>Construir interfaces web modernas con <strong>HTML5, CSS3 (Flex/Grid) y JavaScript</strong>.</li>
+            <li>Aplicar <strong>frameworks</strong> (p. ej., React) y utilitarios (Tailwind) para componentes reutilizables.</li>
+            <li>Consumir y diseñar <strong>APIs REST</strong>; autenticación por tokens (JWT) y buenas prácticas.</li>
+            <li>Control de versiones con <strong>Git/GitHub</strong>, organización del código y accesibilidad.</li>
+            <li>Despliegue básico (GitHub Pages/hosting) y nociones de contenedores (Docker).</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- LÍNEA DE TIEMPO -->
+      <section class="section">
+        <article class="card">
+          <h2>Línea de tiempo</h2>
+          <div class="timeline">
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <h3>UNCP — Ingeniería de Sistemas</h3>
+                <div class="small">2021 – Presente • Huancayo, Perú</div>
+                <p class="muted">Cursando 9.º semestre. Enfoque en Desarrollo de Aplicaciones Web, Bases de Datos e Ingeniería de Software.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <h3>Portafolio académico</h3>
+                <div class="small">2024 – 2025</div>
+                <p class="muted">Creación del portafolio web (GitHub Pages): organización de proyectos, cuaderno semanal y bibliografía.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="dot"></div>
+              <div class="body">
+                <h3>Proyectos de curso (DAW)</h3>
+                <div class="small">En curso</div>
+                <p class="muted">Prácticas de frontend (HTML/CSS/JS), consumo de APIs y despliegue básico.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- CONTÁCTANOS -->
+      <section class="section">
+        <article class="card">
+          <h2>Contáctanos</h2>
+          <div class="contact">
+            <!-- Form abre correo prellenado y arma link de WhatsApp con el mensaje -->
+            <form class="form" onsubmit="return sendMailto(event)">
+              <div class="row2">
+                <div class="field" style="flex:1">
+                  <label for="nombre">Nombre</label>
+                  <input id="nombre" type="text" placeholder="Tu nombre" required>
+                </div>
+                <div class="field" style="flex:1">
+                  <label for="correo">Correo</label>
+                  <input id="correo" type="email" placeholder="tu@correo.com" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="asunto">Asunto</label>
+                <input id="asunto" type="text" placeholder="Consulta / Colaboración" required>
+              </div>
+              <div class="field">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+              </div>
+              <div class="row2">
+                <button class="btn send" type="submit">Enviar por correo</button>
+                <a class="btn whats" id="wplink" href="https://wa.me/51934907255" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+              </div>
+            </form>
+
+            <!-- Enlaces directos -->
+            <div class="links">
+              <div class="linkcard">
+                <b>WhatsApp</b>
+                <a href="https://wa.me/51934907255?text=Hola%20Macha%2C%20me%20gustaría%20contactarte." target="_blank" rel="noopener">+51 934 907 255</a>
+              </div>
+              <div class="linkcard">
+                <b>Correo inst.</b>
+                <a href="mailto:e_2021200788i@uncp.edu.pe">e_2021200788i@uncp.edu.pe</a>
+              </div>
+              <div class="linkcard">
+                <b>Correo pers.</b>
+                <a href="mailto:machaparionaangelyoelver@gmail.com">machaparionaangelyoelver@gmail.com</a>
+              </div>
+              <div class="linkcard">
+                <b>GitHub</b>
+                <a href="https://github.com/tuusuario" target="_blank" rel="noopener">github.com/tuusuario</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">Hecho con 💙 y GitHub Pages.</div>
+  </footer>
+
+  <script>
+    // Construye mailto con asunto y cuerpo prellenado
+    function sendMailto(e){
+      e.preventDefault();
+      const nombre = encodeURIComponent(document.getElementById('nombre').value.trim());
+      const from   = encodeURIComponent(document.getElementById('correo').value.trim());
+      const asunto = encodeURIComponent(document.getElementById('asunto').value.trim());
+      const msgRaw = document.getElementById('mensaje').value.trim();
+      const body = encodeURIComponent(`Hola Macha,\n\n${msgRaw}\n\n— ${decodeURIComponent(nombre)} (${decodeURIComponent(from)})`);
+      window.location.href = `mailto:e_2021200788i@uncp.edu.pe?subject=${asunto}&body=${body}`;
+
+      // También actualiza el WhatsApp con el mismo mensaje
+      const wplink = document.getElementById('wplink');
+      const wtext = encodeURIComponent(`Hola Macha, soy ${decodeURIComponent(nombre)} (${decodeURIComponent(from)}). ${msgRaw}`);
+      wplink.href = `https://wa.me/51934907255?text=${wtext}`;
+      return false;
+    }
+  </script>
+</body>
+</html>
+

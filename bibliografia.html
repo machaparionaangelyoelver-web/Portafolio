@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bibliografía — Portafolio</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  :root{
+    --bg:#0a0f1a; --txt:#e9f0ff; --muted:#a9b8d6;
+    --line:#20304e; --chip:#0f1d36; --chip-b:#2a4576;
+    --acc:#6ab6ff; --acc2:#7cf3d1;
+  }
+  body{color:var(--txt); background:var(--bg)}
+  .container{max-width:1100px;margin:0 auto;padding:20px 24px}
+
+  /* NAV con LOGOS */
+  .nav{position:sticky;top:0;z-index:90;border-bottom:1px solid var(--line);
+       backdrop-filter:blur(10px) saturate(1.1);
+       background:linear-gradient(180deg, rgba(10,16,28,.92), rgba(10,16,28,.6))}
+  .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logos{display:flex;align-items:center;gap:10px}
+  .logo{height:36px;width:auto;border-radius:6px;border:1px solid #2a3c63;background:#0f172a}
+  .title-txt{font-weight:900;letter-spacing:.2px;
+    background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .menu{display:flex;gap:10px;flex-wrap:wrap}
+  .menu a{padding:10px 12px;border-radius:10px}
+  .menu a[aria-current="page"]{outline:1px solid #2a3c63;background:rgba(106,165,255,.12)}
+
+  /* TOOLBAR pegajosa y visible */
+  .toolbar-wrap{
+    position:sticky; top:64px; z-index:80; /* debajo del nav */
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(12,18,34,.95), rgba(12,18,34,.75));
+    backdrop-filter:blur(8px);
+  }
+  .toolbar{
+    display:grid; grid-template-columns:1fr 180px 200px auto; gap:10px; align-items:center;
+    padding:12px 0;
+  }
+  .search{
+    display:flex;align-items:center;gap:10px;padding:12px 14px;border:2px solid var(--chip-b);
+    background:var(--chip);border-radius:12px
+  }
+  .search input{flex:1;background:transparent;border:0;outline:0;color:var(--txt);font-size:16px}
+  .select{
+    padding:12px 12px;border-radius:12px;border:2px solid var(--chip-b);
+    background:var(--chip);color:#cfe2ff;font-size:15px
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;
+    border:2px solid var(--chip-b);background:var(--chip);color:#cfe2ff;text-decoration:none;font-weight:700
+  }
+  .btn.primary{background:linear-gradient(90deg,var(--acc),#bfe0ff);color:#0b1220;border:0}
+  .btn:hover{filter:saturate(1.1);transform:translateY(-1px)}
+  .count{font-size:13px;color:var(--muted);margin-left:8px}
+
+  /* TARJETAS */
+  .card{background:linear-gradient(180deg,#0b1428,#0a1222);border:1px solid var(--line);
+        border-radius:16px;padding:18px;margin:16px 0}
+  .list{margin:0;padding:0;list-style:none}
+  .list li{padding:14px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+  .list li:last-child{border-bottom:0}
+  .badge{display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border:1px solid var(--chip-b);
+         background:#11223f;border-radius:999px;font-size:12px}
+  .small{font-size:12px;color:var(--muted)}
+  .empty{padding:18px;border:1px dashed var(--chip-b);border-radius:12px;color:var(--muted);text-align:center;display:none}
+
+  @media (max-width:980px){
+    .toolbar{grid-template-columns:1fr 1fr; gap:8px}
+    .toolbar .btn{grid-column:1/-1; justify-self:start}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV con logos y menú -->
+<nav class="nav">
+  <div class="inner container" style="padding-left:0;padding-right:0">
+    <div class="brand">
+      <div class="logos">
+        <img class="logo" src="assets/logo-uncp.jpg" alt="UNCP">
+        <img class="logo" src="assets/logo-fis.jpg" alt="Facultad de Ingeniería de Sistemas">
+      </div>
+      <div class="title-txt">Portafolio</div>
+    </div>
+    <div class="menu">
+      <a href="index.html">Portada</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="cuaderno.html">Cuaderno</a>
+      <a href="bibliografia.html" aria-current="page">Bibliografía</a>
+    </div>
+  </div>
+</nav>
+
+<!-- TOOLBAR visible arriba -->
+<div class="toolbar-wrap">
+  <div class="toolbar container" role="region" aria-label="Controles de bibliografía">
+    <label class="search" aria-label="Buscar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="#89c6ff"/><path d="M20 20L17 17" stroke="#89c6ff"/>
+      </svg>
+      <input id="q" type="search" placeholder="Buscar por autor, título o URL…" autocomplete="off">
+    </label>
+    <select id="tipo" class="select" aria-label="Filtrar por tipo">
+      <option value="todos">Todos los tipos</option>
+      <option value="articulo">Artículo</option>
+      <option value="libro">Libro</option>
+      <option value="documentacion">Documentación</option>
+      <option value="tesis">Tesis</option>
+      <option value="otro">Otro</option>
+    </select>
+    <select id="orden" class="select" aria-label="Ordenar">
+      <option value="anio-desc">Año: más reciente</option>
+      <option value="anio-asc">Año: más antiguo</option>
+      <option value="autor-az">Autor A→Z</option>
+      <option value="autor-za">Autor Z→A</option>
+    </select>
+    <a class="btn primary" href="data/bibliografia.json" target="_blank" rel="noopener noreferrer" title="Ver archivo JSON">
+      Ver JSON
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Reflexión -->
+  <section class="card">
+    <h1>Reflexión final</h1>
+    <p class="small">Redacta tu reflexión metacognitiva: ¿Qué aprendí?, ¿cómo lo aprendí? y ¿cómo aplicaré lo aprendido?</p>
+  </section>
+
+  <!-- Lista -->
+  <section class="card" aria-live="polite">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
+      <h2 style="margin:0">Bibliografía</h2>
+      <span id="count" class="badge">0 resultados</span>
+    </div>
+    <ul id="refs" class="list" aria-busy="true"></ul>
+    <div id="empty" class="empty">No se encontraron referencias con esos criterios.</div>
+  </section>
+</div>
+
+<footer class="footer">
+  <div class="container">Hecho con 💙 y GitHub Pages.</div>
+</footer>
+
+<script>
+(function(){
+  const $ = (s,ctx=document)=>ctx.querySelector(s);
+  const listEl = $('#refs');
+  const emptyEl = $('#empty');
+  const countEl = $('#count');
+  const qEl = $('#q');
+  const tipoEl = $('#tipo');
+  const ordenEl = $('#orden');
+
+  let DATA = [];
+  let q = '', tipo = 'todos', orden = 'anio-desc';
+  const bust = `?v=${Date.now()}`;
+
+  async function load(){
+    try{
+      const r = await fetch('data/bibliografia.json'+bust, {cache:'no-store'});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const raw = await r.json();
+      DATA = Array.isArray(raw) ? raw : (Array.isArray(raw.items) ? raw.items : []);
+    }catch(err){
+      console.warn('No se pudo cargar bibliografia.json, fallback.', err);
+      DATA = [
+        {tipo:'documentacion', autor:'Mozilla', titulo:'MDN Web Docs — CSS Grid', anio:2024, url:'https://developer.mozilla.org/docs/Web/CSS/CSS_Grid_Layout'}
+      ];
+    }finally{
+      listEl.setAttribute('aria-busy','false');
+      apply();
+    }
+  }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[m])); }
+  function fmtAPA(x){
+    const autor = x.autor || 'Autor desconocido';
+    const anio  = x.anio ? String(x.anio) : 's.f.';
+    const titulo= x.titulo || '(Sin título)';
+    const url   = x.url ? `<a href="${x.url}" target="_blank" rel="noopener noreferrer">${x.url}</a>` : '';
+    return `<span style="font-weight:700"><em>${esc(autor)}</em></span> (${esc(anio)}). ${esc(titulo)}.${url ? ' '+url : ''}`;
+  }
+  function badge(t){
+    const map = { articulo:'Artículo', libro:'Libro', documentacion:'Documentación', tesis:'Tesis', otro:'Otro' };
+    return `<span class="badge" title="Tipo de fuente">${map[t]||'Otro'}</span>`;
+  }
+
+  function render(items){
+    listEl.innerHTML = '';
+    if(!items.length){
+      emptyEl.style.display = '';
+      countEl.textContent = '0 resultados';
+      return;
+    }
+    emptyEl.style.display = 'none';
+    const frag = document.createDocumentFragment();
+    items.forEach(x=>{
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <div>${fmtAPA(x)}</div>
+          <div>${badge(x.tipo)}</div>
+        </div>`;
+      frag.appendChild(li);
+    });
+    listEl.appendChild(frag);
+    countEl.textContent = `${items.length} ${items.length===1?'resultado':'resultados'}`;
+  }
+
+  function apply(){
+    let res = DATA.slice();
+    if(tipo !== 'todos'){
+      res = res.filter(x => String(x.tipo||'').toLowerCase() === tipo);
+    }
+    if(q){
+      const s = q.toLowerCase();
+      res = res.filter(x =>
+        [x.autor, x.titulo, x.url].filter(Boolean).join(' ').toLowerCase().includes(s)
+      );
+    }
+    switch(orden){
+      case 'anio-asc':  res.sort((a,b)=>(a.anio||0)-(b.anio||0)); break;
+      case 'autor-az':  res.sort((a,b)=>String(a.autor||'').localeCompare(String(b.autor||''))); break;
+      case 'autor-za':  res.sort((a,b)=>String(b.autor||'').localeCompare(String(a.autor||''))); break;
+      default:          res.sort((a,b)=>(b.anio||0)-(a.anio||0));
+    }
+    render(res);
+  }
+
+  qEl.addEventListener('input', e => { q = e.target.value.trim(); apply(); });
+  tipoEl.addEventListener('change', e => { tipo = e.target.value; apply(); });
+  ordenEl.addEventListener('change', e => { orden = e.target.value; apply(); });
+
+  load();
+})();
+</script>
+</body>
+</html>
