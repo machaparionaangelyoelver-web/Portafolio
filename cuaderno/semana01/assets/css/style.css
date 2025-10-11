@@ -1,0 +1,293 @@
+:root{
+  --bg:#d6eaff;          /* se mantiene para el resto de la página */
+  --panel:#f1f7ff;
+  --ink:#1f2b3b;
+  --muted:#556b86;
+  --accent:#7aa9ff;
+  --accent-2:#5b8df8;
+  --ring:#b6d1ff;
+  --radius:18px;
+  --shadow:0 12px 30px rgba(8,21,50,.15);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.65 "Inter", ui-sans-serif, system-ui, Arial;
+}
+a{color:inherit; text-decoration:none}
+code{background:#eaf2ff; padding:.08em .4em; border-radius:6px}
+
+/* BOTONES */
+.btn{
+  display:inline-flex; align-items:center; gap:8px; padding:10px 16px;
+  border-radius:12px; background:var(--accent); color:#fff; font-weight:700;
+  box-shadow:var(--shadow); transition:.25s ease; border:1px solid transparent;
+}
+.btn:hover{ transform:translateY(-2px); background:var(--accent-2) }
+.btn:active{ transform:translateY(0) scale(.98) }
+.btn.outline{ background:#fff; color:var(--ink); border-color:var(--ring) }
+.btn.outline:hover{ background:#f7fbff }
+.btn.accent{ background:var(--accent-2) }
+
+/* HEADER oscuro (solo encabezado) */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:#08090bcc;
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid #0e1116;
+}
+.top-in{max-width:1100px; margin:auto; display:flex; gap:12px; align-items:center; padding:10px 16px}
+.brand{display:flex; gap:10px; align-items:center}
+.brand img{height:28px}
+.title{flex:1; text-align:center; font-weight:800; color:#f3f4f6}
+.topbar .btn{ background:transparent; border:1px solid #273043; color:#e5e7eb; }
+.topbar .btn:hover{ background:#0e1420; border-color:#34425b; }
+.topbar .btn.accent{ background:#2563eb; border-color:#2563eb; color:#fff; }
+
+/* HERO — negro + partículas + tarjeta premium */
+.hero{
+  position:relative; min-height:58vh; display:grid; place-items:center; overflow:hidden;
+  color:#e8eefc;
+}
+.hero-bg{ position:absolute; inset:0; background:#000; }
+#canvasFx{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
+  mix-blend-mode:screen; filter:contrast(115%) brightness(110%);
+  z-index:0;
+}
+.aurora{
+  position:absolute; inset:-20% -10% -30% -10%; pointer-events:none; z-index:1;
+  background:
+    radial-gradient(40% 50% at 15% 30%, rgba(122,169,255,.20), transparent 60%),
+    radial-gradient(35% 45% at 80% 20%, rgba(166,221,255,.18), transparent 60%),
+    radial-gradient(45% 55% at 60% 85%, rgba(180,230,255,.18), transparent 60%);
+  animation: drift 14s ease-in-out infinite alternate;
+  mix-blend-mode: screen; filter: blur(22px);
+}
+@keyframes drift{ from{transform:translateY(-10px)} to{transform:translateY(20px)} }
+
+/* ——— TARJETA PREMIUM DEL HERO ——— */
+.hero-card{
+  position:relative; z-index:2;
+  width:min(960px, calc(100% - 32px));
+  padding:28px 22px;
+  text-align:center;
+  border-radius:22px;
+
+  /* borde degradado “pro” */
+  --grad: conic-gradient(
+    from 180deg at 50% 50%,
+    #60a5fa, #a78bfa, #34d399, #60a5fa
+  );
+  background:
+    linear-gradient(#0b1220cc, #0b1220cc) padding-box,
+    var(--grad) border-box;
+  border:1.2px solid transparent;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.03);
+  backdrop-filter: blur(10px) saturate(120%);
+}
+.hero-card .eyebrow{
+  display:inline-block; letter-spacing:.08em; text-transform:uppercase;
+  font-size:12px; color:#c7d7ff; opacity:.9; margin-bottom:6px;
+}
+.hero-card h1{
+  margin:0 0 8px; line-height:1.08;
+  font-size:clamp(28px,6.6vw,56px); color:#f1f5ff;
+}
+.hero-card .intro.short{
+  margin:0 auto 16px; max-width:820px;
+  color:#cfe0ff; font-size:17px;
+}
+.hero-card .cta-row{ justify-content:center; gap:12px; flex-wrap:wrap; display:flex }
+
+/* LAYOUT */
+.wrap{max-width:1100px; margin:36px auto; padding:0 16px 70px}
+.section{margin:40px 0}
+.section h2{text-align:center; margin:0 0 18px; font-size:28px}
+
+/* Texto extra “Temas relevantes” */
+.topics-intro{
+  max-width:900px; margin:10px auto 24px;
+  color:var(--muted); font-size:16.5px; text-align:center;
+}
+
+/* GRID */
+.grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr))}
+
+/* TARJETAS GENERALES */
+.card{
+  background:var(--panel); border-radius:var(--radius); padding:18px 16px; text-align:center;
+  box-shadow:var(--shadow); border:1.5px solid rgba(255,255,255,.85);
+  position:relative; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease;
+}
+.card:hover{ transform:translateY(-6px) rotate(.6deg); box-shadow:0 18px 40px rgba(29,64,120,.20) }
+.card h3{margin:6px 0 8px; font-size:20px}
+.card p{margin:0; color:var(--muted); font-size:15px}
+.card img{width:clamp(96px, 12vw, 140px); height:auto; display:block; margin:2px auto 10px}
+
+/* CHIP */
+.chip{
+  display:inline-block; padding:4px 10px; border-radius:999px;
+  background:#e9f2ff; color:#3b5a86; font-size:12px; margin-bottom:6px;
+}
+
+/* FLIP-CARDS */
+.card.flip{perspective:1200px; padding:0; min-height:340px}
+.card.flip .flip-inner{
+  position:relative; width:100%; height:100%; border-radius:var(--radius);
+  transform-style:preserve-3d; transition:transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.card.flip .front,
+.card.flip .back{
+  position:absolute; inset:0; padding:20px 18px; border-radius:var(--radius);
+  display:grid; place-items:center; text-align:center; backface-visibility:hidden;
+  background:var(--panel); border:1.5px solid rgba(255,255,255,.85);
+}
+.card.flip .front img{width:clamp(120px, 18vw, 200px); height:auto}
+.card.flip .back{ transform:rotateY(180deg); padding:20px 22px; text-align:left; gap:8px; }
+.card.flip .back h4{margin:0 0 6px}
+.card.flip .back ul{margin:0 0 8px 18px}
+.card.flip:hover .flip-inner,
+.card.flip.is-flipped .flip-inner,
+.card.flip:focus-within .flip-inner{ transform:rotateY(180deg) }
+
+/* CODE BLOCKS */
+pre.code{
+  text-align:left; background:#0f172a; color:#e5edff; border-radius:12px; padding:12px;
+  overflow:auto; margin:12px 0 0; border:1px solid #18233a; box-shadow:0 8px 24px rgba(3,10,24,.25)
+}
+
+/* DESTACADO */
+.card.highlight{border-color:#a9c8ff; background:linear-gradient(#f7fbff,#eef6ff)}
+
+/* REVEAL */
+.reveal{opacity:1; transform:none; transition:.7s ease}
+.js-ready .reveal{opacity:0; transform:translateY(18px)}
+.js-ready .reveal.on, .js-ready .card.on{opacity:1; transform:none}
+
+/* CRÉDITO */
+.credit-bar{
+  border-top:2px solid #c2d9ff; background:#eaf2ff; color:#4a607a;
+  text-align:center; padding:14px 10px; font-size:14px;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce){
+  .aurora, .card:hover, .card.flip .flip-inner{animation:none; transition:none}
+}
+
+
+/* === HERO “hyper pro” tweaks === */
+.hero{ color:#eaf1ff; }
+.hero-bg{ background:#000 !important; }
+#canvasFx{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
+  mix-blend-mode:screen; filter:contrast(115%) brightness(110%);
+  z-index:0;
+}
+/* grano fino sutil para profundidad */
+.hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background-image:
+    radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:3px 3px;
+  opacity:.35;
+}
+/* la tarjeta del hero (si usas .hero-card) queda por encima del ruido */
+.hero-card{ position:relative; z-index:2; }
+
+
+/* ===== CONTACTO (semana01) ===== */
+.contact-section{
+  background: linear-gradient(90deg, #f3f8ff, #e9faff);
+  border-top: 2px solid #cfe1ff;
+  padding: 28px 18px;
+  margin-top: 40px;
+}
+.contact-container{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.contact-title{
+  text-align: center;
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.contact-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.contact-item{
+  background: var(--panel);
+  border: 1.5px solid rgba(255,255,255,.85);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 6px;
+}
+.contact-item strong{ color: var(--ink); font-size: 0.95rem }
+.contact-item a{
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  word-break: break-word;
+}
+.contact-item a:hover{ border-bottom-color: var(--accent) }
+
+/* Responsivo */
+@media (max-width: 980px){
+  .contact-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}
+
+
+/* ===== Mejora tipográfica: sección "Comunícate" ===== */
+.contact-item{
+  line-height: 1.45;               /* más aire entre líneas */
+  letter-spacing: .1px;            /* micro-ajuste para legibilidad */
+}
+
+.contact-item strong{
+  font-size: 1rem;
+  font-weight: 800;
+  color: #162133;
+}
+
+.contact-item a{
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0e1726;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: border-color .2s;
+  /* evita cortes feos en desktop */
+  white-space: nowrap;             /* no partir en medio de "gmail.com" */
+  word-break: keep-all;            /* no romper palabras */
+}
+
+.contact-item a:hover{ border-bottom-color: var(--accent); }
+
+/* En pantallas pequeñas sí permitimos que salte de línea si hace falta */
+@media (max-width: 680px){
+  .contact-item a{
+    white-space: normal;           /* ya puede saltar de línea */
+    overflow-wrap: anywhere;       /* si es muy largo, parte en puntos lógicos */
+    word-break: normal;
+  }
+}

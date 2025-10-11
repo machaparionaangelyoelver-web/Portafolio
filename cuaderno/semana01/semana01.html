@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portafolio · Semana 1</title>
+  <meta name="description" content="Semana 1: Fundamentos Web, DNS, HTTP/HTTPS, Frontend/Backend, APIs, UX/UI, Git y publicación.">
+  <link rel="icon" href="assets/logos/uncp.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="top-in">
+      <!-- Volver al índice del cuaderno (en la raíz) -->
+      <a class="brand" href="../../cuaderno.html" title="Volver al Cuaderno">
+        <img src="assets/logos/uncp.png" alt="UNCP">
+        <img src="assets/logos/fis.png" alt="FIS">
+      </a>
+      <div class="title">Portafolio · Semana 1</div>
+      <nav class="actions">
+        <!-- Botón volver corregido -->
+        <a class="btn" href="../../cuaderno.html">← Volver</a>
+        <!-- PDF local de la semana (si el archivo existe en /cuaderno/semana01/assets/pdf/) -->
+        <a class="btn accent" href="assets/pdf/Sem01TecnologiasWeb.pdf" target="_blank" rel="noopener">📄 Ver PDF</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO (fondo negro + canvas + aurora) -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <canvas id="canvasFx" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <!-- NUEVO: tarjeta premium dentro del héroe -->
+    <div class="hero-card reveal">
+      <span class="eyebrow">Semana 1 · Fundamentos</span>
+      <h1>Fundamentos de la Tecnología Web</h1>
+      <p class="intro short">
+        Del navegador al servidor: HTML, CSS y JavaScript en acción, HTTP/HTTPS como base
+        y flujo de trabajo con Git para publicar con confianza.
+      </p>
+      <div class="cta-row">
+        <a class="btn accent" href="#temas">Explorar temas</a>
+        <a class="btn" href="#laboratorio">Laboratorio</a>
+        <!-- Informe01: enlace solicitado -->
+        <a class="btn outline" id="informeBtn"
+           href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/f6db34f8ed9768623996568e8c4b2c1d951b4cc1/semana01.md"
+           target="_blank" rel="noopener">📘 Informe01</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- TEMAS (flip-cards) -->
+    <section id="temas" class="section">
+      <h2 class="reveal">Temas relevantes</h2>
+      <p class="topics-intro reveal">
+        Aquí reúno los conceptos clave para empezar con buen pie: estándares del frontend,
+        protocolos de la Web, DNS para resolver nombres, separación clara entre interfaz y
+        servidor, diseño centrado en el usuario y APIs reutilizables. Puedes voltear cada
+        tarjeta para ver detalles y consejos prácticos de aplicación.
+      </p>
+
+      <div class="grid">
+        <!-- 1 -->
+        <article class="card flip reveal" tabindex="0" aria-label="HTML, CSS y JavaScript">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/htmlcss.gif" alt="HTML CSS JS">
+              <span class="chip">Estándares</span>
+              <h3>HTML, CSS y JavaScript</h3>
+            </div>
+            <div class="back">
+              <h4>¿Por qué importan?</h4>
+              <ul>
+                <li><b>HTML</b>: estructura semántica.</li>
+                <li><b>CSS</b>: diseño responsivo.</li>
+                <li><b>JS</b>: interacción y lógica del lado del cliente.</li>
+              </ul>
+              <p>Con esta base todo proyecto web se vuelve entendible y accesible.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 2 -->
+        <article class="card flip reveal" tabindex="0" aria-label="HTTP y HTTPS">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/http.gif" alt="HTTP">
+              <span class="chip">Protocolo</span>
+              <h3>HTTP / HTTPS</h3>
+            </div>
+            <div class="back">
+              <h4>Clave</h4>
+              <ul>
+                <li>Petición–respuesta entre navegador y servidor.</li>
+                <li><b>HTTPS</b> agrega cifrado TLS y autenticidad.</li>
+                <li>Intercambio de <b>JSON</b> para APIs.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <!-- 3 -->
+        <article class="card flip reveal" tabindex="0" aria-label="DNS">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/dns.gif" alt="DNS">
+              <span class="chip">Red</span>
+              <h3>DNS</h3>
+            </div>
+            <div class="back">
+              <h4>Qué hace</h4>
+              <p>Traduce dominios legibles a direcciones IP para ubicar el servidor correcto.</p>
+              <p>Sin DNS, escribiríamos números en vez de <i>nombres</i>.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 4 -->
+        <article class="card flip reveal" tabindex="0" aria-label="Frontend y Backend">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/frontendbackend.gif" alt="Frontend y Backend">
+              <span class="chip">Arquitectura</span>
+              <h3>Frontend & Backend</h3>
+            </div>
+            <div class="back">
+              <h4>Rol</h4>
+              <ul>
+                <li><b>Frontend</b>: UI/UX, accesibilidad, estado.</li>
+                <li><b>Backend</b>: datos, negocio, seguridad.</li>
+                <li>Comunicación vía <b>HTTP + JSON</b>.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+        <!-- 5 -->
+        <article class="card flip reveal" tabindex="0" aria-label="APIs REST">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/api.gif" alt="API REST">
+              <span class="chip">Servicios</span>
+              <h3>APIs REST</h3>
+            </div>
+            <div class="back">
+              <h4>Beneficio</h4>
+              <p>Endpoints predecibles para exponer recursos; permiten que web y móvil reutilicen el mismo backend.</p>
+            </div>
+          </div>
+        </article>
+        <!-- 6 -->
+        <article class="card flip reveal" tabindex="0" aria-label="UX UI">
+          <div class="flip-inner">
+            <div class="front">
+              <img src="assets/images/ux.gif" alt="UX UI">
+              <span class="chip">Diseño</span>
+              <h3>UX / UI</h3>
+            </div>
+            <div class="back">
+              <h4>Principios</h4>
+              <ul>
+                <li>Jerarquía y contraste.</li>
+                <li>Accesibilidad (roles, foco, etiquetas).</li>
+                <li>Prototipado antes de codificar.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LABORATORIO -->
+    <section id="laboratorio" class="section">
+      <h2 class="reveal">Prácticas guiadas</h2>
+      <div class="grid">
+        <article class="card reveal tilt">
+          <img src="assets/images/vscode.gif" alt="VS Code">
+          <h3>Plantilla HTML + Emmet</h3>
+          <p>Atajo: escribe <code>!</code> + Enter para el esqueleto HTML5. Ejemplo:</p>
+<pre class="code">
+&lt;section class="card demo"&gt;
+  &lt;h3&gt;Hola Web&lt;/h3&gt;
+  &lt;p&gt;Mi primera tarjeta pastel con hover.&lt;/p&gt;
+  &lt;button class="btn"&gt;Acción&lt;/button&gt;
+&lt;/section&gt;
+</pre>
+        </article>
+
+        <article class="card reveal tilt">
+          <img src="assets/images/git.gif" alt="Git">
+          <h3>Git: flujo básico</h3>
+          <p>Inicializa, agrega cambios y crea tu primer commit.</p>
+<pre class="code">
+git init
+git add .
+git commit -m "Semana 1: estructura + estilos pastel"
+git log --oneline
+</pre>
+        </article>
+
+        <article class="card reveal tilt">
+          <img src="assets/images/github.gif" alt="GitHub">
+          <h3>Subir a GitHub</h3>
+          <p>Crea un repo vacío y enlázalo:</p>
+<pre class="code">
+git remote add origin https://github.com/usuario/mi-portafolio.git  # ← edita
+git branch -M main
+git push -u origin main
+</pre>
+        </article>
+
+        <article class="card reveal tilt">
+          <img src="assets/images/deploy.gif" alt="Deploy">
+          <h3>Publicar con GitHub Pages</h3>
+          <p>Settings → Pages → Source: <code>Deploy from a branch</code> (main / root).</p>
+<pre class="code">
+# luego visita:
+# https://usuario.github.io/mi-portafolio/semana01/semana01.html
+</pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONCLUSIÓN & REFLEXIÓN -->
+    <section id="conclusion" class="section">
+      <div class="card reveal highlight">
+        <h2>Conclusión y reflexión</h2>
+        <p>
+          Esta semana integré las piezas del ecosistema web: cliente, servidor y protocolos.
+          Confirmé que la claridad del código, una UI accesible y el control de versiones
+          hacen que todo sea mantenible. Publicar el avance me da disciplina para iterar.
+        </p>
+        <p>
+          Me quedo con una idea simple: la Web es una conversación ordenada. Si diseño bien
+          esa conversación, mis proyectos serán más útiles y confiables.
+        </p>
+      </div>
+    </section>
+  </main>
+<!-- === CONTACTO =========================================================== -->
+<section class="contact-section" id="contacto" aria-label="Contáctame">
+  <div class="contact-container">
+    <h2 class="contact-title">📨 Comunícate conmigo</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <strong>Correo personal</strong>
+        <a href="mailto:machaparionaangelyoelver@gmail.com">machaparionaangelyoelver@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <strong>Correo institucional</strong>
+        <a href="mailto:e_2021200788i@uncp.edu.pe">e_2021200788i@uncp.edu.pe</a>
+      </div>
+      <div class="contact-item">
+        <strong>GitHub</strong>
+        <a href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener">
+          github.com/machaparionaangelyoelver-web
+        </a>
+      </div>
+      <div class="contact-item">
+        <strong>Teléfono / WhatsApp</strong>
+        <a href="tel:+51934907255">+51 934 907 255</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- CRÉDITO -->
+  <div class="credit-bar">
+    Hecho por <strong>Angel Yoelver Macha</strong> · Portafolio Semana 1 · UNCP – FIS · 2025
+  </div>
+
+  <!-- JS local de la semana -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
