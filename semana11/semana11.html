@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ✅ TÍTULO (Opción A) -->
+  <title>Semana 11 — API REST Inteligente: CRUD Docentes + Validación, Filtros, Paginación y KPIs (Spring Boot · MySQL)</title>
+
+  <!-- ✅ DESCRIPCIÓN (más representativa) -->
+  <meta name="description" content="Semana 11: desarrollo backend con Spring Boot y MySQL. API REST para Docentes con validaciones, filtros inteligentes, paginación, KPIs, documentación con Swagger y pruebas con Postman." />
+
+  <meta name="theme-color" content="#FFE4D6" />
+  <link rel="icon" href="assets/img/Semana11_imagenes/logo_spring.png" type="image/png" />
+
+  <!-- CSS base del proyecto -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/hero.css" />
+  <link rel="stylesheet" href="assets/css/orbits.css" />
+  <link rel="stylesheet" href="assets/css/stepper.css" />
+  <link rel="stylesheet" href="assets/css/accordion.css" />
+  <link rel="stylesheet" href="assets/css/gallery.css" />
+
+  <!-- Estilos específicos Semana 11 -->
+  <style>
+    body{
+      background:#f5f7ff;
+      color:#10203b;
+      font-family:"Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    }
+    h1,h2,h3{color:#10203b;}
+    .section{max-width:1200px;margin:0 auto;padding:60px 20px;}
+    .section__head{text-align:center;margin-bottom:24px;}
+    .section__head h2{font-size:1.9rem;margin-bottom:6px;}
+    .section__desc{color:#394d6c;}
+    .lead{font-size:1.04rem;color:#213352;max-width:960px;margin:0 auto;}
+    .note{
+      background:#f7fbff;
+      border:1.5px solid #e3ecff;
+      border-radius:12px;
+      padding:10px 12px;
+      color:#163058;
+      margin-top:10px;
+    }
+    .kbd{
+      font-family:ui-monospace,Menlo,Consolas,monospace;
+      background:#eef2ff;
+      border:1px solid #d8e4ff;
+      border-bottom-width:2px;
+      border-radius:6px;
+      padding:1px 6px;
+    }
+
+    /* Hero Semana 11 */
+    .hero{
+      text-align:center;
+      padding:110px 20px 70px;
+      background:linear-gradient(180deg,#ffe4d6 0%,#ffffff 70%);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero__title{font-size:2.4rem;font-weight:800;letter-spacing:0.02em;}
+    .hero__tagline{margin-top:10px;font-size:1.08rem;color:#3c4154;}
+    .hero__meta{margin-top:8px;color:#414a6b;font-weight:600;}
+    .hero__cta{margin-top:22px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+
+    /* Topbar */
+    .topbar__nav a{white-space:nowrap;}
+
+    /* Recuadros */
+    .card, .recuadro{
+      background:#ffffff;
+      border-radius:18px;
+      border:1.5px solid #e5e9ff;
+      box-shadow:0 14px 35px rgba(15,35,90,0.08);
+      padding:20px 22px;
+    }
+    .recuadro{margin:16px auto;max-width:1120px;}
+    .recuadro h3{margin-top:0;margin-bottom:10px;}
+
+    /* Tabla */
+    .tbl{
+      width:100%;
+      border-collapse:collapse;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid #e4e9ff;
+    }
+    .tbl th,.tbl td{
+      padding:11px 12px;
+      border-bottom:1px solid #eef2ff;
+      text-align:left;
+    }
+    .tbl thead th{
+      background:#f3f5ff;
+      font-weight:800;
+      color:#162447;
+    }
+    .tbl tbody tr:hover{background:#fafbff;}
+
+    /* =======================
+       ✅ Evidencias (MÁS GRANDES + MEJOR DISEÑO)
+       ======================= */
+    .masonry{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(340px, 1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (min-width: 1100px){
+      .masonry{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 1099px){
+      .masonry{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px){
+      .masonry{ grid-template-columns:1fr; gap:16px; }
+    }
+
+    .m-card{
+      display:flex;
+      flex-direction:column;
+      background:#fff;
+      border-radius:18px;
+      border:1.5px solid #e6eefc;
+      box-shadow:0 12px 34px rgba(20,40,80,.10);
+      overflow:hidden;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .m-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 20px 52px rgba(20,40,80,.16);
+    }
+    .m-card__media{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      background:#f3f6ff;
+    }
+    .m-card__body{padding:14px 16px 16px;}
+    .m-card__title{
+      font-weight:900;
+      margin:2px 0 8px;
+      color:#12223e;
+      font-size:1.05rem;
+    }
+    .m-card__desc{
+      color:#304469;
+      font-size:.96rem;
+      line-height:1.55;
+    }
+
+    /* Contacto (anti-desborde) */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .c-card{
+      display:grid;
+      grid-template-columns:48px 1fr;
+      align-items:center;
+      gap:10px;
+      padding:14px 16px;
+      text-decoration:none;
+      background:linear-gradient(#ffffff,#f7fbff);
+      border-radius:16px;
+      border:1.5px solid #dde6ff;
+      box-shadow:0 10px 28px rgba(20,40,80,.08);
+      color:#0c2038;
+
+      /* ✅ evita que el texto se salga */
+      overflow:hidden;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+    .c-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 38px rgba(20,40,80,.14);
+    }
+    .c-ico{
+      width:48px;height:48px;border-radius:50%;
+      display:grid;place-items:center;
+      background:radial-gradient(120% 120% at 20% 20%,#eef4ff,#dde8ff);
+      font-size:22px;color:#083154;
+    }
+
+    footer.site-footer{
+      background:#eef3ff;
+      padding:16px 12px;
+      text-align:center;
+      font-size:0.88rem;
+      color:#1d3158;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <header class="topbar topbar--on-hero" role="navigation" aria-label="Barra superior">
+    <div class="topbar__inner">
+      <div class="topbar__brandwrap">
+        <div class="topbar__logos">
+          <img src="assets/img/logos/uncp.png" alt="UNCP" />
+          <img src="assets/img/logos/fis.png" alt="FIS" />
+        </div>
+        <canvas id="logoFireworks" class="topbar__fw" width="140" height="56" aria-hidden="true"></canvas>
+        <strong class="topbar__brand">Semana 11</strong>
+      </div>
+      <nav class="topbar__nav">
+        <a href="#objetivos">Objetivos</a>
+        <a href="#api">API</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#conclusiones">Conclusiones</a>
+        <a href="#contacto">Contáctame</a>
+        <a class="topbar__ext" href="../../cuaderno.html" data-hardnav>Cuaderno</a>
+      </nav>
+    </div>
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <header id="hero" class="hero" role="banner" aria-label="Portada Semana 11">
+    <canvas id="shootingStarCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero__inner">
+      <div class="hero__titlewrap" id="heroBlock">
+        <!-- ✅ HERO actualizado -->
+        <h1 id="heroTitle" class="hero__title" data-animate="reveal">
+          Semana 11 · API REST Inteligente (Docentes)
+        </h1>
+
+        <p class="hero__tagline">
+          Spring Boot · MySQL · Validación · Filtros · Paginación · KPIs · Swagger · Postman
+        </p>
+
+        <p class="hero__meta">
+          Fecha de elaboración:
+          <time datetime="2025-11-12">12 de noviembre de 2025</time>
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--magnetic" href="../../cuaderno.html" data-hardnav>
+            Ver Cuaderno
+          </a>
+          <a class="btn btn--secondary btn--magnetic" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana11.md">
+            Semana 11 · Informe
+          </a>
+        </div>
+      </div>
+
+      <!-- ÓRBITAS -->
+      <div class="orbits" aria-hidden="true">
+        <div class="orbit orbit--r1">
+          <img src="assets/img/Semana11_imagenes/logo_spring.png" alt="Spring Boot" class="orbit__icon" />
+        </div>
+        <div class="orbit orbit--r2">
+          <img src="assets/img/Semana11_imagenes/logo_mysql.png" alt="MySQL" class="orbit__icon" />
+        </div>
+        <div class="orbit orbit--r3">
+          <img src="assets/img/Semana11_imagenes/logo_validacion.png" alt="Validación" class="orbit__icon" />
+        </div>
+        <div class="orbit orbit--r4">
+          <img src="assets/img/Semana11_imagenes/logo_swagger.png" alt="Swagger" class="orbit__icon" />
+        </div>
+        <div class="orbit orbit--r5">
+          <img src="assets/img/Semana11_imagenes/logo_postman.png" alt="Postman" class="orbit__icon" />
+        </div>
+      </div>
+
+      <!-- Nav portada -->
+      <nav class="hero__nav" aria-label="Secciones">
+        <a href="#objetivos">Objetivos</a>
+        <a href="#api">API</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#conclusiones">Conclusiones</a>
+        <a href="#contacto">Contáctame</a>
+      </nav>
+    </div>
+
+    <!-- Ola -->
+    <div class="hero__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
+        <path id="heroWavePath"
+              d="M0,80 C240,140 480,20 720,60 C960,100 1200,100 1440,60 L1440,140 L0,140 Z"
+              fill="currentColor"></path>
+        <animate xlink:href="#heroWavePath"
+                 attributeName="d"
+                 dur="16s"
+                 repeatCount="indefinite"
+                 values="
+                   M0,80 C240,140 480,20 720,60 C960,100 1200,100 1440,60 L1440,140 L0,140 Z;
+                   M0,90 C220,120 520,40 720,70 C980,110 1200,80 1440,90 L1440,140 L0,140 Z;
+                   M0,80 C240,140 480,20 720,60 C960,100 1200,100 1440,60 L1440,140 L0,140 Z
+                 " />
+      </svg>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO ===== -->
+  <main id="content" class="content" role="main">
+
+    <!-- OBJETIVOS -->
+    <section id="objetivos" class="section">
+      <header class="section__head">
+        <h2>Objetivos de la Semana 11</h2>
+        <p class="section__desc">
+          Diseñar y documentar una API REST de docentes más robusta, con validaciones, filtros, paginación y métricas (KPIs).
+        </p>
+      </header>
+
+      <div class="recuadro">
+        <h3>Resumen general</h3>
+        <p class="lead">
+          Durante esta semana se evolucionó el CRUD de docentes hacia una API REST más completa,
+          construida con Spring Boot y MySQL. Se incorporaron validaciones con Jakarta Bean Validation,
+          filtros dinámicos (por ejemplo, ciudad y años de servicio), paginación estándar
+          <span class="kbd">page</span> y <span class="kbd">size</span>, así como KPIs básicos
+          para apoyar la toma de decisiones (promedio de edad y distribución por ciudad).
+        </p>
+        <ul>
+          <li>Configurar el proyecto <strong>Spring Boot</strong> con <strong>Spring Web</strong> y <strong>Spring Data JPA</strong>.</li>
+          <li>Definir la entidad <strong>Docente</strong> y su repositorio JPA.</li>
+          <li>Exponer una <strong>API REST</strong> con CRUD completo.</li>
+          <li>Agregar <strong>validaciones</strong> para asegurar calidad de datos.</li>
+          <li>Implementar <strong>filtros inteligentes</strong> y <strong>paginación</strong>.</li>
+          <li>Documentar y probar con <strong>Swagger/OpenAPI</strong> y <strong>Postman</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- API -->
+    <section id="api" class="section">
+      <header class="section__head">
+        <h2>API Intelligent CRUD Docentes</h2>
+        <p class="section__desc">
+          Rutas principales de la API REST y características implementadas.
+        </p>
+      </header>
+
+      <div class="recuadro">
+        <h3>Endpoints del CRUD</h3>
+        <table class="tbl" aria-label="Rutas del CRUD Docentes">
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Ruta</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GET</td>
+              <td>/api/docentes</td>
+              <td>Lista paginada de docentes, con filtros por ciudad y años de servicio.</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/api/docentes/{id}</td>
+              <td>Obtiene el detalle de un docente por su identificador.</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>/api/docentes</td>
+              <td>Crea un nuevo docente aplicando validaciones de negocio.</td>
+            </tr>
+            <tr>
+              <td>PUT</td>
+              <td>/api/docentes/{id}</td>
+              <td>Actualiza los datos de un docente existente.</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td>/api/docentes/{id}</td>
+              <td>Elimina lógicamente o físicamente el registro, según configuración.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="note">
+          Los parámetros <span class="kbd">page</span> y <span class="kbd">size</span> controlan la paginación,
+          mientras que los filtros <span class="kbd">ciudad</span> y
+          <span class="kbd">minTiempoServicio</span> permiten consultas más precisas sin recargar todo el dataset.
+        </p>
+      </div>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="section section--evidencias">
+      <header class="section__head">
+        <h2>Evidencias fotográficas</h2>
+        <p class="section__desc">
+          Capturas del proyecto en IntelliJ, modelo de base de datos, Swagger, Postman, paginación/filtros y KPIs.
+        </p>
+      </header>
+
+      <div class="masonry" id="masonry">
+        <figure class="m-card">
+          <img class="m-card__media"
+               src="assets/img/Semana11_imagenes/proyecto_docentes_intellij.png"
+               alt="Proyecto Spring Boot Docentes en IntelliJ" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Proyecto en IntelliJ</div>
+            <p class="m-card__desc">
+              Estructura del proyecto Spring Boot con capas controller, service y repository
+              para el CRUD de docentes.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media"
+               src="assets/img/Semana11_imagenes/modelo_bbdd_docentes.png"
+               alt="Modelo de base de datos de docentes en MySQL" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Modelo de base de datos</div>
+            <p class="m-card__desc">
+              Tabla <code>docente</code> con campos para nombre, ciudad, email, fecha de nacimiento
+              y tiempo de servicio, lista para integrarse con JPA.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media"
+               src="assets/img/Semana11_imagenes/swagger_docentes.png"
+               alt="Swagger UI mostrando endpoints de docentes" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Swagger UI</div>
+            <p class="m-card__desc">
+              Documentación automática de la API REST, con parámetros, códigos de respuesta
+              y ejemplos de entrada/salida.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media"
+               src="assets/img/Semana11_imagenes/postman_docentes.png"
+               alt="Colección de Postman para pruebas de docentes" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Pruebas con Postman</div>
+            <p class="m-card__desc">
+              Peticiones POST, GET, PUT y DELETE para verificar el funcionamiento
+              de todas las operaciones del CRUD.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media"
+               src="assets/img/Semana11_imagenes/paginacion_filtros_docentes.png"
+               alt="Respuesta paginada y filtrada de docentes" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Paginación y filtros</div>
+            <p class="m-card__desc">
+              Respuesta paginada con criterios de búsqueda, mostrando solo los docentes
+              que cumplen las condiciones configuradas.
+            </p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media"
+               src="assets/img/Semana11_imagenes/kpis_docentes_dashboard.png"
+               alt="KPIs calculados a partir de los docentes" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">KPIs de docentes</div>
+            <p class="m-card__desc">
+              Indicadores como promedio de edad y distribución por ciudad, pensados para
+              integrarse en un futuro dashboard de gestión académica.
+            </p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Lightbox opcional -->
+      <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visor de imagen">
+        <button class="lightbox__close" id="lbClose" aria-label="Cerrar">×</button>
+        <img id="lbImg" alt="" />
+        <p id="lbCap" class="lightbox__caption"></p>
+        <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Anterior">‹</button>
+        <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- CONCLUSIONES -->
+    <section id="conclusiones" class="section">
+      <header class="section__head">
+        <h2>Conclusiones de la Semana 11</h2>
+      </header>
+
+      <div class="recuadro">
+        <h3>Conclusión general</h3>
+        <p>
+          El desarrollo de la API REST inteligente de docentes consolidó el uso de Spring Boot como framework
+          para servicios backend, integrando validación, filtrado y paginación. Swagger y Postman facilitaron
+          la documentación y el ciclo de pruebas, mientras que los KPIs demuestran el potencial del sistema
+          para apoyar decisiones académicas en etapas posteriores.
+        </p>
+        <ul>
+          <li>La API cumple CRUD y añade valor con filtros y paginación.</li>
+          <li>Las validaciones reducen errores de captura y mejoran la calidad.</li>
+          <li>Swagger y Postman fortalecen documentación y pruebas.</li>
+          <li>Los KPIs aportan una base para analítica y dashboards futuros.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section section--contacto">
+      <header class="section__head">
+        <h2>Contáctame</h2>
+        <p class="section__desc">¿Dudas o comentarios sobre el proyecto? Puedes escribirme.</p>
+      </header>
+
+      <div class="contact-grid">
+        <a class="c-card" href="mailto:machaparionaangelyoelver@gmail.com" aria-label="Correo personal">
+          <div class="c-ico">✉️</div>
+          <div>
+            <strong>Correo personal</strong><br />
+            machaparionaangelyoelver@gmail.com
+          </div>
+        </a>
+
+        <a class="c-card" href="mailto:e_2021200788i@uncp.edu.pe" aria-label="Correo institucional">
+          <div class="c-ico">🏫</div>
+          <div>
+            <strong>Correo institucional</strong><br />
+            e_2021200788i@uncp.edu.pe
+          </div>
+        </a>
+
+        <a class="c-card" href="https://github.com/machaparionaangelyoelver-web"
+           target="_blank" rel="noopener" aria-label="GitHub">
+          <div class="c-ico">🐙</div>
+          <div>
+            <strong>GitHub</strong><br />
+            github.com/machaparionaangelyoelver-web
+          </div>
+        </a>
+      </div>
+
+      <div class="card" style="margin-top:14px;max-width:680px">
+        <p style="margin:0 0 10px">
+          <strong>Email principal:</strong>
+          <a id="contactEmail" href="mailto:machaparionaangelyoelver@gmail.com" style="overflow-wrap:anywhere">
+            machaparionaangelyoelver@gmail.com
+          </a>
+        </p>
+        <div class="actions">
+          <button class="btn" id="copyEmailBtn" data-copy="machaparionaangelyoelver@gmail.com">
+            Copiar email
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <img src="assets/img/logos/uncp.png" alt="UNCP" height="36" />
+      <img src="assets/img/logos/fis.png" alt="FIS" height="36" />
+      <p>Hecho por Angel Yoelver Macha · UNCP</p>
+    </div>
+  </footer>
+
+  <!-- JS del proyecto -->
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/hero_shootingstar.js" defer></script>
+  <script src="assets/js/hero_orbits.js" defer></script>
+  <script src="assets/js/hero_parallax_tilt.js" defer></script>
+  <script src="assets/js/hero_wave_morph.js" defer></script>
+  <script src="assets/js/magnetic.js" defer></script>
+  <script src="assets/js/stepper.js" defer></script>
+  <script src="assets/js/accordion.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
+  <script src="assets/js/topbar_fireworks.js" defer></script>
+  <script src="assets/js/topbar.js" defer></script>
+
+  <!-- HARD-NAV + Copiar email -->
+  <script>
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[data-hardnav]');
+      if(!a) return;
+      const href = a.getAttribute('href') || '';
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute('target') === '_blank') return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('copyEmailBtn');
+      if(!btn) return;
+      btn.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          const old = btn.textContent;
+          btn.textContent = '✓ Copiado';
+          setTimeout(() => btn.textContent = old, 900);
+        }catch(err){
+          console.warn(err);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+

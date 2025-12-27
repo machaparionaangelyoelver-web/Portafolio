@@ -1,0 +1,24 @@
+.orbits{ position:relative; width:100%; height:200px; margin:10px auto 6px }
+.orbit{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none }
+.orbit__icon{ width:80px; height:80px; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)) }
+.orbit--r1 { animation: orbit 5.6s linear infinite }
+.orbit--r2 { animation: orbit 6.2s linear infinite reverse }
+.orbit--r3 { animation: orbit 7.0s linear infinite }
+.orbit--r4 { animation: orbit 8.0s linear infinite reverse }
+.orbit--r5 { animation: orbit 9.0s linear infinite }
+@keyframes orbit { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+.orbit--r1 .orbit__icon{ transform: translateY(-70px) }
+.orbit--r2 .orbit__icon{ transform: translateY(-54px) }
+.orbit--r3 .orbit__icon{ transform: translateY(-90px) }
+.orbit--r4 .orbit__icon{ transform: translateY(-110px) }
+.orbit--r5 .orbit__icon{ transform: translateY(-130px) }
+.orbits.settle .orbit{ animation: none }
+.orbits.settle .orbit--r1 .orbit__icon{ transform: translate(-260px,-10px) }
+.orbits.settle .orbit--r2 .orbit__icon{ transform: translate(-140px,-60px) }
+.orbits.settle .orbit--r3 .orbit__icon{ transform: translate(0,-80px) }
+.orbits.settle .orbit--r4 .orbit__icon{ transform: translate(140px,-60px) }
+.orbits.settle .orbit--r5 .orbit__icon{ transform: translate(260px,-10px) }
+@media (prefers-reduced-motion: reduce){
+  .orbit{ animation:none !important }
+  .orbits:not(.settle) .orbit__icon{ transform: translateY(-70px) }
+}
