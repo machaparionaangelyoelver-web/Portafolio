@@ -10,16 +10,15 @@
   <link rel="stylesheet" href="assets/style.css">
 
   <style>
-    /* ====== PALETA CLARA PASTEL ====== */
     :root{
-      --bg:#f5f8ff;            /* base clara */
-      --ink:#0d1321;           /* texto principal */
-      --muted:#41536b;         /* texto secundario */
-      --panel:#ffffffcc;       /* vidrio claro */
-      --card:#ffffffd9;        /* tarjeta */
-      --line:#dfe8ff;          /* bordes sutiles */
-      --acc:#3a86ff;           /* azul pastel */
-      --acc2:#7bd389;          /* verde lima pastel */
+      --bg:#f5f8ff;
+      --ink:#0d1321;
+      --muted:#41536b;
+      --panel:#ffffffcc;
+      --card:#ffffffd9;
+      --line:#dfe8ff;
+      --acc:#3a86ff;
+      --acc2:#7bd389;
       --shadow:0 18px 70px rgba(21, 41, 95, .12);
     }
 
@@ -31,7 +30,6 @@
     a{color:var(--acc);text-decoration:none}
     .container{max-width:1180px;margin:0 auto;padding:24px 28px}
 
-    /* ====== NAV ====== */
     .nav{
       position:sticky; top:0; z-index:80;
       backdrop-filter:blur(10px) saturate(1.1);
@@ -51,9 +49,7 @@
     .menu a{padding:8px 12px;border-radius:10px;color:var(--ink);font-weight:600}
     .menu a[aria-current="page"]{outline:1px solid #bcd4ff;background:#eaf2ff}
 
-    /* ====== HERO CON ANIMACIÓN ====== */
     .hero-wrap{position:relative; isolation:isolate}
-    /* Capa de auroras/blobs animados */
     .aurora{
       position:absolute; inset:0; z-index:-1; overflow:hidden;
       filter:blur(40px) saturate(1.2);
@@ -64,7 +60,6 @@
       mix-blend-mode:multiply; will-change:transform;
       animation: float 22s ease-in-out infinite alternate;
     }
-    /* Gradientes pastel muy suaves (sin imagen) */
     .b1{left:18%; top:18%;
       background:radial-gradient(closest-side, #b3e5fc 0%, #90caf9 35%, transparent 70%);
       animation-duration: 24s;
@@ -104,7 +99,6 @@
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid #cfe0ff;background:#fff;color:var(--ink);cursor:pointer}
     .btn.primary{background:linear-gradient(90deg,var(--acc),#9fd0ff);color:#0b1220;border:0}
 
-    /* Mascota robot (ligeramente más pequeña en claro) */
     .robot{
       aspect-ratio: 16/10; border-radius:22px; overflow:hidden;
       background:linear-gradient(180deg,#ffffffcc,#ffffffee);
@@ -117,7 +111,6 @@
       filter:drop-shadow(0 0 6px #82b7ff); animation:scan 2.8s linear infinite}
     @keyframes scan{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
 
-    /* ====== TIMELINE ====== */
     .section{margin-top:26px}
     .timeline{position:relative;margin:14px 0}
     .timeline:before{content:"";position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#cfe0ff,#b7cdfc)}
@@ -137,17 +130,12 @@
     .row{display:grid;grid-template-columns:160px 1fr;gap:10px}
     .row strong{color:#2a3a59}
     .pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid #cfe0ff;color:#2a3a59;background:#ffffff}
-    .thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .thumb{width:120px;height:72px;border-radius:10px;overflow:hidden;border:1px solid #e6eeff;background:#fff}
-    .thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(1.03)}
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 
-    /* ====== ATAJOS ====== */
     .grid3{display:grid;gap:18px;grid-template-columns:repeat(3,1fr);margin-top:18px}
     .link{transition:transform .18s ease, box-shadow .22s ease,border-color .2s ease;display:block}
     .link:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(6,14,30,.12);border-color:#cfe0ff}
 
-    /* ====== FOOTER ====== */
     .footer{border-top:1px solid var(--line);color:#546681;background:linear-gradient(0deg,rgba(255,255,255,.9),rgba(255,255,255,.65))}
     @media (max-width:980px){
       .hero{grid-template-columns:1fr}
@@ -158,13 +146,11 @@
 </head>
 
 <body>
-  <!-- NAV -->
   <nav class="nav">
     <div class="inner container" style="padding-left:0;padding-right:0">
       <div class="brand">
-        <span class="brand-title">Portafolio</span>
+        <span class="brand-title">Cuaderno Digital</span>
         <span class="brand-logos">
-          <!-- Asegúrate que existan estas rutas según tu carpeta /assets -->
           <img src="assets/logo-uncp.png" alt="UNCP" />
           <img src="assets/logo-fis.jpg" alt="FIS" />
         </span>
@@ -179,9 +165,7 @@
     </div>
   </nav>
 
-  <!-- HERO con animación pastel -->
   <div class="hero-wrap">
-    <!-- Capa animada (sin imágenes) -->
     <div class="aurora" aria-hidden="true">
       <div class="blob b1"></div>
       <div class="blob b2"></div>
@@ -195,20 +179,19 @@
           <span class="chip">Cuaderno de aprendizaje</span>
           <h1>Desarrollo de Aplicaciones Web</h1>
           <p class="muted">
-            Registro semanal de temas clave (HTML/CSS, JavaScript, APIs, backend, auth, deploy), ejercicios de laboratorio y reflexión:
-            <em>¿Qué aprendí?</em> · <em>¿Cómo lo aprendí?</em> · <em>¿Cómo lo aplico?</em>
+            Registro semanal de temas clave, ejercicios de laboratorio y reflexión.
+            Aprendizaje aplicado con evidencias, conclusiones y mejora continua.
           </p>
           <div class="toolbar">
             <label class="search" aria-label="Buscar en semanas">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#3a86ff" /><path d="M20 20L17 17" stroke="#3a86ff" /></svg>
-              <input id="q" type="search" placeholder="Busca por tema, etiqueta o evidencia…" autocomplete="off">
+              <input id="q" type="search" placeholder="Busca por tema o etiqueta" autocomplete="off">
             </label>
-            <button class="btn" id="btnExpand">Expandir todo</button>
-            <button class="btn primary" onclick="window.print()">Exportar PDF</button>
+            <button class="btn" id="btnExpand" type="button">Expandir todo</button>
+            <button class="btn primary" type="button" onclick="window.print()">Exportar PDF</button>
           </div>
         </div>
 
-        <!-- Robot animado -->
         <aside class="robot" aria-label="Mascota del portafolio">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
@@ -216,22 +199,15 @@
                 <stop offset="0%" stop-color="#3a86ff"/><stop offset="100%" stop-color="#7bd389"/>
               </linearGradient>
             </defs>
-            <!-- cuerpo -->
             <rect x="50" y="60" rx="14" ry="14" width="100" height="90" fill="url(#g1)" opacity="0.15" stroke="#3a86ff" />
-            <!-- cabeza -->
             <rect x="65" y="25" rx="12" ry="12" width="70" height="45" fill="url(#g1)" opacity="0.25" stroke="#7bd389" />
-            <!-- antena -->
             <line x1="100" y1="18" x2="100" y2="8" stroke="#7bd389" stroke-width="3"/>
             <circle cx="100" cy="6" r="3" fill="#7bd389"/>
-            <!-- ojos -->
             <circle cx="85" cy="45" r="6" fill="#3a86ff"/>
             <circle cx="115" cy="45" r="6" fill="#3a86ff"/>
-            <!-- sonrisa -->
             <path d="M85 55 Q100 65 115 55" stroke="#3a86ff" fill="none" stroke-width="2"/>
-            <!-- brazos -->
             <rect x="35" y="78" width="12" height="40" rx="6" fill="url(#g1)" opacity="0.25" />
             <rect x="153" y="78" width="12" height="40" rx="6" fill="url(#g1)" opacity="0.25" />
-            <!-- luces -->
             <circle cx="75" cy="95" r="4" fill="#7bd389"/>
             <circle cx="100" cy="95" r="4" fill="#7bd389"/>
             <circle cx="125" cy="95" r="4" fill="#7bd389"/>
@@ -240,23 +216,21 @@
         </aside>
       </section>
 
-      <!-- TIMELINE -->
       <section class="section">
         <div id="timeline" class="timeline"></div>
       </section>
 
-      <!-- Atajos -->
       <section class="grid3">
         <a class="card link" href="proyectos.html">
-          <h3>📁 Proyectos</h3>
+          <h3>Proyectos</h3>
           <p class="muted">Repositorios, despliegues y resultados.</p>
         </a>
         <a class="card link" href="bibliografia.html">
-          <h3>📚 Bibliografía</h3>
+          <h3>Bibliografía</h3>
           <p class="muted">Fuentes y referencias por módulo.</p>
         </a>
         <a class="card link" href="index.html">
-          <h3>🏠 Portada</h3>
+          <h3>Portada</h3>
           <p class="muted">Resumen y navegación principal.</p>
         </a>
       </section>
@@ -264,17 +238,15 @@
   </div>
 
   <footer class="footer">
-    <div class="container">Hecho con 💚 + 💙 y GitHub Pages.</div>
+    <div class="container">Cuaderno Digital en GitHub Pages</div>
   </footer>
 
   <script>
-    // Helpers
     const $ = (s,sc=document)=>sc.querySelector(s);
     const el = (t,c)=>{const n=document.createElement(t); if(c) n.className=c; return n;};
     const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,'');
 
-    // Tarjeta de semana
-    function weekCard(s, i){
+    function weekCard(s){
       const wrap = el('div','week reveal');
       const dot = el('div','dot');
       const body = el('div','card');
@@ -289,7 +261,7 @@
         meta.appendChild(b);
       }
       if(Array.isArray(s.etiquetas)){
-        s.etiquetas.slice(0,6).forEach(t=>{ const p = el('span','pill'); p.textContent = t; meta.appendChild(p); });
+        s.etiquetas.slice(0,7).forEach(t=>{ const p = el('span','pill'); p.textContent = t; meta.appendChild(p); });
       }
 
       const content = el('div','content');
@@ -298,7 +270,6 @@
       const r3 = el('div','row'); r3.innerHTML = `<strong>Reflexión:</strong><div>${s.reflexion || '—'}</div>`;
       content.append(r1,r2,r3);
 
-      // Acciones
       const actions = el('div','actions');
       const open = el('a','btn primary'); open.textContent = 'Abrir semana';
       open.href = s.href || '#'; open.rel='noopener';
@@ -309,57 +280,191 @@
       return wrap;
     }
 
-    // Semanas 1–8 con tus títulos/temas y rutas
     const semanas = [
-      { numero:1, titulo:"Introducción",
-        etiquetas:["presentación","entorno","git básico"],
-        temas:"Presentación del curso y setup del entorno; repositorios y flujo básico de trabajo.",
-        ejercicios:"Configurar entorno y repositorio inicial.",
-        href:"cuaderno/semana01/semana01.html" },
-      { numero:2, titulo:"HTML básico y avanzado · CSS básico y avanzado",
+      {
+        numero:1,
+        titulo:"Introducción",
+        fecha:"Semana 01",
+        estado:"completado",
+        etiquetas:["presentación","entorno","git"],
+        temas:"Presentación del curso, organización del cuaderno y configuración inicial del entorno de trabajo.",
+        ejercicios:"Crear estructura del proyecto y repositorio, configurar rutas y publicación básica.",
+        reflexion:"Organizar desde el inicio mejora el orden y facilita mantener evidencias y versiones.",
+        href:"cuaderno/semana01/semana01.html"
+      },
+      {
+        numero:2,
+        titulo:"HTML y CSS",
+        fecha:"Semana 02",
+        estado:"completado",
         etiquetas:["HTML","CSS","semántica","responsive"],
-        temas:"Estructura semántica, formularios y accesibilidad; CSS selectors y layout (Flex/Grid).",
-        ejercicios:"Maquetar landing responsive con tipografías y grid.",
-        href:"cuaderno/semana02/semana02.html" },
-      { numero:3, titulo:"Bootstrap y Tailwind (práctica)",
-        etiquetas:["Bootstrap","Tailwind","componentes"],
-        temas:"Sistemas de utilidades y componentes; grid y responsive con utilidades.",
-        ejercicios:"Reconstruir una sección con Bootstrap y otra con Tailwind.",
-        href:"cuaderno/semana03/semana03.html" },
-      { numero:4, titulo:"JavaScript básico y avanzado (práctica)",
-        etiquetas:["JS","DOM","fetch","módulos"],
-        temas:"Variables, funciones, arrays, objetos, DOM, eventos, fetch y módulos.",
-        ejercicios:"Retos: DOM, fetch de JSON y render dinámico.",
-        href:"cuaderno/semana04/semana04.html" },
-      { numero:5, titulo:"Práctica · Instalación Vite · React · Next.js",
-        etiquetas:["Vite","React","Next.js","npm"],
-        temas:"Scaffolding con Vite, bundling; overview de React/Next.",
-        ejercicios:"Crear proyecto con Vite y levantar en local.",
-        href:"cuaderno/semana05/semana05.html" },
-      { numero:6, titulo:"Fundamentos y componentes de React (práctica)",
-        etiquetas:["React","componentes","props","JSX"],
-        temas:"Componentes funcionales, props, composición y JSX.",
-        ejercicios:"Armar componentes y listas; props/children.",
-        href:"cuaderno/semana06/semana06.html" },
-      { numero:7, titulo:"Hooks: useState / useEffect / useContext / useRef",
-        etiquetas:["React","Hooks","estado","ciclo de vida"],
-        temas:"Gestión de estado y efectos; context global; referencias.",
-        ejercicios:"Mini-apps para practicar cada hook.",
-        href:"cuaderno/semana07/semana07.html" },
-      { numero:8, titulo:"Consolidado · Primer Parcial",
-        etiquetas:["evaluación","síntesis","repaso"],
-        temas:"Repaso general de contenidos y prácticas; evaluación parcial.",
-        ejercicios:"Checklist de evidencias y mejoras.",
-        href:"cuaderno/semana08/semana08.html" },
+        temas:"Estructura semántica, formularios y buenas prácticas de estilos, layout adaptable.",
+        ejercicios:"Construir una página responsive con secciones, tipografía y grid de contenido.",
+        reflexion:"La semántica y el responsive son la base para escalar cualquier interfaz web.",
+        href:"cuaderno/semana02/semana02.html"
+      },
+      {
+        numero:3,
+        titulo:"Bootstrap y Tailwind",
+        fecha:"Semana 03",
+        estado:"completado",
+        etiquetas:["bootstrap","tailwind","componentes"],
+        temas:"Frameworks de estilos, utilidades, componentes y diseño consistente.",
+        ejercicios:"Recrear secciones con Bootstrap y con Tailwind manteniendo el mismo resultado visual.",
+        reflexion:"Los frameworks aceleran el desarrollo, pero el criterio de diseño sigue siendo clave.",
+        href:"cuaderno/semana03/semana03.html"
+      },
+      {
+        numero:4,
+        titulo:"JavaScript",
+        fecha:"Semana 04",
+        estado:"completado",
+        etiquetas:["javascript","dom","eventos","fetch"],
+        temas:"Fundamentos, manipulación del DOM, eventos, consumo de datos y render dinámico.",
+        ejercicios:"Mini retos de DOM y consumo de datos con fetch para poblar tarjetas y tablas.",
+        reflexion:"Controlar el DOM y la lógica del cliente permite interfaces más fluidas y útiles.",
+        href:"cuaderno/semana04/semana04.html"
+      },
+      {
+        numero:5,
+        titulo:"Vite, React y Next",
+        fecha:"Semana 05",
+        estado:"completado",
+        etiquetas:["vite","react","next","npm"],
+        temas:"Creación de proyectos con Vite, estructura de React y nociones de Next para aplicaciones modernas.",
+        ejercicios:"Crear proyecto, levantar servidor local y organizar componentes base.",
+        reflexion:"Una buena base de proyecto evita errores repetitivos y mejora la productividad.",
+        href:"cuaderno/semana05/semana05.html"
+      },
+      {
+        numero:6,
+        titulo:"Componentes en React",
+        fecha:"Semana 06",
+        estado:"completado",
+        etiquetas:["react","componentes","props","jsx"],
+        temas:"Componentes funcionales, props, composición y render de listas.",
+        ejercicios:"Diseñar componentes reutilizables y renderizar listas de datos con props.",
+        reflexion:"Reutilizar componentes reduce duplicidad y mantiene consistencia en la interfaz.",
+        href:"cuaderno/semana06/semana06.html"
+      },
+      {
+        numero:7,
+        titulo:"Hooks en React",
+        fecha:"Semana 07",
+        estado:"completado",
+        etiquetas:["react","hooks","estado","efectos"],
+        temas:"useState, useEffect, useContext y useRef para estado, efectos, contexto y referencias.",
+        ejercicios:"Implementar mini aplicaciones para practicar cada hook con casos reales.",
+        reflexion:"Los hooks permiten control fino del comportamiento sin perder legibilidad.",
+        href:"cuaderno/semana07/semana07.html"
+      },
+      {
+        numero:8,
+        titulo:"Consolidado y evaluación",
+        fecha:"Semana 08",
+        estado:"completado",
+        etiquetas:["repaso","evaluación","síntesis"],
+        temas:"Repaso de contenidos y ordenamiento de entregables previos.",
+        ejercicios:"Revisión de evidencias, mejoras de UI y checklist de entregas.",
+        reflexion:"Consolidar ayuda a detectar vacíos y elevar la calidad del trabajo final.",
+        href:"cuaderno/semana08/semana08.html"
+      },
+      {
+        numero:9,
+        titulo:"Java Web con JSP y Maven",
+        fecha:"Semana 09",
+        estado:"completado",
+        etiquetas:["java","maven","jsp","servlets"],
+        temas:"Estructura de proyecto web, dependencias y empaquetado con Maven para aplicaciones JSP.",
+        ejercicios:"Crear proyecto web, configurar pom y validar construcción y despliegue inicial.",
+        reflexion:"Estandarizar builds con Maven mejora portabilidad y control de dependencias.",
+        href:"cuaderno/semana09/semana09.html"
+      },
+      {
+        numero:10,
+        titulo:"JSP, MySQL y PreparedStatement",
+        fecha:"Semana 10",
+        estado:"completado",
+        etiquetas:["jsp","mysql","jdbc","preparedstatement"],
+        temas:"Conexión a base de datos, consultas seguras y flujo CRUD básico desde JSP.",
+        ejercicios:"Implementar operaciones de consulta e inserción usando JDBC y PreparedStatement.",
+        reflexion:"La seguridad en consultas evita fallos y mantiene integridad de datos.",
+        href:"cuaderno/semana10/semana10.html"
+      },
+      {
+        numero:11,
+        titulo:"Backend con PHP y MySQL",
+        fecha:"Semana 11",
+        estado:"completado",
+        etiquetas:["php","mysql","formularios","validación"],
+        temas:"Procesamiento de formularios, validación de entradas y persistencia en MySQL.",
+        ejercicios:"Crear módulos de registro y listado con validación y mensajes claros.",
+        reflexion:"Validar en servidor es obligatorio para datos confiables y aplicaciones estables.",
+        href:"cuaderno/semana11/semana11.html"
+      },
+      {
+        numero:12,
+        titulo:"API con Laravel y pruebas",
+        fecha:"Semana 12",
+        estado:"completado",
+        etiquetas:["laravel","api","migraciones","postman"],
+        temas:"Creación de API, migraciones, controladores y pruebas de endpoints.",
+        ejercicios:"Probar GET, POST, PUT y DELETE, y documentar respuestas y errores.",
+        reflexion:"Probar endpoints asegura consistencia y facilita integrar frontends posteriores.",
+        href:"cuaderno/semana12/semana12.html"
+      },
+      {
+        numero:13,
+        titulo:"CRUD Empleados con React, Laravel y MySQL",
+        fecha:"Semana 13",
+        estado:"completado",
+        etiquetas:["react","laravel","mysql","crud"],
+        temas:"Arquitectura desacoplada, consumo de API REST y persistencia en MySQL con validaciones.",
+        ejercicios:"Implementar listado, creación, edición y eliminación desde React consumiendo Laravel.",
+        reflexion:"Separar frontend y backend facilita mantenimiento y mejora escalabilidad del sistema.",
+        href:"cuaderno/semana13/semana13.html"
+      },
+      {
+        numero:14,
+        titulo:"Backend con Python y Flask",
+        fecha:"Semana 14",
+        estado:"completado",
+        etiquetas:["python","flask","mysql","wsgi"],
+        temas:"Servidor web, conceptos de POO, Flask con plantillas y conexión a MySQL con PyMySQL.",
+        ejercicios:"Construir formulario y registrar estudiantes en base de datos con flujo completo.",
+        reflexion:"Flask permite prototipos rápidos sin perder claridad y estructura en el backend.",
+        href:"cuaderno/semana14/semana14.html"
+      },
+      {
+        numero:15,
+        titulo:"Sistemas Inteligentes con Python",
+        fecha:"Semana 15",
+        estado:"completado",
+        etiquetas:["reglas","if then","lógica difusa","inferencia"],
+        temas:"Arquitectura de sistemas inteligentes, base de conocimiento, inferencia por reglas y difuso.",
+        ejercicios:"Modelar reglas y variables difusas, ejecutar inferencia y explicar resultados.",
+        reflexion:"La explicabilidad es clave para confiar en decisiones y resultados del sistema.",
+        href:"cuaderno/semana15/semana15.html"
+      },
+      {
+        numero:16,
+        titulo:"Reflexión y cierre",
+        fecha:"Semana 16",
+        estado:"completado",
+        etiquetas:["reflexión","mejora","cierre","síntesis"],
+        temas:"Cierre del cuaderno con reflexión sobre avances, buenas prácticas y lecciones aprendidas.",
+        ejercicios:"Organizar entregables, limpiar estructura, validar enlaces y consolidar documentación.",
+        reflexion:"La constancia semanal convierte práctica en aprendizaje sólido y medible.",
+        href:"cuaderno/semana16/semana16.html"
+      }
     ];
 
     const timeline = document.getElementById('timeline');
 
     function render(arr){
       timeline.innerHTML = '';
-      arr.forEach((s,i)=> timeline.appendChild(weekCard(s,i)));
+      arr.forEach(s=> timeline.appendChild(weekCard(s)));
 
-      // Aparición al hacer scroll
       const io = new IntersectionObserver((ents)=>{
         ents.forEach(ent=>{
           if(ent.isIntersecting){ ent.target.classList.add('show'); io.unobserve(ent.target); }
@@ -368,27 +473,24 @@
       timeline.querySelectorAll('.week').forEach(w=>io.observe(w));
     }
 
-    // Buscar (contiene)
     const q = document.getElementById('q');
     q.addEventListener('input', ()=>{
       const t = norm(q.value.trim());
       if(!t){ render(semanas); return; }
       const fil = semanas.filter(s=>{
-        const hay = [s.titulo,s.temas,s.ejercicios,(s.etiquetas||[]).join(' ')].map(x=>norm(x)).join(' ');
+        const hay = [s.titulo,s.temas,s.ejercicios,s.reflexion,(s.etiquetas||[]).join(' ')].map(x=>norm(x)).join(' ');
         return hay.includes(t);
       });
       render(fil);
     });
 
-    // Expandir/colapsar todo (si luego vuelves a usar <details>)
     document.getElementById('btnExpand').addEventListener('click', ()=>{
       const all = timeline.querySelectorAll('details');
-      if(!all.length) return; // no hay details en esta versión
+      if(!all.length) return;
       const anyClosed = [...all].some(d=>!d.open);
       all.forEach(d=>d.open = anyClosed);
     });
 
-    // Inicial
     render(semanas);
   </script>
 </body>
