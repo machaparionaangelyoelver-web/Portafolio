@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semana 14 </title>
+  <meta name="description" content="Semana 14: Apache con mod_wsgi, Python POO y aplicación Flask con MySQL. Evidencias en formato zigzag, conclusiones y contacto." />
+  <meta name="theme-color" content="#F6FBFF" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <header class="topbar" role="navigation" aria-label="Barra superior">
+    <div class="container topbar__inner">
+      <a class="brand" href="#hero" aria-label="Ir al inicio">
+        <span class="brand__logos" aria-hidden="true">
+          <img src="assets/logos/logo_uncp.png" alt="UNCP" loading="eager" decoding="async" />
+          <img src="assets/logos/logo_fis.png" alt="FIS" loading="eager" decoding="async" />
+          <span class="brand__sep" aria-hidden="true"></span>
+        </span>
+
+        <span class="brand__text">
+          <span class="brand__title">Semana 14         </span>
+          <span class="brand__sub"></span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Secciones">
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav__pill" id="navPill">
+          <a class="nav__link is-active" data-link href="#introduccion">Introducción</a>
+          <a class="nav__link" data-link href="#evidencias">Evidencias</a>
+          <a class="nav__link" data-link href="#conclusiones">Conclusiones</a>
+          <a class="nav__link" data-link href="#contacto">Contacto</a>
+          <span class="nav__indicator" aria-hidden="true"></span>
+        </div>
+      </nav>
+
+      <div class="actions" aria-label="Acciones rápidas">
+        <a class="btn btn--soft" target="_blank" rel="noopener"
+           href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana14.md">
+          Abrir informe GitHub
+        </a>
+        <a class="btn btn--primary" href="../../cuaderno.html" data-hardnav>
+          Volver al cuaderno
+        </a>
+      </div>
+    </div>
+
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <section id="hero" class="hero" aria-label="Portada Semana 14">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="blob blob--a"></div>
+      <div class="blob blob--b"></div>
+      <div class="hero__mesh"></div>
+    </div>
+
+    <div class="container hero__grid">
+      <div class="hero__left">
+        <span class="hero__kicker">Cuaderno Digital · Desarrollo Web Backend</span>
+
+        <div class="bootline" aria-live="polite">
+          <span class="bootdot" aria-hidden="true"></span>
+          <span id="bootText">Preparando servidor, entorno Python y base de datos…</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span id="typedTitle" class="hero__typed">Semana 14 · Backend con Python y Flask</span>
+          <span class="caret" aria-hidden="true"></span>
+        </h1>
+
+        <p class="hero__lead">
+          Implementación de un mini sistema de registro con Apache y mod_wsgi para entender el despliegue,
+          POO en Python para organizar la lógica, y Flask con MySQL para capturar y persistir datos.
+        </p>
+
+        <div class="chips" aria-label="Componentes clave">
+          <span class="chip chip--a">Apache</span>
+          <span class="chip chip--b">WSGI y mod_wsgi</span>
+          <span class="chip chip--c">Python POO</span>
+          <span class="chip chip--d">Flask y Jinja2</span>
+          <span class="chip chip--e">PyMySQL</span>
+          <span class="chip chip--f">MySQL</span>
+        </div>
+
+        <div class="hero__cta" aria-label="Acciones principales">
+          <a class="btn btn--ghost" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana14.md">
+            Abrir informe GitHub
+          </a>
+          <a class="btn btn--primary" href="../../cuaderno.html" data-hardnav>
+            Volver al cuaderno
+          </a>
+        </div>
+
+        <div class="terminal reveal" aria-label="Comandos principales">
+          <div class="terminal__top">
+            <span class="dot dot--r" aria-hidden="true"></span>
+            <span class="dot dot--y" aria-hidden="true"></span>
+            <span class="dot dot--g" aria-hidden="true"></span>
+            <span class="terminal__title">Terminal · comandos usados</span>
+          </div>
+          <pre class="terminal__body"><code>python --version
+pip install flask pymysql
+
+mod_wsgi-express module-config
+
+python app.py
+http://127.0.0.1:5000</code></pre>
+        </div>
+      </div>
+
+      <aside class="hero__right reveal" aria-label="Stack de la práctica">
+        <div class="stackCard">
+          <div class="stackCard__head">
+            <span class="stackCard__bar" aria-hidden="true"></span>
+            <h3 class="stackCard__title">Stack de la práctica</h3>
+          </div>
+
+          <div class="stackGrid" id="stackGrid">
+            <figure class="stackItem from-left" style="--d:0ms">
+              <img src="assets/logos/logo_apache.png" alt="Apache" />
+              <figcaption>Apache</figcaption>
+            </figure>
+
+            <figure class="stackItem from-bottom" style="--d:120ms">
+              <img src="assets/logos/logo_python.png" alt="Python" />
+              <figcaption>Python</figcaption>
+            </figure>
+
+            <figure class="stackItem from-right" style="--d:240ms">
+              <img src="assets/logos/logo_flask.png" alt="Flask" />
+              <figcaption>Flask</figcaption>
+            </figure>
+
+            <figure class="stackItem from-left" style="--d:360ms">
+              <img src="assets/logos/logo_mysql.png" alt="MySQL" />
+              <figcaption>MySQL</figcaption>
+            </figure>
+
+            <figure class="stackItem from-bottom" style="--d:480ms">
+              <img src="assets/logos/logo_vscode.png" alt="VS Code" />
+              <figcaption>VS Code</figcaption>
+            </figure>
+          </div>
+
+          <p class="stackCard__note">
+            Tecnologías utilizadas en la configuración del servidor y la aplicación backend.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <button class="scrollCue" type="button" data-scroll="#introduccion" aria-label="Ir a la introducción">↓</button>
+  </section>
+
+  <main id="content" class="content" role="main">
+
+    <section id="introduccion" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Introducción</h2>
+          <p class="section__lead">
+            En esta semana se consolidan fundamentos de backend con Python: servidor web con Apache, integración mediante WSGI,
+            refuerzo de POO y desarrollo de una aplicación Flask conectada a MySQL.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Descripción de la práctica</h3>
+            <p>
+              Se desarrolla un formulario web que registra estudiantes. Flask procesa la solicitud, valida los datos y ejecuta
+              la inserción en MySQL usando PyMySQL. Además, se configura Apache con mod_wsgi para comprender el despliegue
+              de aplicaciones Python de forma más cercana a un entorno real.
+            </p>
+            <div class="pillList" aria-label="Conceptos clave">
+              <span class="pill">Apache</span>
+              <span class="pill">WSGI</span>
+              <span class="pill">mod_wsgi</span>
+              <span class="pill">Flask</span>
+              <span class="pill">Jinja2</span>
+              <span class="pill">MySQL</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Objetivos</h3>
+            <p><b>Objetivo general:</b> implementar un mini sistema backend con Python y Flask conectado a MySQL, comprendiendo el rol de Apache y WSGI.</p>
+            <ul class="bullets">
+              <li>Instalar y verificar Apache como servidor web.</li>
+              <li>Configurar mod_wsgi para ejecutar aplicaciones Python vía WSGI.</li>
+              <li>Aplicar POO con las clases Persona y Estudiante.</li>
+              <li>Desarrollar una aplicación Flask con formulario e inserción en MySQL.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apache" class="section section--alt">
+      <div class="container">
+        <header class="section__head">
+          <h2>Apache y WSGI (mod_wsgi)</h2>
+          <p class="section__lead">
+            Apache recibe solicitudes HTTP y mod_wsgi permite ejecutar aplicaciones Python bajo el estándar WSGI.
+          </p>
+        </header>
+
+        <div class="grid2 grid2--air">
+          <article class="card reveal">
+            <h3>Por qué Apache en backend Python</h3>
+            <p>
+              En un entorno real, la aplicación no se ejecuta con el servidor de desarrollo. Apache actúa como servidor frontal,
+              administra puertos, reglas y módulos, y enruta solicitudes hacia la aplicación.
+            </p>
+            <ul class="bullets">
+              <li>Manejo robusto de conexiones HTTP y HTTPS.</li>
+              <li>Configuración por archivos con control centralizado.</li>
+              <li>Integración con WSGI para servir aplicaciones Python.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>WSGI como puente hacia Python</h3>
+            <p>
+              WSGI define cómo el servidor se comunica con la aplicación. En Apache, mod_wsgi carga el runtime de Python
+              y sirve la aplicación como un servicio estable en lugar del modo de desarrollo.
+            </p>
+            <ul class="bullets">
+              <li>LoadFile: carga la librería de Python.</li>
+              <li>LoadModule: habilita el módulo WSGI en Apache.</li>
+              <li>Base para publicar aplicaciones Flask con mejor control.</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card card--soft reveal card--flow">
+          <h3>Idea del flujo</h3>
+          <ol class="steps">
+            <li>El navegador envía la petición HTTP a Apache.</li>
+            <li>Apache redirige la petición a la aplicación Python vía WSGI.</li>
+            <li>La aplicación Flask procesa y devuelve la respuesta.</li>
+            <li>Apache entrega la respuesta final al navegador.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="python" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Python y Programación Orientada a Objetos</h2>
+          <p class="section__lead">
+            La POO organiza el código por responsabilidades, mejora la reutilización y facilita el crecimiento del backend.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Modelo de clases</h3>
+            <p>
+              Persona se define como clase base con atributos generales y Estudiante hereda de Persona para agregar campos
+              específicos como código o carrera. Se implementan métodos para presentar información y mantener lógica ordenada.
+            </p>
+            <ul class="bullets">
+              <li>Encapsulamiento de datos y comportamiento.</li>
+              <li>Herencia para reutilizar estructura base.</li>
+              <li>Polimorfismo para adaptar métodos a cada tipo.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Beneficio en el backend</h3>
+            <p>
+              La aplicación Flask puede validar y transformar datos usando objetos antes de persistirlos en MySQL,
+              manteniendo el código legible, modular y mantenible.
+            </p>
+            <pre class="codeBox"><code>persona = Persona(nombre, edad)
+estudiante = Estudiante(nombre, edad, codigo, carrera)</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flaskmysql" class="section section--alt">
+      <div class="container">
+        <header class="section__head">
+          <h2>Flask y MySQL</h2>
+          <p class="section__lead">
+            Flask renderiza el formulario, recibe datos por POST y usa PyMySQL para ejecutar inserciones en MySQL.
+          </p>
+        </header>
+
+        <article class="card reveal">
+          <h3>Flujo de operación</h3>
+          <ol class="steps">
+            <li>El usuario completa el formulario web.</li>
+            <li>Flask recibe la solicitud y extrae los datos.</li>
+            <li>Se abre la conexión con PyMySQL y se ejecuta la sentencia INSERT.</li>
+            <li>MySQL guarda el registro en la tabla estudiantes.</li>
+            <li>Se confirma el registro y se valida en la base de datos.</li>
+          </ol>
+        </article>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Conexión centralizada</h3>
+            <p>
+              La conexión se concentra en un módulo reutilizable para controlar credenciales, transacciones y manejo de errores,
+              evitando duplicación de código y mejorando la mantenibilidad.
+            </p>
+            <ul class="bullets">
+              <li>Función obtener_conexion para crear conexión segura.</li>
+              <li>Cursor en modo diccionario para facilitar lectura.</li>
+              <li>Commit y rollback para consistencia de datos.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Validación y consistencia</h3>
+            <p>
+              Se valida la información antes de guardar, asegurando campos obligatorios y formatos correctos. Esto reduce
+              errores y mantiene la base de datos consistente.
+            </p>
+            <ul class="bullets">
+              <li>Validaciones mínimas en servidor.</li>
+              <li>Mensajes claros ante errores.</li>
+              <li>Persistencia verificable mediante consultas.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidencias" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Evidencias</h2>
+          <p class="section__lead">
+            Evidencias en formato alternado: imagen a un lado y explicación al lado opuesto, evitando repeticiones.
+          </p>
+        </header>
+
+        <article class="card card--soft reveal">
+          <h3>Resumen</h3>
+          <ul class="bullets">
+            <li>01 y 02: instalación y configuración de Apache con mod_wsgi.</li>
+            <li>03 a 05: entorno Python, dependencias y POO.</li>
+            <li>06 a 10: base de datos, conexión, ejecución de Flask, formulario y verificación del registro.</li>
+          </ul>
+        </article>
+
+        <div class="zigzag" aria-label="Evidencias alternadas">
+          <div class="zigzag__line" aria-hidden="true"></div>
+
+          <article class="zigRow reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_01_apache_lounge_it_works.png" alt="Apache funcionando" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>01. Apache en funcionamiento</h3>
+              <p>
+                Se valida el servidor Apache respondiendo correctamente en localhost. Esta verificación confirma que el servidor web
+                está operativo y listo para integrarse con componentes de ejecución Python.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> servidor web activo y accesible.</p>
+            </div>
+          </article>
+
+          <article class="zigRow zigRow--reverse reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_02_mod_wsgi_module_config.png" alt="Configuración de mod_wsgi" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>02. Configuración de mod_wsgi</h3>
+              <p>
+                Se obtiene la configuración necesaria para habilitar WSGI en Apache. Las directivas permiten cargar Python y registrar
+                el módulo WSGI para servir aplicaciones Python con control del servidor.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> Apache preparado para ejecutar aplicaciones Python por WSGI.</p>
+            </div>
+          </article>
+
+          <article class="zigRow reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_03_python_pip_version.png" alt="Verificación de Python y pip" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>03. Verificación de Python y pip</h3>
+              <p>
+                Se comprueba la instalación de Python y la disponibilidad de pip para gestionar librerías. Esto garantiza un entorno
+                listo para instalar dependencias del backend.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> entorno Python validado.</p>
+            </div>
+          </article>
+
+          <article class="zigRow zigRow--reverse reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_04_pip_install_flask_pymysql.png" alt="Instalación de Flask y PyMySQL" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>04. Instalación de dependencias</h3>
+              <p>
+                Se instalan Flask y PyMySQL para construir el servidor web y habilitar la comunicación con MySQL. Con estas librerías
+                queda completo el entorno de ejecución de la aplicación.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> dependencias instaladas correctamente.</p>
+            </div>
+          </article>
+
+          <article class="zigRow reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_05_clase_persona_estudiante.png" alt="Clases Persona y Estudiante" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>05. Clases Persona y Estudiante</h3>
+              <p>
+                Se implementa herencia y métodos para estructurar la lógica. Este enfoque mejora el orden del código y permite
+                reutilización de atributos y comportamientos en el backend.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> POO aplicada como base de organización.</p>
+            </div>
+          </article>
+
+          <article class="zigRow zigRow--reverse reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_06_creacion_bd_escuela_tabla_estudiantes.png" alt="Base de datos y tabla" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>06. Base de datos y tabla estudiantes</h3>
+              <p>
+                Se crea la base de datos escuela y la tabla estudiantes para almacenar registros del formulario. La estructura define
+                campos y tipos de dato para mantener consistencia.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> modelo de datos listo para uso.</p>
+            </div>
+          </article>
+
+          <article class="zigRow reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_07_conexion_py_ok.png" alt="Conexión Python a MySQL" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>07. Conexión Python a MySQL</h3>
+              <p>
+                Se implementa el módulo de conexión y se verifica acceso exitoso desde Python. Esto confirma que el backend puede
+                interactuar con MySQL de forma correcta.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> conexión funcional.</p>
+            </div>
+          </article>
+
+          <article class="zigRow zigRow--reverse reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_08_app_flask_corriendo.png" alt="Flask ejecutándose" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>08. Ejecución de Flask</h3>
+              <p>
+                Se levanta el servidor local para probar rutas y formularios. La consola muestra la dirección de acceso, permitiendo
+                validar el funcionamiento del backend durante el desarrollo.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> aplicación activa para pruebas.</p>
+            </div>
+          </article>
+
+          <article class="zigRow reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_09_formulario_registro_estudiantes.png" alt="Formulario de registro" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>09. Formulario de registro</h3>
+              <p>
+                Se presenta la interfaz de captura de datos. Flask renderiza la plantilla y recibe información por POST para procesar
+                e insertar registros en la base de datos.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> captura de datos lista para envío.</p>
+            </div>
+          </article>
+
+          <article class="zigRow zigRow--reverse reveal">
+            <figure class="zigMedia">
+              <img src="semana14_imagenes/evid_10_registro_guardado_mysql.png" alt="Registro almacenado en MySQL" loading="lazy"
+                   onerror="this.closest('.zigRow').style.display='none'">
+            </figure>
+            <div class="zigText">
+              <h3>10. Registro guardado en MySQL</h3>
+              <p>
+                Se confirma el registro insertado desde la aplicación. La consulta muestra que la información persiste en la tabla
+                estudiantes, validando el flujo completo.
+              </p>
+              <p class="zigHint"><b>Resultado:</b> persistencia de datos verificada.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusiones" class="section section--alt">
+      <div class="container">
+        <header class="section__head">
+          <h2>Conclusiones</h2>
+          <p class="section__lead">
+            Resultados y aprendizajes obtenidos durante la implementación de backend.
+          </p>
+        </header>
+
+        <div class="grid2 grid2--tight">
+          <article class="card reveal">
+            <h3>Resultados</h3>
+            <ul class="bullets">
+              <li>Apache instalado y validado como servidor web.</li>
+              <li>mod_wsgi configurado para servir aplicaciones Python mediante WSGI.</li>
+              <li>POO aplicada con clases base y derivadas para organizar la lógica.</li>
+              <li>Aplicación Flask conectada a MySQL con inserción verificada.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Aprendizajes</h3>
+            <ul class="bullets">
+              <li>WSGI permite servir aplicaciones Python con control del servidor.</li>
+              <li>La POO mejora la escalabilidad y claridad del backend.</li>
+              <li>Flask facilita desarrollo rápido con plantillas y rutas claras.</li>
+              <li>MySQL con PyMySQL completa un flujo real de persistencia.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Contacto</h2>
+          <p class="section__lead">Datos del estudiante responsable del cuaderno digital.</p>
+        </header>
+
+        <div class="contact">
+          <a class="contactCard reveal" href="mailto: e_2021200788i@uncp.edu.pe" aria-label="Correo personal">
+            <div class="contactIcon" aria-hidden="true">✉️</div>
+            <div>
+              <b>Correo personal</b><br />
+              <small>,machaparionaangelyoelver@gmail.com</small>
+            </div>
+          </a>
+
+          <a class="contactCard reveal" href="mailto:e_2021200788i@uncp.edu.pe" aria-label="Correo institucional">
+            <div class="contactIcon" aria-hidden="true">🏫</div>
+            <div>
+              <b>Correo institucional</b><br />
+              <small>e_2021200788i@uncp.edu.pe</small>
+            </div>
+          </a>
+
+          <a class="contactCard reveal" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web" aria-label="GitHub">
+            <div class="contactIcon" aria-hidden="true">🐙</div>
+            <div>
+              <b>GitHub</b><br />
+              <small>github.com/machaparionaangelyoelver-web</small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__mini">© <span id="year">2025</span> · Semana 14 · Backend Python y Flask</div>
+      <div class="footer__mini">Angel Yoelver Macha Pariona · UNCP</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+
+  <script>
+    document.addEventListener("click", function(e){
+      const a = e.target.closest("a[data-hardnav]");
+      if(!a) return;
+      const href = a.getAttribute("href") || "";
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute("target") === "_blank") return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+  </script>
+</body>
+</html>
