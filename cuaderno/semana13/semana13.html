@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semana 13 —  Desarrollo Backend con Python (React + Laravel + MySQL)</title>
+  <meta name="description" content="Semana 13: CRUD Empleados Movistar con React + Laravel + MySQL. Evidencias, arquitectura, endpoints, conclusiones y contacto." />
+  <meta name="theme-color" content="#F6FBFF" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- ===== TOPBAR ===== -->
+  <header class="topbar" role="navigation" aria-label="Barra superior">
+    <div class="container topbar__inner">
+      <!-- Brand -->
+      <a class="brand" href="#hero" aria-label="Ir al inicio">
+        <span class="brand__logos" aria-hidden="true">
+          <img src="assets/logos/logo_uncp.png" alt="UNCP" loading="eager" decoding="async" />
+          <img src="assets/logos/logo_fis.png"  alt="FIS"  loading="eager" decoding="async" />
+        </span>
+        <span class="brand__text">
+          <span class="brand__title">Semana 13</span>
+          <span class="brand__sub"></span>
+        </span>
+      </a>
+
+      <!-- Nav -->
+      <nav class="nav" aria-label="Secciones">
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav__pill" id="navPill">
+          <a class="nav__link is-active" data-link href="#introduccion">Introducción</a>
+          <a class="nav__link" data-link href="#integracion">Integración</a>
+          <a class="nav__link" data-link href="#evidencias">Evidencias</a>
+          <a class="nav__link" data-link href="#conclusiones">Conclusiones</a>
+          <a class="nav__link" data-link href="#contacto">Contáctame</a>
+          <span class="nav__indicator" aria-hidden="true"></span>
+        </div>
+      </nav>
+
+      <!-- Actions -->
+      <div class="actions" aria-label="Acciones rápidas">
+        <a class="btn btn--soft" target="_blank" rel="noopener"
+           href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana13.md">
+          Informe (GitHub)
+        </a>
+        <a class="btn btn--primary" href="../../cuaderno.html" data-hardnav>
+          Cuaderno
+        </a>
+      </div>
+    </div>
+
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero" aria-label="Portada Semana 13">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="blob blob--a"></div>
+      <div class="blob blob--b"></div>
+      <div class="hero__mesh"></div>
+    </div>
+
+    <div class="container hero__grid">
+      <!-- LEFT -->
+      <div class="hero__left">
+        <span class="hero__kicker">Cuaderno Digital · Desarrollo Web</span>
+
+        <div class="bootline" aria-live="polite">
+          <span class="bootdot" aria-hidden="true"></span>
+          <span id="bootText">Inicializando entorno…</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span id="typedTitle" class="hero__typed">Sejercicio semana 13</span>
+          <span class="caret" aria-hidden="true"></span>
+        </h1>
+
+        <p class="hero__lead">
+          Aplicación <b>Full Stack desacoplada</b>: React consume una <b>API REST Laravel</b> y
+          los datos se almacenan en <b>MySQL</b>.
+        </p>
+
+        <!-- Chips animados -->
+        <div class="chips" aria-label="Características del sistema">
+          <span class="chip chip--a">API REST</span>
+          <span class="chip chip--b">Validaciones</span>
+          <span class="chip chip--c">CRUD</span>
+          <span class="chip chip--d">Migraciones</span>
+          <span class="chip chip--e">CORS</span>
+        </div>
+
+        <div class="hero__cta" aria-label="Acciones principales">
+          <a class="btn btn--primary" href="#evidencias" data-scroll="#evidencias">Ver evidencias</a>
+          <a class="btn btn--ghost" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana13.md">
+            Abrir informe GitHub
+          </a>
+          <a class="btn btn--soft" href="../../cuaderno.html" data-hardnav>Volver al cuaderno</a>
+        </div>
+
+        <!-- Terminal -->
+        <div class="terminal reveal" aria-label="Terminal de ejecución del proyecto">
+          <div class="terminal__top">
+            <span class="dot dot--r" aria-hidden="true"></span>
+            <span class="dot dot--y" aria-hidden="true"></span>
+            <span class="dot dot--g" aria-hidden="true"></span>
+            <span class="terminal__title">Terminal · ejecución del proyecto</span>
+          </div>
+          <pre class="terminal__body"><code>Backend (Laravel)
+php artisan serve
+http://127.0.0.1:8000
+
+Frontend (React + Vite)
+npm install
+npm run dev
+http://localhost:5173</code></pre>
+        </div>
+      </div>
+
+      <!-- RIGHT: STACK -->
+      <aside class="hero__right reveal" aria-label="Stack del proyecto">
+        <div class="stackCard">
+          <div class="stackCard__head">
+            <span class="stackCard__bar" aria-hidden="true"></span>
+            <h3 class="stackCard__title">Stack del proyecto</h3>
+          </div>
+
+          <div class="stackGrid" id="stackGrid">
+            <figure class="stackItem from-left" style="--d:0ms">
+              <img src="assets/logos/logo_react.png" alt="React" />
+              <figcaption>React</figcaption>
+            </figure>
+
+            <figure class="stackItem from-bottom" style="--d:120ms">
+              <img src="assets/logos/logo_vite.png" alt="Vite" />
+              <figcaption>Vite</figcaption>
+            </figure>
+
+            <figure class="stackItem from-right" style="--d:240ms">
+              <img src="assets/logos/logo_laravel.png" alt="Laravel" />
+              <figcaption>Laravel</figcaption>
+            </figure>
+
+            <figure class="stackItem from-left" style="--d:360ms">
+              <img src="assets/logos/logo_php.png" alt="PHP" />
+              <figcaption>PHP</figcaption>
+            </figure>
+
+            <figure class="stackItem from-bottom" style="--d:480ms">
+              <img src="assets/logos/logo_mysql.png" alt="MySQL" />
+              <figcaption>MySQL</figcaption>
+            </figure>
+
+            <figure class="stackItem from-right" style="--d:600ms">
+              <img src="assets/logos/logo_movistar.png" alt="Movistar" />
+              <figcaption>Movistar</figcaption>
+            </figure>
+          </div>
+
+          <p class="stackCard__note">
+            Aplicaciones usadas.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <button class="scrollCue" type="button" data-scroll="#introduccion" aria-label="Ir a la introducción">↓</button>
+  </section>
+
+  <!-- ===== CONTENT ===== -->
+  <main id="content" class="content" role="main">
+
+    <!-- INTRODUCCIÓN -->
+    <section id="introduccion" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Introducción</h2>
+          <p class="section__lead">
+            En esta semana se desarrolló un sistema CRUD para gestionar empleados Movistar,
+            usando una arquitectura desacoplada: un frontend React y un backend Laravel con MySQL.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Descripción del proyecto</h3>
+            <p>
+              El sistema permite <b>registrar, listar, editar y eliminar</b> empleados mediante una interfaz React.
+              La API en Laravel recibe solicitudes HTTP, aplica validaciones y responde en JSON.
+              MySQL almacena la información de forma estructurada y consistente.
+            </p>
+            <div class="pillList" aria-label="Conceptos clave">
+              <span class="pill">CRUD</span>
+              <span class="pill">JSON</span>
+              <span class="pill">API REST</span>
+              <span class="pill">Eloquent ORM</span>
+              <span class="pill">Vite</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Objetivos</h3>
+            <p><b>Objetivo general:</b> construir una aplicación full stack para administrar empleados, integrando React, Laravel y MySQL.</p>
+            <ul class="bullets">
+              <li>Implementar endpoints REST en Laravel para el CRUD completo.</li>
+              <li>Construir interfaz React con consumo de API (fetch/axios).</li>
+              <li>Configurar MySQL y migraciones para versionar estructura.</li>
+              <li>Aplicar validaciones de datos y manejo de errores.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTEGRACIÓN -->
+    <section id="integracion" class="section section--alt">
+      <div class="container">
+        <header class="section__head">
+          <h2>Integración React + Laravel + MySQL</h2>
+          <p class="section__lead">
+           Relacion y funcion del flujo real de datos entre el frontend, la API y la base de datos.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>¿Qué hace React?</h3>
+            <p>
+              React vive en el navegador. Se encarga de la <b>interfaz</b> (formularios, tabla, botones) y del
+              <b>estado</b> (lista de empleados en memoria). Cuando el usuario crea/edita/elimina, React
+              envía una petición HTTP al backend.
+            </p>
+            <ul class="bullets">
+              <li>Renderiza la UI sin recargar la página.</li>
+              <li>Consume endpoints con fetch/axios.</li>
+              <li>Maneja estados: loading, error, success.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>¿Qué hace Laravel?</h3>
+            <p>
+              Laravel es el backend. Expone una <b>API REST</b>, valida datos y aplica reglas.
+              Luego usa <b>Eloquent</b> para consultar/guardar en MySQL y responde a React en <b>JSON</b>.
+            </p>
+            <ul class="bullets">
+              <li>Rutas API: GET/POST/PUT/DELETE.</li>
+              <li>Validaciones (Request / Validator).</li>
+              <li>Controladores + Modelos + Migraciones.</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card card--soft reveal">
+          <h3>Flujo de funcionamiento (paso a paso)</h3>
+          <ol class="steps">
+            <li>El usuario hace clic en “Guardar” en React.</li>
+            <li>React envía <b>POST /api/empleados</b> con datos (JSON) al backend.</li>
+            <li>Laravel valida y si todo está bien, inserta en <b>MySQL</b> (Eloquent).</li>
+            <li>Laravel responde: <b>{ ok: true, empleado: {...} }</b>.</li>
+            <li>React actualiza su estado y la tabla se refresca sin recargar.</li>
+          </ol>
+        </article>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Ejemplo de endpoints típicos</h3>
+            <div class="apiTableWrap" role="region" aria-label="Tabla de endpoints">
+              <table class="apiTable">
+                <thead>
+                  <tr>
+                    <th>Método</th>
+                    <th>Endpoint</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>GET</td><td>/api/empleados</td><td>Listar empleados</td></tr>
+                  <tr><td>POST</td><td>/api/empleados</td><td>Crear empleado</td></tr>
+                  <tr><td>GET</td><td>/api/empleados/{id}</td><td>Obtener uno</td></tr>
+                  <tr><td>PUT</td><td>/api/empleados/{id}</td><td>Actualizar empleado</td></tr>
+                  <tr><td>DELETE</td><td>/api/empleados/{id}</td><td>Eliminar empleado</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Relación clave: CORS y URLs</h3>
+            <p>
+              En desarrollo, React corre en <b>localhost:5173</b> y Laravel en <b>127.0.0.1:8000</b>.
+              Como son orígenes distintos, debes permitir <b>CORS</b> para que el navegador no bloquee las peticiones.
+            </p>
+            <ul class="bullets">
+              <li>Permitir origen: <b>http://localhost:5173</b></li>
+              <li>Permitir métodos: GET/POST/PUT/DELETE</li>
+              <li>Permitir headers: Content-Type, Authorization (si aplica)</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card reveal">
+          <h3>Mini ejemplo (React → Laravel)</h3>
+          <pre class="codeBox"><code>// React (ejemplo con fetch)
+const API = "http://127.0.0.1:8000/api";
+
+async function listarEmpleados(){
+  const res = await fetch(`${API}/empleados`);
+  const data = await res.json();
+  return data;
+}</code></pre>
+          <p class="mutedNote">
+            Idea central: React consume JSON, Laravel procesa y MySQL guarda. La UI se actualiza por estado, no por recarga.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Evidencias</h2>
+          <p class="section__lead">
+            Capturas del proceso de desarrollo.
+            <b></b> 
+          </p>
+        </header>
+
+        <article class="card card--soft reveal">
+          <h3>Cómo leer estas evidencias</h3>
+          <ul class="bullets">
+            <li><b>01–04</b>: preparación del entorno + conexión a MySQL + migraciones.</li>
+            <li><b>05–07</b>: rutas API y ejecución de backend/frontend.</li>
+            <li><b>08–10</b>: funcionamiento CRUD en la interfaz (listar, crear/editar, eliminar).</li>
+          </ul>
+        </article>
+
+        <div class="gallery gallery--3" id="evidenceGallery">
+          <!-- Usa ./ para asegurar ruta relativa en GitHub Pages -->
+          <figure class="evCard reveal" data-cap="Verificación de PHP y Composer para asegurar dependencias y ejecución correcta del backend Laravel.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_01_entorno_php_composer.png" alt="Entorno PHP y Composer" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>01. Entorno PHP y Composer</h4>
+              <p>Verificación de PHP y Composer para asegurar dependencias y ejecución correcta del backend Laravel.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Configuración del entorno frontend para instalar paquetes y ejecutar el servidor de desarrollo React.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_02_npm_node_vite.png" alt="Node, NPM y Vite" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>02. Node, NPM y Vite</h4>
+              <p>Configuración del entorno frontend para instalar paquetes y ejecutar el servidor de desarrollo React.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Parámetros de conexión a base de datos (DB_DATABASE, DB_USERNAME, DB_PASSWORD) para Laravel.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_03_config_env_db.png" alt="Configuración .env y DB" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>03. Configuración .env (MySQL)</h4>
+              <p>Parámetros de conexión a base de datos (DB_DATABASE, DB_USERNAME, DB_PASSWORD) para Laravel.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Uso de php artisan migrate para crear tablas y versionar la estructura de la BD.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_04_migrate_ok.png" alt="Migraciones" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>04. Migraciones ejecutadas</h4>
+              <p>Uso de <b>php artisan migrate</b> para crear tablas y mantener versionamiento de BD.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Definición de endpoints CRUD en routes/api.php para consumo desde React.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_05_routes_api.png" alt="Rutas API" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>05. Rutas del API</h4>
+              <p>Definición de endpoints CRUD en Laravel (routes/api.php) consumidos desde el frontend React.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Ejecución de npm run dev para levantar React/Vite con recarga en caliente.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_06_front_npm_run_dev.png" alt="Frontend activo" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>06. Frontend activo (Vite)</h4>
+              <p>Ejecución de <b>npm run dev</b> para levantar React y habilitar recarga en caliente.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Ejecución de php artisan serve para atender solicitudes HTTP hacia la API.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_07_back_php_artisan_serve.png" alt="Backend activo" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>07. Backend activo (Laravel)</h4>
+              <p>Ejecución de <b>php artisan serve</b> para atender solicitudes HTTP y operar con MySQL.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Tabla principal renderizada en React, alimentada por la respuesta JSON del backend.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_08_crud_listado.png" alt="Listado CRUD" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>08. Listado de empleados</h4>
+              <p>Tabla con datos recuperados desde la API en JSON, renderizados en React sin recargar.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Formulario con validaciones: React envía datos y Laravel valida antes de guardar.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_09_crud_crear_editar.png" alt="Crear y editar" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>09. Crear y editar empleado</h4>
+              <p>Formulario con validaciones. React envía datos y Laravel valida antes de insertar/actualizar en MySQL.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="evCard reveal" data-cap="Eliminación confirmada por la API y actualización inmediata del estado en React.">
+            <div class="evMedia">
+              <img src="./semana13_imagenes/evid_10_crud_eliminar_resultado.png" alt="Eliminar" loading="lazy"
+                   onerror="this.closest('figure').style.display='none'">
+            </div>
+            <figcaption>
+              <h4>10. Eliminación y actualización reactiva</h4>
+              <p>Al eliminar, la API confirma y React actualiza el estado removiendo el registro en tiempo real.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCLUSIONES -->
+    <section id="conclusiones" class="section section--alt">
+      <div class="container">
+        <header class="section__head">
+          <h2>Conclusiones</h2>
+          <p class="section__lead">
+            Resultados obtenidos y aprendizajes clave del desarrollo full stack.
+          </p>
+        </header>
+
+        <div class="grid2 grid2--tight">
+          <article class="card reveal">
+            <h3>Resultados</h3>
+            <p>
+              Se logró un CRUD funcional con arquitectura desacoplada, permitiendo que React consuma la API Laravel mediante JSON
+              y que MySQL persista los registros de forma estable.
+            </p>
+            <ul class="bullets">
+              <li>Endpoints CRUD operativos y probados.</li>
+              <li>Interfaz reactiva sin recarga de página.</li>
+              <li>Migraciones aplicadas para versionar BD.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Aprendizajes</h3>
+            <ul class="bullets">
+              <li>Separar frontend y backend facilita mantenimiento y escalabilidad.</li>
+              <li>Validar en backend evita inconsistencia y datos corruptos.</li>
+              <li>JSON estandariza el intercambio de información.</li>
+              <li>CORS es clave cuando frontend y backend corren en puertos distintos.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+      <div class="container">
+        <header class="section__head">
+          <h2>Contáctame</h2>
+          <p class="section__lead">¿Dudas o comentarios? Escríbeme por estos medios.</p>
+        </header>
+
+        <div class="contact">
+          <a class="contactCard reveal" href="mailto:machaparionaangelyoelver@gmail.com" aria-label="Correo personal">
+            <div class="contactIcon" aria-hidden="true">✉️</div>
+            <div>
+              <b>Correo personal</b><br />
+              <small>machaparionaangelyoelver@gmail.com</small>
+            </div>
+          </a>
+
+          <a class="contactCard reveal" href="mailto:e_2021200788i@uncp.edu.pe" aria-label="Correo institucional">
+            <div class="contactIcon" aria-hidden="true">🏫</div>
+            <div>
+              <b>Correo institucional</b><br />
+              <small>e_2021200788i@uncp.edu.pe</small>
+            </div>
+          </a>
+
+          <a class="contactCard reveal" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web" aria-label="GitHub">
+            <div class="contactIcon" aria-hidden="true">🐙</div>
+            <div>
+              <b>GitHub</b><br />
+              <small>github.com/machaparionaangelyoelver-web</small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__mini">© 2025 · Semana 13 · CRUD Empleados Movistar</div>
+      <div class="footer__mini">Hecho por Angel Yoelver Macha · UNCP</div>
+    </div>
+  </footer>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox__backdrop" data-lb-close></div>
+    <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Vista ampliada de evidencia">
+      <button class="lightbox__close" type="button" aria-label="Cerrar" data-lb-close>×</button>
+      <img class="lightbox__img" id="lbImg" alt="" />
+      <div class="lightbox__cap" id="lbCap"></div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/app.js" defer></script>
+
+  <!-- Hard nav -->
+  <script>
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[data-hardnav]');
+      if(!a) return;
+      const href = a.getAttribute('href') || '';
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute('target') === '_blank') return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+  </script>
+</body>
+</html>
