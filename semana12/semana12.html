@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ✅ Título más representativo -->
+  <title>Semana 12 | Backend PHP: API CRUD con MySQL (PDO), Validaciones y Pruebas en Postman</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- ✅ Mini-estilos solo para el TEXTO debajo de cada evidencia -->
+  <style>
+    /* Mantiene tu diseño, solo agrega “cuerpo” bajo cada imagen */
+    .gallery-card{
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .gallery-card img{ display:block; width:100%; height:auto; }
+
+    .gallery-body{
+      padding:12px 12px 14px;
+      background:rgba(255,255,255,.04);
+      border-top:1px solid rgba(255,255,255,.10);
+    }
+    .gallery-body h4{
+      margin:0 0 6px;
+      font-family:"Space Grotesk", system-ui;
+      font-weight:700;
+      letter-spacing:.01em;
+    }
+    .gallery-desc{
+      margin:0;
+      opacity:.92;
+      line-height:1.45;
+      font-size:.93rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fondo estrellas -->
+  <div class="stars-container" aria-hidden="true">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar glass" role="navigation" aria-label="Barra superior">
+    <div class="container navbar-content">
+
+      <a href="#inicio" class="logo" aria-label="Ir a inicio">
+        <span class="top-logos" aria-hidden="true">
+          <img src="assets/img/Semana12_imagenes/logo_uncp.png" alt="UNCP" loading="eager" decoding="async">
+          <img src="assets/img/Semana12_imagenes/logo_fis.png" alt="FIS" loading="eager" decoding="async">
+        </span>
+        <span class="logo-text">
+          <span class="logo-title">Semana 12</span>
+          <span class="logo-sub">Backend con PHP y MySQL</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" aria-label="Secciones">
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#teoria">Teoría y objetivos</a></li>
+        <li><a href="#practica">Evidencias</a></li>
+        <li><a href="#cierre">Reflexión final</a></li>
+      </ul>
+
+      <div class="nav-actions" aria-label="Acciones">
+        <!-- ✅ LINK CORREGIDO (Informe en GitHub) -->
+        <a class="nav-btn nav-btn--soft" target="_blank" rel="noopener"
+           href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana12.md">
+          <i class="fa-brands fa-github"></i> Informe
+        </a>
+
+        <a class="nav-btn nav-btn--primary" href="../../cuaderno.html" data-hardnav>
+          <i class="fa-solid fa-book"></i> Cuaderno
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio" class="hero-section" aria-label="Portada Semana 12">
+    <div class="container hero-center">
+      <div class="hero-grid">
+
+        <!-- Texto -->
+        <div class="hero-text">
+          <span class="badge-tech">Informe de laboratorio - Semana 12</span>
+
+          <h1>
+            Despegando hacia el<br>
+            <span class="gradient-text">Backend con PHP</span>
+          </h1>
+
+          <p>
+            En esta semana se aplicó el flujo real de un backend: recibir solicitudes,
+            validar datos, ejecutar reglas, consultar la base de datos y responder en JSON.
+            Se usó PHP 8, PDO y Prepared Statements para mejorar seguridad y control de errores.
+          </p>
+
+          <div class="hero-stats" aria-label="Tecnologías clave">
+            <div class="stat-box glass">
+              <i class="fa-brands fa-php"></i>
+              <span>PHP 8.x</span>
+            </div>
+            <div class="stat-box glass">
+              <i class="fa-solid fa-database"></i>
+              <span>MySQL</span>
+            </div>
+            <div class="stat-box glass">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Prepared Statements</span>
+            </div>
+          </div>
+
+          <div class="hero-buttons" aria-label="Acciones principales">
+            <!-- ✅ LINK CORREGIDO (Informe en GitHub) -->
+            <a target="_blank" rel="noopener"
+               href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana12.md"
+               class="btn btn-primary glow-effect">
+              Ver informe (GitHub) <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="../../cuaderno.html" data-hardnav class="btn btn-secondary">
+              Volver a cuaderno <i class="fa-solid fa-book"></i>
+            </a>
+
+            <a href="#practica" class="btn btn-secondary">
+              Ver evidencias <i class="fa-solid fa-images"></i>
+            </a>
+          </div>
+
+          <div class="hero-meta glass" aria-label="Datos del informe">
+            <div><b>Autor:</b> Macha Pariona Angel Yoelver</div>
+            <div><b>Curso:</b> Desarrollo de Aplicaciones Web</div>
+            <div><b>Tema:</b> Backend PHP (API CRUD con PDO y MySQL)</div>
+            <div><b>Fecha:</b> 02 de diciembre de 2025</div>
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="hero-visual">
+          <div class="rocket-wrapper" aria-label="Animación de herramientas">
+
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1356/1356479.png"
+              alt="Cohete"
+              class="rocket-img floating-rocket"
+              loading="eager"
+              decoding="async"
+            >
+            <div class="rocket-exhaust" aria-hidden="true"></div>
+
+            <div class="orbit" aria-hidden="true">
+              <img class="orbit-icon oi-1" src="assets/img/Semana12_imagenes/logo_php.png" alt="PHP">
+              <img class="orbit-icon oi-2" src="assets/img/Semana12_imagenes/logo_mysql.png" alt="MySQL">
+              <img class="orbit-icon oi-3" src="assets/img/Semana12_imagenes/logo_apache.png" alt="Apache">
+              <img class="orbit-icon oi-4" src="assets/img/Semana12_imagenes/logo_postman.png" alt="Postman">
+              <img class="orbit-icon oi-5" src="assets/img/Semana12_imagenes/logo_composer.png" alt="Composer">
+              <img class="orbit-icon oi-6" src="assets/img/Semana12_imagenes/logo_laravel.png" alt="Laravel">
+              <img class="orbit-icon oi-7" src="assets/img/Semana12_imagenes/logo_vscode.png" alt="VS Code">
+            </div>
+
+            <div class="code-bubble b1" title="PHP"><i class="fa-brands fa-php"></i></div>
+            <div class="code-bubble b2" title="JSON">{ }</div>
+            <div class="code-bubble b3" title="SQL">SQL</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="scroll-down" aria-hidden="true">
+      <span>Explorar</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </header>
+
+  <!-- TEORIA -->
+  <section id="teoria" class="section-padding">
+    <div class="container">
+      <div class="section-title reveal-up">
+        <h2>Fundamentos teóricos</h2>
+        <div class="line-gradient"></div>
+        <p>Conceptos clave aplicados en el desarrollo del backend.</p>
+      </div>
+
+      <div class="concepts-grid">
+        <article class="concept-card glass reveal-up delay-1">
+          <div class="icon-box"><i class="fa-solid fa-server"></i></div>
+          <h3>Backend y API</h3>
+          <p>
+            El backend procesa solicitudes HTTP, aplica reglas de negocio y devuelve respuestas.
+            En esta práctica, PHP funciona como API para responder en JSON y controlar estados con códigos HTTP.
+          </p>
+        </article>
+
+        <article class="concept-card glass reveal-up delay-2">
+          <div class="icon-box"><i class="fa-brands fa-php"></i></div>
+          <h3>Concepto de PHP</h3>
+          <p>
+            PHP es un lenguaje del lado servidor. Se ejecuta en el servidor, genera respuestas para el cliente,
+            valida formularios, conecta con bases de datos y permite construir APIs de forma práctica.
+          </p>
+        </article>
+
+        <article class="concept-card glass reveal-up delay-3">
+          <div class="icon-box"><i class="fa-solid fa-lock"></i></div>
+          <h3>PDO y Prepared Statements</h3>
+          <p>
+            PDO facilita la conexión a MySQL con manejo de errores y consultas preparadas.
+            Los prepared statements separan consulta y datos, reduciendo el riesgo de inyección SQL.
+          </p>
+        </article>
+
+        <article class="concept-card glass reveal-up delay-3">
+          <div class="icon-box"><i class="fa-solid fa-gears"></i></div>
+          <h3>Configuración del entorno</h3>
+          <p>
+            Se verificaron versiones de PHP y Composer, se configuró el archivo env,
+            y se organizó el proyecto para mantener rutas, controladores y acceso a datos de forma ordenada.
+          </p>
+        </article>
+      </div>
+
+      <!-- OBJETIVOS (TARJETA SOLO TEXTO) -->
+      <div class="objectives-wrapper glass reveal-up margin-top-lg">
+        <div class="objectives-grid">
+
+          <div class="obj-content">
+            <h3><i class="fa-solid fa-bullseye"></i> Objetivos cumplidos</h3>
+
+            <p class="obj-intro">
+              Se completó el flujo real de un backend: recibir la solicitud, validar datos,
+              ejecutar reglas, consultar la base de datos y responder con JSON usando códigos HTTP.
+              Esto permite integrar con frontends (React o Vue) y probar endpoints con Postman.
+            </p>
+
+            <div class="obj-cols">
+              <ul class="check-list">
+                <li>Configurar entorno (XAMPP o Laragon y Composer).</li>
+                <li>Diseñar base de datos relacional en MySQL.</li>
+                <li>Implementar endpoints CRUD.</li>
+                <li>Validar entradas y manejar errores.</li>
+                <li>Probar la API con Postman y registrar evidencias.</li>
+              </ul>
+
+              <div class="obj-concepts">
+                <h4 class="obj-subtitle"><i class="fa-solid fa-lightbulb"></i> Conceptos aplicados</h4>
+                <ul class="mini-list">
+                  <li><b>CRUD REST:</b> GET, POST, PUT, DELETE con JSON.</li>
+                  <li><b>Flujo:</b> ruta, controlador, base de datos, respuesta.</li>
+                  <li><b>Validación:</b> reglas del servidor y mensajes claros.</li>
+                  <li><b>Seguridad:</b> PDO y prepared statements (anti SQLi).</li>
+                  <li><b>Códigos HTTP:</b> 200, 201, 400, 404, 500 para interpretar resultados.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="obj-visual" aria-hidden="true"></div>
+
+        </div>
+      </div>
+
+      <!-- CINTA FUERA DE LA TARJETA (CENTRADA) -->
+      <div class="tool-ribbon-standalone reveal-up" aria-label="Cinta animada de herramientas">
+        <div class="tool-ribbon" id="toolRibbon">
+          <div class="tool-ribbon__mask">
+            <div class="tool-ribbon__track">
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_php.png" alt="PHP"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_mysql.png" alt="MySQL"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_apache.png" alt="Apache"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_postman.png" alt="Postman"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_composer.png" alt="Composer"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_laravel.png" alt="Laravel"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_vscode.png" alt="VS Code"></span>
+
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_php.png" alt="PHP"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_mysql.png" alt="MySQL"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_apache.png" alt="Apache"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_postman.png" alt="Postman"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_composer.png" alt="Composer"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_laravel.png" alt="Laravel"></span>
+              <span class="tool-pill"><img src="assets/img/Semana12_imagenes/logo_vscode.png" alt="VS Code"></span>
+            </div>
+          </div>
+
+          <div class="tool-ribbon__hint">
+            <i class="fa-solid fa-hand-pointer"></i> Pasa el mouse para pausar
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRACTICA / EVIDENCIAS -->
+  <section id="practica" class="section-dark section-padding">
+    <div class="container">
+
+      <div class="terminal-section reveal-up">
+        <div class="section-title">
+          <h2>Configuración del entorno (resumen)</h2>
+          <p>Verificación de PHP, Composer y configuración básica del proyecto.</p>
+        </div>
+
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="dots" aria-hidden="true">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">bash - user@dev:~/semana12</div>
+          </div>
+
+          <div class="terminal-body">
+            <div class="command-line"><span class="prompt">$</span> <span class="cmd">php -v</span></div>
+            <div class="output">PHP 8.x (cli) ...</div>
+
+            <div class="command-line"><span class="prompt">$</span> <span class="cmd">composer -V</span></div>
+            <div class="output">Composer version ...</div>
+
+            <div class="command-line"><span class="prompt">$</span> <span class="cmd">composer install</span></div>
+            <div class="output">Installing dependencies... <span class="success">Done.</span></div>
+
+            <div class="command-line"><span class="prompt">$</span> <span class="cmd">php -S localhost:8000</span></div>
+            <div class="output">Listening on http://localhost:8000</div>
+            <div class="cursor" aria-hidden="true">_</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="evidence-section margin-top-lg">
+        <div class="section-title reveal-up">
+          <h2>Evidencias visuales</h2>
+          <p>10 capturas del proceso (clic para ampliar). Cada tarjeta incluye una explicación.</p>
+        </div>
+
+        <div class="evidence-grid" id="gallery-grid">
+
+          <!-- ✅ Evidencia 01 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Entorno local">
+            <img src="assets/img/Semana12_imagenes/evid_01_instalacion_entorno.png" alt="Instalación de entorno"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Entorno local</h4></div>
+            <div class="gallery-body">
+              <h4>Entorno local</h4>
+              <p class="gallery-desc">
+                Se evidencia la instalación y activación del entorno (servidor local) para ejecutar PHP,
+                verificar rutas del proyecto y asegurar que el servicio esté operativo.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 02 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Versiones PHP y Composer">
+            <img src="assets/img/Semana12_imagenes/evid_02_versiones_php_composer.png" alt="Versiones PHP y Composer"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Versiones</h4></div>
+            <div class="gallery-body">
+              <h4>Versiones (PHP y Composer)</h4>
+              <p class="gallery-desc">
+                Validación de versiones con comandos de consola (php -v, composer -V) para asegurar compatibilidad
+                del proyecto y dependencias.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 03 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Creación del proyecto">
+            <img src="assets/img/Semana12_imagenes/evid_03_creacion_proyecto.png" alt="Creación del proyecto"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Creación del proyecto</h4></div>
+            <div class="gallery-body">
+              <h4>Creación del proyecto</h4>
+              <p class="gallery-desc">
+                Se muestra la generación/estructura inicial del proyecto backend, con carpetas y archivos base,
+                listos para implementar rutas, controladores y conexión a BD.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 04 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Configuración del archivo env">
+            <img src="assets/img/Semana12_imagenes/evid_04_env_config.png" alt="Configuración del archivo env"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Configuración env</h4></div>
+            <div class="gallery-body">
+              <h4>Configuración del archivo env</h4>
+              <p class="gallery-desc">
+                Parámetros de conexión y variables (host, base de datos, usuario y clave) configuradas para
+                que el backend pueda conectarse correctamente a MySQL.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 05 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: BD y migraciones">
+            <img src="assets/img/Semana12_imagenes/evid_05_migraciones_bd.png" alt="Migraciones y base de datos"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>BD y migraciones</h4></div>
+            <div class="gallery-body">
+              <h4>Base de datos y migraciones</h4>
+              <p class="gallery-desc">
+                Evidencia de la creación de tablas/estructura en MySQL. Se valida que el esquema soporte
+                el CRUD y mantenga integridad de los registros.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 06 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Postman GET">
+            <img src="assets/img/Semana12_imagenes/evid_06_postman_get.png" alt="Postman GET"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Postman GET</h4></div>
+            <div class="gallery-body">
+              <h4>Prueba GET (Postman)</h4>
+              <p class="gallery-desc">
+                Prueba de lectura/listado: el endpoint responde en JSON, confirmando que la ruta,
+                la consulta y el formato de salida funcionan correctamente.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 07 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Post, Put y Delete">
+            <img src="assets/img/Semana12_imagenes/evid_07_postman_post_put_delete.png" alt="Postman POST PUT DELETE"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Post, Put y Delete</h4></div>
+            <div class="gallery-body">
+              <h4>POST / PUT / DELETE (Postman)</h4>
+              <p class="gallery-desc">
+                Evidencia de operaciones de creación, actualización y eliminación. Se validan códigos HTTP,
+                estructura JSON y persistencia real en la base de datos.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 08 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Validaciones">
+            <img src="assets/img/Semana12_imagenes/evid_08_validaciones_errores.png" alt="Validaciones y errores"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Validaciones</h4></div>
+            <div class="gallery-body">
+              <h4>Validaciones y manejo de errores</h4>
+              <p class="gallery-desc">
+                Se muestran respuestas controladas ante entradas inválidas (mensajes claros y códigos HTTP),
+                evitando que datos incorrectos lleguen a MySQL.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 09 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Estructura del proyecto">
+            <img src="assets/img/Semana12_imagenes/evid_09_estructura_proyecto.png" alt="Estructura del proyecto"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Estructura</h4></div>
+            <div class="gallery-body">
+              <h4>Estructura del proyecto</h4>
+              <p class="gallery-desc">
+                Organización de carpetas y archivos (rutas, controladores, conexión a BD). Esta estructura
+                facilita mantenimiento, escalabilidad y orden del backend.
+              </p>
+            </div>
+          </div>
+
+          <!-- ✅ Evidencia 10 -->
+          <div class="gallery-card reveal-up" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="Abrir evidencia: Resultados finales">
+            <img src="assets/img/Semana12_imagenes/evid_10_resultados_finales.png" alt="Resultados finales"
+                 onerror="this.closest('.gallery-card').style.display='none'">
+            <div class="overlay"><i class="fa-solid fa-magnifying-glass-plus"></i><h4>Resultados finales</h4></div>
+            <div class="gallery-body">
+              <h4>Resultados finales</h4>
+              <p class="gallery-desc">
+                Resultado del sistema funcionando: endpoints operativos, respuestas JSON correctas y pruebas completas,
+                confirmando el flujo backend de extremo a extremo.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section id="cierre" class="section-padding">
+    <div class="container">
+      <div class="grid-2-cols">
+
+        <div class="conclusion-box glass reveal-left">
+          <h3><i class="fa-solid fa-clipboard-check"></i> Conclusiones</h3>
+          <ul class="conclusion-list">
+            <li><strong>Robustez:</strong> validar en backend evita datos incorrectos en la base de datos.</li>
+            <li><strong>Escalabilidad:</strong> la estructura facilita crecer sin romper el sistema.</li>
+            <li><strong>Interoperabilidad:</strong> JSON permite conectar con web, móvil o frameworks frontend.</li>
+          </ul>
+        </div>
+
+        <div class="reflection-box reveal-right">
+          <div class="quote-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></div>
+          <h3>Reflexión personal</h3>
+          <blockquote>
+            "Esta semana comprendí que el backend es el guardián de la aplicación. Si no valida y protege los datos,
+            el sistema falla. Controlar códigos HTTP y manejar errores con PDO cambió mi forma de ver el desarrollo web."
+          </blockquote>
+
+          <div class="author-sign">
+            <img src="assets/img/Semana12_imagenes/logo_uncp.png" alt="UNCP">
+            <div>
+              <strong>Angel Yoelver Macha</strong>
+              <small>Desarrollador backend</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" role="contentinfo">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <img src="assets/img/Semana12_imagenes/logo_fis.png" alt="FIS">
+        <p>Facultad de Ingeniería de Sistemas - UNCP</p>
+      </div>
+
+      <div class="footer-links">
+        <!-- ✅ también dejo el link del informe directo -->
+        <a target="_blank" rel="noopener" href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana12.md">
+          <i class="fa-brands fa-github"></i> Informe Semana 12
+        </a>
+        <a href="mailto:e_2021200788i@uncp.edu.pe">
+          <i class="fa-solid fa-envelope"></i> Contacto
+        </a>
+      </div>
+
+      <div class="copyright">
+        2025 Angel Yoelver. Informe Semana 12 - Backend con PHP.
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox-modal" aria-hidden="true">
+    <span class="close-lightbox" aria-label="Cerrar">X</span>
+    <img class="lightbox-content" id="img01" alt="Imagen ampliada">
+    <div id="caption"></div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+
+  <!-- Hard nav -->
+  <script>
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[data-hardnav]');
+      if(!a) return;
+      const href = a.getAttribute('href') || '';
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute('target') === '_blank') return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+  </script>
+
+</body>
+</html>
