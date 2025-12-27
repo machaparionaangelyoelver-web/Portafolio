@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semana 16 · Reflexión y cierre | Cuaderno Digital</title>
+  <meta name="description" content="Semana 16: reflexión, aprendizajes, dificultades, mejoras y cierre del proyecto de sistemas inteligentes con Python." />
+  <meta name="theme-color" content="#F6FFFB" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="theme-mint">
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <header class="topbar" role="navigation" aria-label="Barra superior">
+    <div class="container topbar__inner">
+      <a class="brand" href="#hero" aria-label="Ir al inicio">
+        <span class="brand__logos" aria-hidden="true">
+          <img src="semana16_imagenes/logo_uncp.png" alt="UNCP" loading="eager" decoding="async" />
+          <img src="semana16_imagenes/logo_fis.png" alt="FIS" loading="eager" decoding="async" />
+        </span>
+        <span class="brand__text">
+          <span class="brand__title">Cuaderno Digital</span>
+          <span class="brand__sub">Semana 16 · Reflexión y cierre</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Secciones">
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav__pill" id="navPill">
+          <a class="nav__link is-active" data-link href="#introduccion">Introducción</a>
+          <a class="nav__link" data-link href="#reflexion">Reflexión</a>
+          <a class="nav__link" data-link href="#aprendizajes">Aprendizajes</a>
+          <a class="nav__link" data-link href="#dificultades">Dificultades</a>
+          <a class="nav__link" data-link href="#mejoras">Mejoras</a>
+          <a class="nav__link" data-link href="#cierre">Cierre</a>
+          <a class="nav__link" data-link href="#contacto">Contacto</a>
+          <span class="nav__indicator" aria-hidden="true"></span>
+        </div>
+      </nav>
+
+      <div class="actions" aria-label="Acciones rápidas">
+        <a class="btn btn--soft" target="_blank" rel="noopener"
+           href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana16.md">
+          Informe 16 (GitHub)
+        </a>
+        <a class="btn btn--primary" href="../../cuaderno.html" data-hardnav>
+          Volver al cuaderno
+        </a>
+      </div>
+    </div>
+
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <section id="hero" class="hero hero--aurora" aria-label="Portada Semana 16">
+    <div class="hero__bg" aria-hidden="true">
+      <canvas id="sky" class="sky"></canvas>
+      <div class="blob blob--a"></div>
+      <div class="blob blob--b"></div>
+      <div class="blob blob--c"></div>
+      <div class="mesh"></div>
+    </div>
+
+    <div class="container hero__grid">
+      <div class="hero__left">
+        <span class="kicker">
+          <span class="kdot" aria-hidden="true"></span>
+          Desarrollo Web · Python · Sistemas Inteligentes
+        </span>
+
+        <h1 class="hero__title">
+          <span id="typedTitle" class="hero__typed">Semana 16: Reflexión y cierre del proyecto</span>
+          <span class="caret" aria-hidden="true"></span>
+        </h1>
+
+        <p class="hero__lead">
+          Cierre reflexivo del trabajo desarrollado: arquitectura completa, preparación de datos,
+          inferencia con un modelo predictivo y presentación clara de resultados. En esta semana se consolidan
+          aprendizajes, se registran dificultades reales y se definen mejoras para una versión más robusta.
+        </p>
+
+        <div class="chips" aria-label="Ejes principales">
+          <span class="chip">Arquitectura</span>
+          <span class="chip">Datos</span>
+          <span class="chip">Inferencia</span>
+          <span class="chip">Explicabilidad</span>
+          <span class="chip">Cierre</span>
+        </div>
+
+        <div class="hero__cta" aria-label="Acciones principales">
+          <a class="btn btn--primary" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana16.md">
+            Informe 16 (GitHub)
+          </a>
+          <a class="btn btn--soft" href="../../cuaderno.html" data-hardnav>
+            Volver al cuaderno
+          </a>
+        </div>
+
+        <div class="miniStats">
+          <div class="statCard reveal" style="--delay:0ms">
+            <span class="statBar" aria-hidden="true"></span>
+            <b>Meta</b>
+            <small>Validar el flujo completo: entrada, inferencia y salida.</small>
+          </div>
+          <div class="statCard reveal" style="--delay:120ms">
+            <span class="statBar" aria-hidden="true"></span>
+            <b>Enfoque</b>
+            <small>Resultados interpretables y trazables para el usuario.</small>
+          </div>
+          <div class="statCard reveal" style="--delay:240ms">
+            <span class="statBar" aria-hidden="true"></span>
+            <b>Entrega</b>
+            <small>Reflexión técnica, lecciones aprendidas y mejoras.</small>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero__right reveal" aria-label="Panel de cierre">
+        <div class="panel">
+          <div class="panel__head">
+            <span class="badge badge--soft">Semana 16</span>
+            <span class="badge">Reflexión</span>
+            <span class="badge">Cierre</span>
+          </div>
+
+          <div class="panel__body">
+            <div class="route">
+              <div class="routeLine">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <b>Entrada y validación</b>
+                  <small>Datos consistentes antes de inferir</small>
+                </div>
+              </div>
+
+              <div class="routeLine">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <b>Inferencia</b>
+                  <small>Modelo predictivo y parámetros controlados</small>
+                </div>
+              </div>
+
+              <div class="routeLine">
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <b>Salida explicable</b>
+                  <small>Resultados con interpretación breve</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="panelNote">
+              La calidad del sistema depende del flujo completo, no solo del modelo.
+            </div>
+          </div>
+
+          <div class="panel__foot">
+            <div class="note">
+              En esta semana se prioriza claridad, orden y aprendizaje verificable.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <button class="scrollCue" type="button" data-scroll="#introduccion" aria-label="Ir a la introducción">↓</button>
+  </section>
+
+  <main id="content" class="content" role="main">
+
+    <section id="introduccion" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Introducción</h2>
+          <p class="sectionLead">
+            Semana 16 se centra en el cierre reflexivo del proyecto, evaluando el trabajo como un sistema completo:
+            interfaz, backend, preparación de datos, inferencia y presentación de resultados.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal" style="--delay:0ms">
+            <h3>Contexto</h3>
+            <p>
+              El proyecto integra una aplicación web con procesamiento en Python y componentes inteligentes,
+              orientada a analizar datos históricos y generar salidas predictivas. El valor se observa cuando el
+              flujo es consistente, trazable y entendible por el usuario.
+            </p>
+            <div class="pillList" aria-label="Puntos clave">
+              <span class="pill">Aplicación web</span>
+              <span class="pill">Preproceso</span>
+              <span class="pill">Modelo predictivo</span>
+              <span class="pill">Visualización</span>
+              <span class="pill">Documentación</span>
+            </div>
+          </article>
+
+          <article class="card reveal" style="--delay:120ms">
+            <h3>Objetivo de la semana</h3>
+            <p>
+              Consolidar aprendizajes, registrar dificultades reales y definir mejoras concretas para una versión
+              más estable, segura y medible.
+            </p>
+            <ul class="bullets">
+              <li>Revisar la arquitectura como un conjunto coordinado.</li>
+              <li>Evaluar la importancia de validación y preproceso de datos.</li>
+              <li>Enfatizar explicabilidad y consistencia de la salida.</li>
+              <li>Proponer mejoras técnicas con enfoque de producción.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reflexion" class="section section--alt">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Reflexión del proyecto</h2>
+          <p class="sectionLead">
+            El resultado final no se define por una predicción aislada, sino por la capacidad de convertir datos
+            en decisiones mediante un flujo completo que el usuario pueda entender.
+          </p>
+        </header>
+
+        <div class="grid3">
+          <article class="card reveal" style="--delay:0ms">
+            <h3>Arquitectura</h3>
+            <p>
+              La arquitectura organiza responsabilidades: la interfaz guía, el backend controla el flujo y el
+              componente inteligente aporta inferencia. Esta separación reduce errores y mejora mantenimiento.
+            </p>
+            <div class="tags">
+              <span class="tag">Capas</span>
+              <span class="tag">Modularidad</span>
+              <span class="tag">Trazabilidad</span>
+            </div>
+          </article>
+
+          <article class="card reveal" style="--delay:120ms">
+            <h3>Datos</h3>
+            <p>
+              La calidad de los resultados depende del preproceso: consistencia temporal, limpieza, validación y
+              normalización. Un buen modelo no compensa datos mal preparados.
+            </p>
+            <div class="tags">
+              <span class="tag">Validación</span>
+              <span class="tag">Consistencia</span>
+              <span class="tag">Calidad</span>
+            </div>
+          </article>
+
+          <article class="card reveal" style="--delay:240ms">
+            <h3>Salida explicable</h3>
+            <p>
+              Mostrar resultados sin interpretación limita el valor. La salida debe incluir tendencia, contexto y
+              una explicación breve para sostener confianza y utilidad.
+            </p>
+            <div class="tags">
+              <span class="tag">Interpretación</span>
+              <span class="tag">Claridad</span>
+              <span class="tag">Confianza</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="card card--soft reveal" style="margin-top:18px; --delay:120ms">
+          <h3>Idea central</h3>
+          <p>
+            La utilidad se mide en decisiones. El sistema es valioso cuando permite comparar escenarios, anticipar
+            comportamientos y comunicar resultados de forma clara y ordenada.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="aprendizajes" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Aprendizajes</h2>
+          <p class="sectionLead">
+            Lecciones que consolidé al cerrar el proyecto y revisar el flujo completo en funcionamiento.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal" style="--delay:0ms">
+            <h3>Lo técnico que se volvió práctico</h3>
+            <div class="miniCallout">
+              <b>Aprendizajes clave</b>
+              <div class="mono">Separar responsabilidades mejora estabilidad y control.</div>
+              <div class="mono">El preproceso define el límite de la precisión posible.</div>
+              <div class="mono">La explicación de salida aumenta confianza del usuario.</div>
+              <div class="mono">Documentar decisiones reduce retrabajo.</div>
+            </div>
+          </article>
+
+          <article class="card reveal" style="--delay:120ms">
+            <h3>Buenas prácticas que mantendré</h3>
+            <ul class="bullets">
+              <li>Validación de entradas antes de inferir.</li>
+              <li>Funciones pequeñas y módulos para cada responsabilidad.</li>
+              <li>Mensajes claros: error, advertencia y éxito.</li>
+              <li>Resultados con indicadores y explicación breve.</li>
+              <li>Registro de cambios y evidencias por iteración.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dificultades" class="section section--alt">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Dificultades y cómo se resolvieron</h2>
+          <p class="sectionLead">
+            Problemas reales encontrados durante el desarrollo y las acciones aplicadas para resolverlos.
+          </p>
+        </header>
+
+        <article class="card reveal" style="--delay:0ms">
+          <div class="tableWrap" role="region" aria-label="Tabla de dificultades">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Dificultad</th>
+                  <th>Acción aplicada</th>
+                  <th>Lección</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Datos con formatos inconsistentes</td>
+                  <td>Normalización, validación previa y control de rangos</td>
+                  <td>La entrada condiciona el comportamiento del sistema</td>
+                </tr>
+                <tr>
+                  <td>Integración entre módulos</td>
+                  <td>Separación por funciones y flujo definido</td>
+                  <td>Modularizar reduce errores y facilita pruebas</td>
+                </tr>
+                <tr>
+                  <td>Interpretación de resultados</td>
+                  <td>Indicadores, visualización y explicación breve</td>
+                  <td>La salida debe ser entendible para ser útil</td>
+                </tr>
+                <tr>
+                  <td>Orden y trazabilidad de entregables</td>
+                  <td>Estructura de carpetas y documentación por secciones</td>
+                  <td>Documentar mejora la calidad y reduce retrabajo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="mejoras" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Mejoras propuestas</h2>
+          <p class="sectionLead">
+            Cambios concretos para evolucionar el proyecto hacia una versión más robusta y lista para producción.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal" style="--delay:0ms">
+            <h3>Mejoras técnicas</h3>
+            <ul class="bullets">
+              <li>Incluir métricas de evaluación y comparación de rendimiento.</li>
+              <li>Registrar logs del flujo de inferencia para auditoría y soporte.</li>
+              <li>Agregar control de errores y respuestas uniformes en el backend.</li>
+              <li>Implementar configuración por entorno con variables seguras.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal" style="--delay:120ms">
+            <h3>Mejoras de entrega</h3>
+            <ul class="bullets">
+              <li>Empaquetar el despliegue con un entorno reproducible.</li>
+              <li>Incorporar roles y sesiones para acceso controlado.</li>
+              <li>Exportación de reportes desde la interfaz.</li>
+              <li>Documentación con casos de prueba y resultados.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cierre" class="section section--alt">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Cierre de la semana</h2>
+          <p class="sectionLead">
+            Semana 16 permitió revisar el proyecto como un sistema completo y consolidar una base sólida para
+            desarrollos posteriores.
+          </p>
+        </header>
+
+        <article class="card card--soft reveal" style="--delay:0ms">
+          <h3>Conclusión</h3>
+          <p>
+            El proyecto queda como una base clara: entrada validada, inferencia controlada y salida explicable.
+            La mejora continua se apoya en documentación ordenada, decisiones trazables y objetivos medibles.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Contacto</h2>
+          <p class="sectionLead">Datos del estudiante para consultas y seguimiento del cuaderno digital.</p>
+        </header>
+
+        <div class="contactGrid">
+          <a class="contactCard reveal" href="mailto:leonelmacha19@gmail.com" aria-label="Correo">
+            <div class="contactIcon" aria-hidden="true">✉️</div>
+            <div>
+              <b>Correo</b><br />
+              <small>machaparionaangelyoelver@gmail.com</small>
+            </div>
+          </a>
+
+          <a class="contactCard reveal" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web" aria-label="GitHub">
+            <div class="contactIcon" aria-hidden="true">🐙</div>
+            <div>
+              <b>GitHub</b><br />
+              <small>github.com/machaparionaangelyoelver-web</small>
+            </div>
+          </a>
+
+          <div class="contactCard reveal" role="group" aria-label="Nombre">
+            <div class="contactIcon" aria-hidden="true">👤</div>
+            <div>
+              <b>Nombre</b><br />
+              <small>Angel Yoelver Macha Pariona</small>
+            </div>
+          </div>
+
+          <div class="contactCard reveal" role="group" aria-label="Ciudad">
+            <div class="contactIcon" aria-hidden="true">📍</div>
+            <div>
+              <b>Ciudad</b><br />
+              <small>Huancayo, Junín · Perú</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__mini" id="year"></div>
+      <div class="footer__mini">Semana 16 · Reflexión y cierre</div>
+      <div class="footer__mini">UNCP · Facultad de Ingeniería de Sistemas</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+
+  <script>
+    document.addEventListener("click", function(e){
+      const a = e.target.closest("a[data-hardnav]");
+      if(!a) return;
+      const href = a.getAttribute("href") || "";
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute("target") === "_blank") return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+  </script>
+</body>
+</html>
