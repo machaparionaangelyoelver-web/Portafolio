@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ✅ TÍTULO CORREGIDO -->
+  <title>Semana 10 — Desarrollo de Ejercicio Backend</title>
+
+  <meta name="description" content="Informe completo de la Semana 10: configuración de entorno, JSP/Servlets, patrón MVC con DAO/JDBC a MySQL, CRUD de Estudiantes, despliegue en Tomcat, pruebas con Postman y reflexiones finales." />
+  <meta name="theme-color" content="#E8F3FF" />
+  <link rel="icon" href="assets/img/Semana10_imagenes/logo-jsp.png" type="image/png" />
+
+  <!-- CSS base del proyecto -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/hero.css" />
+  <link rel="stylesheet" href="assets/css/orbits.css" />
+  <link rel="stylesheet" href="assets/css/stepper.css" />
+  <link rel="stylesheet" href="assets/css/accordion.css" />
+  <link rel="stylesheet" href="assets/css/gallery.css" />
+
+  <!-- Estilos específicos de esta página -->
+  <style>
+    body { background:#f6f9ff; color:#0f223a; font-family:'Segoe UI', system-ui, -apple-system, Arial, sans-serif; }
+    h1,h2,h3 { color:#0d244b; }
+    .section { padding:60px 20px; max-width:1200px; margin:auto; }
+    .section__head { text-align:center; margin-bottom:24px; }
+    .section__desc { color:#3b5272; }
+    .lead { font-size:1.06rem; color:#20304d; max-width:980px; margin-inline:auto; }
+    .note { background:#f7fbff; border:1.5px solid #e3ecff; border-radius:12px; padding:12px 14px; color:#163058 }
+    .kbd { font-family:ui-monospace,Menlo,Consolas,monospace; background:#eef3ff; border:1px solid #d8e4ff; border-bottom-width:2px; border-radius:6px; padding:1px 6px }
+
+    /* Hero */
+    .hero { text-align:center; padding:100px 20px 60px; background:linear-gradient(180deg,#eef4ff 0%,#fff 100%);}
+    .hero__title { font-size:2.2rem; font-weight:800; }
+    .hero__tagline { font-size:1.05rem; color:#244065; margin-top:6px; }
+    .hero__meta { margin-top:8px; color:#3b5480; font-weight:600 }
+
+    /* Topbar (ya con pocas opciones) */
+    .topbar__nav a { white-space:nowrap; }
+
+    /* Evidencias: tarjetas uniformes */
+    .masonry { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .m-card { display:flex; flex-direction:column; background:#fff; border:1.5px solid #e6eefc; border-radius:16px; box-shadow:0 10px 28px rgba(20,40,80,.08); overflow:hidden; transition:.18s ease transform,.18s ease box-shadow; }
+    .m-card:hover { transform:translateY(-3px); box-shadow:0 18px 46px rgba(20,40,80,.14); }
+    .m-card__media { width:100%; aspect-ratio:16/10; object-fit:cover; }
+    .m-card__body { padding:12px 14px; }
+    .m-card__title { font-weight:800; color:#0f223a; margin:2px 0 6px; }
+    .m-card__desc { color:#214065; line-height:1.45; }
+
+    /* Recuadros (cards grandes) */
+    .recuadro { background:#fff; border:2px solid #dbe6ff; border-radius:16px; padding:20px 24px; margin:22px auto; box-shadow:0 10px 28px rgba(0,0,0,.06); max-width:1100px; }
+    .recuadro h3 { margin-top:0; color:#0d244b; }
+
+    /* Tablas */
+    .tbl { width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px; border:1px solid #e6eefc }
+    .tbl th,.tbl td { padding:12px; border-bottom:1px solid #eef3ff; text-align:left }
+    .tbl thead th { background:#f4f8ff; color:#0f223a; font-weight:800 }
+    .tbl tbody tr:hover { background:#f9fbff }
+
+    /* Contacto */
+    .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+    .c-card { display:grid; grid-template-columns:48px 1fr; align-items:center; gap:10px; padding:14px; border-radius:14px; background:linear-gradient(#fff,#f7fbff); border:1.5px solid #e3ecff; box-shadow:0 10px 28px rgba(20,40,80,.08); text-decoration:none; color:#0c2038; transition:.18s ease transform,.18s ease box-shadow; }
+    .c-card:hover { transform:translateY(-2px); box-shadow:0 16px 36px rgba(20,40,80,.12); }
+    .c-ico { width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:radial-gradient(120% 120% at 20% 20%, #eef4ff, #e3edff); font-size:22px; color:#083154 }
+
+    /* ✅ FIX: para que el texto NO se salga del cuadro */
+    .c-card{ min-width:0; overflow:hidden; }
+    .c-card > div{ min-width:0; }
+    .c-card strong{ display:block; margin-bottom:2px; }
+    .c-card div{ overflow-wrap:anywhere; word-break:break-word; line-height:1.35; }
+
+    footer { background:#e9f1ff; text-align:center; padding:16px 10px; font-size:.95rem; color:#243c68; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <header class="topbar topbar--on-hero" role="navigation" aria-label="Barra superior">
+    <div class="topbar__inner">
+      <div class="topbar__brandwrap">
+        <div class="topbar__logos">
+          <img src="assets/img/Semana10_imagenes/uncp.jpg" alt="UNCP" />
+          <img src="assets/img/Semana10_imagenes/logoFIS.png" alt="FIS" />
+        </div>
+        <canvas id="logoFireworks" class="topbar__fw" width="140" height="56" aria-hidden="true"></canvas>
+        <strong class="topbar__brand">Semana 10</strong>
+      </div>
+      <!-- Barra superior reducida -->
+      <nav class="topbar__nav">
+        <a href="#ambiente">Ambiente</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#conclusiones">Conclusiones</a>
+        <a href="#contacto">Contáctame</a>
+        <a class="topbar__ext" href="../../cuaderno.html" data-hardnav>Cuaderno</a>
+      </nav>
+    </div>
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <header id="hero" class="hero" role="banner" aria-label="Portada Semana 10">
+    <canvas id="shootingStarCanvas" aria-hidden="true"></canvas>
+    <div class="hero__inner">
+      <div class="hero__titlewrap" id="heroBlock">
+
+        <!-- ✅ TÍTULO HERO CORREGIDO -->
+        <h1 id="heroTitle" class="hero__title" data-animate="reveal">Semana 10 — Desarrollo de Ejercicio Backend</h1>
+
+        <p class="hero__tagline">JSP/Servlets · Tomcat · MySQL · MVC básico · DAO/JDBC · Despliegue WAR · Postman</p>
+        <p class="hero__meta">Fecha de elaboración: <time datetime="2025-11-05">05 de noviembre de 2025</time></p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--magnetic" href="../../cuaderno.html" data-hardnav>Ver Cuaderno</a>
+          <a class="btn btn--secondary btn--magnetic" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/472bc53d7f4ce5a85a127a7ea59741127655f91b/semana10.md">
+            Semana 10 · Informe
+          </a>
+        </div>
+      </div>
+
+      <!-- Órbitas -->
+      <div class="orbits" aria-hidden="true">
+        <div class="orbit orbit--r1"><img src="assets/img/Semana10_imagenes/logo_tomcat.png" alt="Tomcat" class="orbit__icon" /></div>
+        <div class="orbit orbit--r2"><img src="assets/img/Semana10_imagenes/logo_java.png" alt="Java" class="orbit__icon" /></div>
+        <div class="orbit orbit--r3"><img src="assets/img/Semana10_imagenes/logo_maven.png" alt="Maven" class="orbit__icon" /></div>
+        <div class="orbit orbit--r4"><img src="assets/img/Semana10_imagenes/logo_postman.png" alt="Postman" class="orbit__icon" /></div>
+        <div class="orbit orbit--r5"><img src="assets/img/Semana10_imagenes/logo-jsp.png" alt="JSP" class="orbit__icon" /></div>
+      </div>
+
+      <nav class="hero__nav" aria-label="Secciones">
+        <a href="#ambiente">Ambiente</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#conclusiones">Conclusiones</a>
+        <a href="#contacto">Contáctame</a>
+      </nav>
+    </div>
+
+    <button class="scroll-cue" data-scroll="#ambiente" aria-label="Ir a Ambiente">↓</button>
+
+    <div class="hero__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
+        <path id="heroWavePath" d="M0,80 C240,140 480,20 720,60 C960,100 1200,100 1440,60 L1440,140 L0,140 Z" fill="currentColor"></path>
+        <animate xlink:href="#heroWavePath" attributeName="d" dur="16s" repeatCount="indefinite"
+          values="M0,80 C240,140 480,20 720,60 C960,100 1200,100 1440,60 L1440,140 L0,140 Z;
+                  M0,90 C220,120 520,40 720,70 C980,110 1200,80 1440,90 L1440,140 L0,140 Z;
+                  M0,80 C240,140 480,20 720,60 C960,100 1200,100 1440,60 L1440,140 L0,140 Z" />
+      </svg>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO ===== -->
+  <main id="content" class="content" role="main">
+
+    <!-- AMBIENTE (stepper compacto para dejar todo operativo) -->
+    <section id="ambiente" class="section section--instalacion">
+      <header class="section__head">
+        <h2>Ambiente y despliegue (JSP · Tomcat · MySQL)</h2>
+        <p class="section__desc lead">Proceso para dejar operativo el entorno de desarrollo, base de datos y despliegue de la app en Tomcat.</p>
+      </header>
+
+      <div class="stepper">
+        <aside class="stepper__index" aria-label="Índice de pasos">
+          <ol id="stepIndex">
+            <li data-step="1" class="is-active">1. Verificar JDK</li>
+            <li data-step="2">2. Configurar Tomcat</li>
+            <li data-step="3">3. Estructura WAR</li>
+            <li data-step="4">4. MySQL + JDBC</li>
+            <li data-step="5">5. Driver y cadena</li>
+            <li data-step="6">6. Despliegue</li>
+          </ol>
+        </aside>
+
+        <div class="stepper__content">
+          <article class="step" id="step-1" data-step="1">
+            <header class="step__head"><h3 class="step__title">1. Verificar JDK</h3><span class="step__check">✓</span></header>
+            <div class="codeblock" data-typewriter>
+              <pre><code>java -version
+javac -version
+setx JAVA_HOME "C:\Program Files\Java\jdk-21"</code></pre>
+              <button class="btn btn--copy" data-copy="java -version&#10;javac -version&#10;setx JAVA_HOME &quot;C:\Program Files\Java\jdk-21&quot;">Copiar</button>
+            </div>
+            <p class="note">Añadir <span class="kbd">%JAVA_HOME%\bin</span> al <span class="kbd">PATH</span>.</p>
+          </article>
+
+          <article class="step" id="step-2" data-step="2">
+            <header class="step__head"><h3 class="step__title">2. Configurar Tomcat</h3><span class="step__check">✓</span></header>
+            <div class="codeblock" data-typewriter>
+              <pre><code>setx CATALINA_HOME C:\apache-tomcat-10.1.30
+%CATALINA_HOME%\bin\startup.bat
+%CATALINA_HOME%\bin\shutdown.bat</code></pre>
+              <button class="btn btn--copy" data-copy="setx CATALINA_HOME C:\apache-tomcat-10.1.30&#10;%CATALINA_HOME%\bin\startup.bat&#10;%CATALINA_HOME%\bin\shutdown.bat">Copiar</button>
+            </div>
+            <p class="note">Si hay <code>JasperException</code>, revisar <em>logs/</em> y compatibilidad Jakarta EE.</p>
+          </article>
+
+          <article class="step" id="step-3" data-step="3">
+            <header class="step__head"><h3 class="step__title">3. Estructura WAR</h3><span class="step__check">✓</span></header>
+            <div class="codeblock" data-typewriter>
+              <pre><code>src/main/java/  (Servlets, DAO, modelos)
+src/main/webapp/WEB-INF/web.xml
+src/main/webapp/ (JSP, assets)
+pom.xml (si usas Maven)</code></pre>
+              <button class="btn btn--copy" data-copy="src/main/java/  (Servlets, DAO, modelos)&#10;src/main/webapp/WEB-INF/web.xml&#10;src/main/webapp/ (JSP, assets)&#10;pom.xml (si usas Maven)">Copiar</button>
+            </div>
+          </article>
+
+          <article class="step" id="step-4" data-step="4">
+            <header class="step__head"><h3 class="step__title">4. MySQL + JDBC</h3><span class="step__check">✓</span></header>
+            <div class="codeblock" data-typewriter>
+              <pre><code>mysql -u root -p
+CREATE DATABASE universidad;
+USE universidad;
+CREATE TABLE estudiante (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre   VARCHAR(80) NOT NULL,
+  apellido VARCHAR(80) NOT NULL,
+  email    VARCHAR(120) NOT NULL,
+  creado   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></pre>
+              <button class="btn btn--copy" data-copy="mysql -u root -p&#10;CREATE DATABASE universidad;&#10;USE universidad;&#10;CREATE TABLE estudiante (&#10;  id INT AUTO_INCREMENT PRIMARY KEY,&#10;  nombre   VARCHAR(80) NOT NULL,&#10;  apellido VARCHAR(80) NOT NULL,&#10;  email    VARCHAR(120) NOT NULL,&#10;  creado   TIMESTAMP DEFAULT CURRENT_TIMESTAMP&#10;);">Copiar</button>
+            </div>
+          </article>
+
+          <article class="step" id="step-5" data-step="5">
+            <header class="step__head"><h3 class="step__title">5. Driver y cadena</h3><span class="step__check">✓</span></header>
+            <div class="codeblock" data-typewriter>
+              <pre><code>jdbc:mysql://localhost:3306/universidad?useSSL=false&serverTimezone=UTC</code></pre>
+              <button class="btn btn--copy" data-copy="jdbc:mysql://localhost:3306/universidad?useSSL=false&serverTimezone=UTC">Copiar</button>
+            </div>
+          </article>
+
+          <article class="step" id="step-6" data-step="6">
+            <header class="step__head"><h3 class="step__title">6. Despliegue</h3><span class="step__check">✓</span></header>
+            <div class="codeblock" data-typewriter>
+              <pre><code>mvn clean package
+copy target\app.war %CATALINA_HOME%\webapps\
+# Probar http://localhost:8080/app/</code></pre>
+              <button class="btn btn--copy" data-copy="mvn clean package&#10;copy target\app.war %CATALINA_HOME%\webapps\&#10;http://localhost:8080/app/">Copiar</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRUD -->
+    <section id="crud" class="section">
+      <header class="section__head">
+        <h2>CRUD de Estudiantes</h2>
+        <p class="section__desc">Operaciones implementadas, rutas y estructura MVC.</p>
+      </header>
+
+      <div class="recuadro">
+        <table class="tbl" aria-label="Rutas del CRUD">
+          <thead><tr><th>Método</th><th>Ruta</th><th>Descripción</th></tr></thead>
+          <tbody>
+            <tr><td>GET</td><td>/estudiante</td><td>Lista estudiantes (vista JSP)</td></tr>
+            <tr><td>POST</td><td>/estudiante</td><td>Crea un estudiante (formulario)</td></tr>
+            <tr><td>GET</td><td>/estudiante/editar?id=1</td><td>Muestra datos para editar</td></tr>
+            <tr><td>POST</td><td>/estudiante/actualizar</td><td>Guarda edición</td></tr>
+            <tr><td>POST</td><td>/estudiante/eliminar</td><td>Elimina por ID</td></tr>
+            <tr><td>GET</td><td>/api/estudiantes</td><td>Devuelve JSON (API)</td></tr>
+          </tbody>
+        </table>
+        <p class="note" style="margin-top:14px">Búsqueda por nombre con <code>LIKE</code> y <code>PreparedStatement</code> para evitar inyección SQL.</p>
+      </div>
+    </section>
+
+    <!-- EVIDENCIAS -->
+    <section id="evidencias" class="section section--evidencias">
+      <header class="section__head">
+        <h2>Evidencias fotográficas</h2>
+        <p class="section__desc">Instalación, estructura del proyecto, base de datos y pruebas. Todas las tarjetas tienen tamaño uniforme.</p>
+      </header>
+
+      <div class="masonry" id="masonry">
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/instalacion_tomcat_windows.png" alt="Instalación de Tomcat" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Instalación de Tomcat</div>
+            <p class="m-card__desc">Asistente de instalación y comprobación de JDK y puerto 8080. Deja operativo el contenedor de servlets para el despliegue del WAR.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/estructura_tomcat_directorios.png" alt="Estructura de directorios Tomcat" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Estructura de Tomcat</div>
+            <p class="m-card__desc">Vistas de <em>bin/</em>, <em>conf/</em>, <em>webapps/</em> y <em>logs/</em>. Esta distribución permite configurar puertos, contextos y revisar errores.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/estructura_proyecto_jsp.png" alt="Proyecto JSP (WAR)" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Proyecto JSP (WAR)</div>
+            <p class="m-card__desc">Organización MVC: <em>model</em>, <em>dao</em>, <em>servlets</em> y <em>views</em> (JSP). <code>web.xml</code> define mapeos y control de rutas.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/estructura_bbdd_mysql.png" alt="Base de datos MySQL" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Base de datos MySQL</div>
+            <p class="m-card__desc">Creación de la BD <em>universidad</em> y la tabla <em>estudiante</em>. Llave primaria autoincremental y timestamp de auditoría.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/postman_pruebas_api.png" alt="Pruebas con Postman" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Pruebas con Postman</div>
+            <p class="m-card__desc">Solicitud <span class="kbd">GET /api/estudiantes</span> devolviendo JSON. Verifica que el DAO/Servlet serialice correctamente.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/flujo_formulario_get_post.png" alt="Flujo GET/POST" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Flujo GET/POST</div>
+            <p class="m-card__desc">Diagrama del recorrido de datos: formulario JSP → servlet → DAO → MySQL → vista/JSON, incluyendo contador de sesión.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/evidencia_registrovisitas.png" alt="Registro de visitas JSP" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Registro de visitas</div>
+            <p class="m-card__desc">Contador de visitas en sesión implementado en JSP. Aumenta con cada acceso del usuario.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="m-card">
+          <img class="m-card__media" src="assets/img/Semana10_imagenes/evidencia_fecha.png" alt="Fecha y hora en JSP" />
+          <figcaption class="m-card__body">
+            <div class="m-card__title">Fecha y hora en JSP</div>
+            <p class="m-card__desc">Renderizado dinámico de la fecha y hora actual desde el servidor con expresiones JSP.</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Lightbox (opcional) -->
+      <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Visor de imagen">
+        <button class="lightbox__close" id="lbClose" aria-label="Cerrar">×</button>
+        <img id="lbImg" alt="" />
+        <p id="lbCap" class="lightbox__caption"></p>
+        <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Anterior">‹</button>
+        <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- CONCLUSIONES -->
+    <section id="conclusiones" class="section">
+      <header class="section__head"><h2>Conclusiones</h2></header>
+
+      <div class="recuadro">
+        <h3>Conclusión general</h3>
+        <p>Durante la semana 10 se construyó y desplegó un CRUD de Estudiantes basado en JSP/Servlets (Jakarta EE) con persistencia MySQL, aplicando MVC. Se fortaleció el conocimiento de la capa DAO y de la publicación WAR en Tomcat, además del uso de Postman para validar endpoints. El resultado es un proyecto estable y listo para mejoras como DataSource JNDI, validaciones server-side y pruebas unitarias de DAO.</p>
+      </div>
+
+      <div class="recuadro">
+        <h3>Solución de problemas frecuentes</h3>
+        <table class="tbl">
+          <thead><tr><th>Problema</th><th>Causa común</th><th>Acción</th></tr></thead>
+          <tbody>
+            <tr><td>HTTP 500 JasperException</td><td>JSP no compila</td><td>Revisar <em>logs/</em>, versionado Jakarta y <em>taglibs</em>/imports.</td></tr>
+            <tr><td>No encuentra clase DAO</td><td>Classpath/WAR incompleto</td><td>Reconstruir con <code>mvn clean package</code> y revisar dependencias.</td></tr>
+            <tr><td>Error de conexión</td><td>Driver o credenciales</td><td>Verificar URL JDBC, usuario y permisos en MySQL.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ANEXOS -->
+    <section id="anexos" class="section">
+      <header class="section__head"><h2>Anexos</h2></header>
+
+      <div class="recuadro">
+        <h3>Árbol del proyecto (resumen)</h3>
+<pre><code>src/main/java/
+  com.universidad.model/Estudiante.java
+  com.universidad.dao/EstudianteDAO.java
+  com.universidad.web/EstudianteServlet.java
+src/main/webapp/
+  WEB-INF/web.xml
+  views/
+    estudiante-list.jsp
+    estudiante-form.jsp
+assets/
+  css/, js/, img/
+</code></pre>
+      </div>
+
+      <div class="recuadro">
+        <h3>Checklist de despliegue</h3>
+        <ul class="lead">
+          <li>Driver <code>mysql-connector-j</code> presente (Maven o <em>WEB-INF/lib</em>).</li>
+          <li>Variables <span class="kbd">JAVA_HOME</span> y <span class="kbd">CATALINA_HOME</span> correctas.</li>
+          <li>Archivo <code>web.xml</code> válido y rutas de servlet mapeadas.</li>
+          <li>Pruebas locales: vistas JSP y endpoint <code>/api/estudiantes</code>.</li>
+        </ul>
+      </div>
+
+      <div class="recuadro">
+        <h3>Registro de visitas y fecha (evidencias)</h3>
+        <ul>
+          <li>Registro de visitas en sesión (JSP/Servlet) — captura incluida en evidencias.</li>
+          <li>Fecha y hora renderizadas desde el servidor — captura incluida en evidencias.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section section--contacto">
+      <header class="section__head">
+        <h2>Contáctame</h2>
+        <p class="section__desc">¿Dudas o comentarios? Escríbeme.</p>
+      </header>
+
+      <div class="contact-grid">
+        <a class="c-card" href="mailto:machaparionaangelyoelver@gmail.com" aria-label="Correo personal">
+          <div class="c-ico">✉️</div>
+          <div><strong>Correo personal</strong><br>machaparionaangelyoelver@gmail.com</div>
+        </a>
+        <a class="c-card" href="mailto:e_2021200788i@uncp.edu.pe" aria-label="Correo institucional">
+          <div class="c-ico">🏫</div>
+          <div><strong>Correo institucional</strong><br>e_2021200788i@uncp.edu.pe</div>
+        </a>
+        <a class="c-card" href="https://github.com/machaparionaangelyoelver-web" target="_blank" rel="noopener" aria-label="GitHub">
+          <div class="c-ico">🐙</div>
+          <div><strong>GitHub</strong><br>github.com/machaparionaangelyoelver-web</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <img src="assets/img/Semana10_imagenes/uncp.jpg" alt="UNCP" height="36" />
+      <img src="assets/img/Semana10_imagenes/logoFIS.png" alt="FIS" height="36" />
+      <p>Hecho por Angel Yoelver Macha · UNCP</p>
+    </div>
+  </footer>
+
+  <!-- JS existentes -->
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/hero_shootingstar.js" defer></script>
+  <script src="assets/js/hero_orbits.js" defer></script>
+  <script src="assets/js/hero_parallax_tilt.js" defer></script>
+  <script src="assets/js/hero_wave_morph.js" defer></script>
+  <script src="assets/js/magnetic.js" defer></script>
+  <script src="assets/js/stepper.js" defer></script>
+  <script src="assets/js/accordion.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
+  <script src="assets/js/topbar_fireworks.js" defer></script>
+  <script src="assets/js/topbar.js" defer></script>
+
+  <!-- HARD-NAV + Copiar email -->
+  <script>
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[data-hardnav]');
+      if(!a) return;
+      const href = a.getAttribute('href') || '';
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute('target') === '_blank') return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('copyEmailBtn');
+      if(!btn) return;
+      btn.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          const old = btn.textContent; btn.textContent = '✓ Copiado';
+          setTimeout(()=>btn.textContent = old, 900);
+        }catch(err){ console.warn(err); }
+      });
+    });
+  </script>
+</body>
+</html>

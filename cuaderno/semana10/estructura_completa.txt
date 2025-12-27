@@ -1,0 +1,98 @@
+ El volumen de la unidad C es OS
+ El n£mero de serie del volumen es: D0F8-A99F
+
+ Directorio de C:\Users\Usuario\Documents\Portafolio-main\Portafolio-main\cuaderno\semana10
+
+05/11/2025  14:00    <DIR>          .
+05/11/2025  13:52    <DIR>          ..
+05/11/2025  12:04    <DIR>          assets
+05/11/2025  14:00                 0 estructura_completa.txt
+05/11/2025  13:50            13,215 semana10.html
+               2 archivos         13,215 bytes
+
+ Directorio de C:\Users\Usuario\Documents\Portafolio-main\Portafolio-main\cuaderno\semana10\assets
+
+05/11/2025  12:04    <DIR>          .
+05/11/2025  14:00    <DIR>          ..
+05/11/2025  13:31    <DIR>          css
+05/11/2025  12:06    <DIR>          img
+05/11/2025  12:04    <DIR>          js
+               0 archivos              0 bytes
+
+ Directorio de C:\Users\Usuario\Documents\Portafolio-main\Portafolio-main\cuaderno\semana10\assets\css
+
+05/11/2025  13:31    <DIR>          .
+05/11/2025  12:04    <DIR>          ..
+05/11/2025  12:56             2,802 accordion.css
+05/11/2025  13:31             2,179 cards.css
+05/11/2025  12:57             3,860 gallery.css
+05/11/2025  12:59             4,633 hero.css
+05/11/2025  13:01             4,042 main.css
+05/11/2025  13:02             3,054 orbits.css
+05/11/2025  13:04             3,287 stepper.css
+               7 archivos         23,857 bytes
+
+ Directorio de C:\Users\Usuario\Documents\Portafolio-main\Portafolio-main\cuaderno\semana10\assets\img
+
+05/11/2025  12:06    <DIR>          .
+05/11/2025  12:04    <DIR>          ..
+05/11/2025  12:12    <DIR>          Semana10_imagenes
+               0 archivos              0 bytes
+
+ Directorio de C:\Users\Usuario\Documents\Portafolio-main\Portafolio-main\cuaderno\semana10\assets\img\Semana10_imagenes
+
+05/11/2025  12:12    <DIR>          .
+05/11/2025  12:06    <DIR>          ..
+28/10/2025  21:40           912,956 archivo_server_xml.png
+28/10/2025  21:48         1,247,688 configuracion_variables_java.png
+28/10/2025  21:50           912,956 ejemplo_codigo_jsp_fecha.png
+04/11/2025  20:13           649,127 estructura_bbdd_mysql.png
+28/10/2025  21:46         1,190,515 estructura_logs_tomcat.png
+04/11/2025  20:15           925,417 estructura_maven_proyecto.png
+28/10/2025  21:49           877,847 estructura_proyecto_jsp.png
+04/11/2025  20:15           857,205 estructura_springboot_proyecto.png
+28/10/2025  21:40            61,196 estructura_tomcat_directorios.png
+04/11/2025  20:37           201,418 evidencia_fecha.png
+04/11/2025  20:36            22,604 evidencia_registrovisitas.png
+04/11/2025  20:37           156,879 evidencia_semana10.png
+04/11/2025  20:14           763,394 flujo_api_rest_spring.png
+04/11/2025  20:15           803,500 flujo_dependencias_maven.png
+28/10/2025  21:51         1,108,560 flujo_formulario_get_post.png
+28/10/2025  21:43           897,467 flujo_peticion_tomcat.png
+04/11/2025  20:11           395,167 flujo_registro_visitas_jsp.png
+28/10/2025  21:49         1,198,337 instalacion_tomcat_windows.png
+04/11/2025  20:30             4,290 logo-jsp.png
+28/10/2025  09:29            14,007 logoFIS.png
+04/11/2025  20:32           401,406 logo_java.png
+04/11/2025  20:31            14,250 logo_maven.png
+05/11/2025  12:12             4,864 logo_postman.png
+04/11/2025  20:32           244,344 logo_tomcat.png
+28/10/2025  10:56           234,205 maven_ciclo.png
+28/10/2025  21:51           799,333 modelo_mvc_jsp.png
+04/11/2025  20:11           500,064 postman_pruebas_api.png
+04/11/2025  20:12           650,352 spring_boot_arquitectura.png
+04/11/2025  20:13           898,767 spring_ioc_diagrama.png
+04/11/2025  20:14           738,133 swagger_documentacion_api.png
+28/10/2025  09:29             6,312 uncp.jpg
+              31 archivos     17,692,560 bytes
+
+ Directorio de C:\Users\Usuario\Documents\Portafolio-main\Portafolio-main\cuaderno\semana10\assets\js
+
+05/11/2025  12:04    <DIR>          .
+05/11/2025  12:04    <DIR>          ..
+05/11/2025  13:06             2,576 accordion.js
+05/11/2025  13:07             4,998 gallery.js
+05/11/2025  13:09             1,843 hero_orbits.js
+05/11/2025  13:10             1,906 hero_parallax_tilt.js
+05/11/2025  13:12             4,770 hero_shootingstar.js
+05/11/2025  13:13             1,582 hero_wave_morph.js
+05/11/2025  13:15             1,839 magnetic.js
+05/11/2025  13:57             2,989 main.js
+05/11/2025  13:17             3,261 stepper.js
+05/11/2025  13:27             4,586 topbar.js
+05/11/2025  13:19             3,514 topbar_fireworks.js
+              11 archivos         33,864 bytes
+
+     Total de archivos en la lista:
+              51 archivos     17,763,496 bytes
+              17 dirs  819,544,514,560 bytes libres
