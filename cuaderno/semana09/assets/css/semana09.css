@@ -1,0 +1,503 @@
+/* =========================================================
+   🎨 Semana 09 — Desarrollo Backend: Arquitectura y Principios
+   CSS completo corregido (Stack horizontal + sin ventana fea + centrado)
+========================================================= */
+
+:root{
+  --bg:#F6FAFF;
+  --txt:#0F172A;
+  --muted:#64748B;
+  --primary:#4F75FF;
+  --accent:#2DD4BF;
+  --purple:#A78BFA;
+  --card:#FFFFFF;
+  --border:rgba(15,23,42,.10);
+  --shadow-sm:0 4px 14px rgba(15,23,42,.08);
+  --shadow:0 10px 24px rgba(15,23,42,.14);
+  --radius:18px;
+  --container:min(1120px,94vw);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--txt);
+  font:400 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg,video,canvas{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+button,input,textarea,select{font:inherit;color:inherit;}
+.container{width:var(--container);margin-inline:auto;padding-inline:12px;}
+h1,h2,h3{margin:0 0 .6rem;line-height:1.2;}
+.section{padding:clamp(42px,6vw,84px) 0;}
+.section--alt{background:#fff;}
+.section__title{font-size:clamp(1.6rem,1.1rem + 1.6vw,2.3rem);}
+.section__lead{color:var(--muted);margin-top:-.2rem;margin-bottom:1.25rem;}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.skip-link{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.skip-link:focus-visible{
+  position:fixed;left:16px;top:16px;background:#0b1320;color:#fff;
+  padding:10px 14px;border-radius:12px;z-index:9999;
+}
+
+/* ================== TOPBAR ================== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(1.3) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.topbar__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:10px 0;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand__logos{display:flex;gap:6px;align-items:center;}
+.brand__logos img{border-radius:8px;object-fit:cover;}
+.brand__name{font-weight:900;}
+.topbar__ctas{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.topbar__progress{
+  position:absolute;left:0;right:0;bottom:-1px;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--purple));
+  width:0;transition:width .1s linear;
+}
+
+/* ================== BOTONES ================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  border-radius:12px;border:1px solid var(--border);
+  padding:.68rem 1rem;font-weight:700;cursor:pointer;
+  transition:transform .14s ease,box-shadow .2s ease,background .2s ease,color .2s ease;
+  position:relative;overflow:hidden;
+  user-select:none;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);}
+.btn:active{transform:translateY(0);}
+.btn--primary{background:var(--primary);color:#fff;border-color:transparent;}
+.btn--outline{background:transparent;color:var(--primary);border:1.5px solid var(--primary);}
+.btn--ghost{background:#fff;}
+.btn--grad{
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  color:#fff;border:none;box-shadow:0 10px 24px rgba(79,117,255,.25);
+}
+.btn--glass{
+  background:rgba(255,255,255,.6);
+  border:1.5px solid rgba(79,117,255,.35);
+  backdrop-filter:blur(6px) saturate(1.1);
+}
+.btn--grad:hover{filter:brightness(1.05);}
+.btn--shine::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.5) 40%,transparent 80%);
+  transform:translateX(-100%);transition:transform .6s ease;
+}
+.btn--shine:hover::before{transform:translateX(100%);}
+.btn:active::after{
+  content:'';position:absolute;width:100%;height:100%;
+  background:rgba(255,255,255,.35);border-radius:inherit;
+  animation:ripple .4s ease-out;
+}
+@keyframes ripple{0%{opacity:1;transform:scale(0.9);}100%{opacity:0;transform:scale(1.3);}}
+
+/* ================== HERO ================== */
+.hero{
+  position:relative;
+  min-height:72dvh;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(900px 400px at -10% -10%,rgba(79,117,255,.12),transparent 60%),
+    radial-gradient(900px 360px at 120% 10%,rgba(45,212,191,.14),transparent 60%),
+    radial-gradient(600px 260px at 50% 115%,rgba(167,139,250,.12),transparent 60%);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.hero__stars,.hero__nebula,.hero__noise{position:absolute;inset:0;pointer-events:none;}
+.hero__nebula{
+  background:
+    radial-gradient(40% 30% at 70% 30%,rgba(79,117,255,.18),transparent 60%),
+    radial-gradient(35% 40% at 20% 80%,rgba(45,212,191,.16),transparent 60%);
+  filter:blur(34px);
+  animation:nebula 18s ease-in-out infinite alternate;
+}
+.hero__noise{
+  background-image:url('../imagenes/semana09_imagenes/ui/bg_pattern.png');
+  opacity:.12;
+  mix-blend-mode:multiply;
+  animation:noise 2.7s steps(4) infinite;
+}
+.hero__inner{
+  position:relative;z-index:1;
+  width:var(--container);margin-inline:auto;
+  padding:clamp(40px,5vw,80px) 12px;
+}
+.hero__block{text-align:center;}
+.badge-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;}
+.badge{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.35rem .65rem;border-radius:999px;
+  background:rgba(79,117,255,.10);
+  border:1px solid rgba(79,117,255,.18);
+  color:#1f2a44;
+  font-weight:800;
+  font-size:.86rem;
+}
+.badge--soft{background:rgba(15,23,42,.06);border-color:rgba(15,23,42,.10);color:var(--txt);}
+.badge--accent{background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.20);color:#0b3b35;}
+
+.hero__kicker{
+  display:block;
+  font-size:.95rem;
+  letter-spacing:.13em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.hero__title{font-size:clamp(2rem,1.1rem + 3.2vw,3rem);font-weight:900;}
+.hero__lead{color:var(--muted);margin:.65rem auto 1.25rem;max-width:72ch;}
+.hero__cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+.typewriter{
+  display:inline-block;
+  position:relative;
+  padding-right:.15rem;
+}
+.typewriter::after{
+  content:"";
+  display:inline-block;
+  width:2px;height:1.05em;
+  background:rgba(15,23,42,.55);
+  margin-left:6px;
+  transform:translateY(2px);
+  animation:caret .85s steps(2) infinite;
+}
+@keyframes caret{50%{opacity:0;}}
+
+.scrollhint{
+  position:absolute;left:50%;bottom:22px;transform:translate(-50%,0);
+  width:42px;height:42px;border-radius:999px;border:1px solid var(--border);
+  background:#fff;display:grid;place-items:center;cursor:pointer;
+  animation:bob 2.4s ease-in-out infinite;
+}
+.scrollhint:hover{box-shadow:var(--shadow-sm);}
+
+/* ================== INFO CARDS ================== */
+.info-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.i-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow-sm);
+  transform-style:preserve-3d;
+  transition:transform .18s ease,box-shadow .25s ease;
+  min-width:0;
+}
+.i-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.i-card img{border-radius:14px;border:1px solid var(--border);margin-top:10px;}
+
+/* Tarjetas con panel desplegable */
+.action-card .mini-btn{
+  margin-top:.35rem;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:10px;
+  padding:.35rem .6rem;
+  cursor:pointer;
+  font-weight:800;
+}
+.action-card .action-panel{
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:max-height .35s ease, opacity .25s ease, margin-top .25s ease;
+}
+.action-card[data-open="true"] .action-panel{
+  max-height:240px;
+  opacity:1;
+  margin-top:.55rem;
+}
+.action-card ul{margin:.2rem 0 0 1.1rem;color:var(--muted);}
+
+/* ================== NOTE (details) ================== */
+.note{
+  margin-top:14px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow-sm);
+  padding:12px 14px;
+}
+.note summary{
+  cursor:pointer;
+  font-weight:900;
+  list-style:none;
+}
+.note summary::-webkit-details-marker{display:none;}
+.note summary::before{
+  content:"▶";
+  display:inline-block;
+  margin-right:8px;
+  color:var(--primary);
+  transform:translateY(-1px);
+}
+.note[open] summary::before{content:"▼";}
+.note p{margin:.6rem 0 0;color:var(--muted);}
+
+/* ================== GRIDS GENERALES ================== */
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+.examples-grid{align-items:stretch;}
+
+/* ================== MAVEN / TOMCAT ================== */
+.card-media{
+  background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .18s ease,box-shadow .25s ease;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  min-width:0;
+}
+.card-media:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.card-media img{display:block;object-fit:contain;}
+.card-media--compact img{max-width:280px;max-height:180px;margin:14px auto 8px;}
+.card-media figcaption{width:100%;padding:10px 12px;color:var(--muted);}
+
+/* ================== EJEMPLOS ================== */
+.ex-card{
+  display:grid;grid-template-rows:auto auto 1fr;gap:.55rem;
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  box-shadow:var(--shadow-sm);padding:14px;position:relative;overflow:hidden;
+  transition:transform .18s ease,box-shadow .25s ease;
+  min-width:0;
+}
+.ex-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.ex-card__media{border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.ex-card__media img{width:100%;height:auto;object-fit:cover;}
+.ex-card__header h3{margin:2px 0 0;font-size:1.05rem;}
+.ex-card__body{color:var(--muted);margin:0;}
+.ex-card::after{
+  content:attr(data-hovertext);
+  position:absolute;left:12px;right:12px;bottom:12px;
+  background:rgba(15,23,42,.86);color:#fff;border-radius:12px;padding:10px 12px;
+  opacity:0;transform:translateY(8px);transition:opacity .2s ease,transform .2s ease;
+  font-size:.92rem;line-height:1.4;pointer-events:none;
+}
+.ex-card:hover::after,
+.ex-card:focus-within::after{opacity:1;transform:translateY(0);}
+
+/* ================== EVIDENCIAS ================== */
+.evidences-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+.evidence{
+  grid-column:span 6;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+.evidence img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+.evidence figcaption{padding:12px 14px;color:var(--muted);}
+
+/* ================== DOC-CARDS (setup + entregables) ================== */
+.doc-card{
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  padding:16px;
+  box-shadow:var(--shadow-sm);
+  display:grid;
+  gap:.55rem;
+  min-width:0;
+  overflow:hidden;
+}
+.doc-card header h3{margin:0;}
+.doc-card p{color:var(--muted);margin:0 0 .2rem;}
+.doc-card ul{margin:.2rem 0 .2rem 1.1rem;color:var(--muted);}
+
+/* ===== BLOQUES DE COMANDO (para que NO se salga) ===== */
+.cmd{
+  position:relative;
+  margin-top:.6rem;
+  background:linear-gradient(180deg,#f8fbff,#f1f6ff);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow-sm);
+  padding:12px 12px 10px;
+  min-width:0;
+}
+.cmd pre{
+  margin:0;
+  overflow:auto;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+.cmd code{
+  display:block;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  font-size:.92rem;
+}
+.cmd__copy{
+  position:absolute;right:10px;top:10px;z-index:2;
+  padding:.4rem .7rem;border-radius:10px;
+}
+
+/* ================== CONTACTO ================== */
+.contact-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+.contact-card{
+  grid-column:span 4;
+  display:flex;align-items:center;gap:12px;
+  background:#fff;border:1px solid var(--border);border-radius:18px;
+  padding:14px 16px;box-shadow:var(--shadow-sm);
+  transition:transform .16s ease,box-shadow .24s ease;
+  min-width:0;
+}
+.contact-card--wide{grid-column:span 8;}
+.contact-card:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(15,23,42,.16);}
+.contact-card__icon{
+  width:44px;height:44px;display:grid;place-items:center;
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(79,117,255,.12),rgba(45,212,191,.12));
+  font-size:22px;
+  flex:0 0 auto;
+}
+.contact-card__header h3{margin:0 0 2px;font-size:1.05rem;}
+.contact-card__link{color:var(--muted);display:inline-block;word-break:break-word;}
+.contact-card__link:hover{text-decoration:underline;}
+
+/* ================== FOOTER ================== */
+.footer{border-top:1px solid var(--border);background:#fff;}
+.footer__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 0;flex-wrap:wrap;
+}
+.footer__brand{display:flex;align-items:center;gap:10px;color:var(--muted);}
+
+/* =========================================================
+   ✅ STACK DE LA SEMANA (HORIZONTAL, BONITO, CENTRADO)
+   - El dock ahora es una fila de 3 cajas, centrada.
+   - Se elimina la "ventana" fea del fondo del dock.
+   - Los logos caen y se colocan encima de cada caja.
+========================================================= */
+.logo-drop{
+  position:relative;
+  min-height:300px;
+  margin:14px 0 6px;
+  border-radius:18px;
+  background:#fff; /* limpio */
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  overflow:hidden;
+}
+
+/* Los logos (JS mueve con transform) */
+.logo-fly{
+  position:absolute;
+  width:86px;height:86px;
+  left:0;top:0;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid var(--border);
+  box-shadow:0 18px 40px rgba(15,23,42,.16);
+  padding:10px;
+  will-change:transform,opacity;
+  z-index:3;
+}
+
+/* Dock: fila horizontal centrada, sin panel/blurry */
+.logo-dock{
+  position:absolute;
+  left:50%;
+  top:50%;
+  bottom:auto;
+  transform:translate(-50%,-50%);
+
+  display:grid;
+  grid-template-columns:repeat(3, minmax(170px, 210px));
+  gap:22px;
+
+  padding:0;
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  backdrop-filter:none;
+  z-index:1;
+}
+
+/* Cada “caja” (target) */
+.dock-spot{
+  height:120px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(180deg,rgba(15,23,42,.025),rgba(15,23,42,.01));
+  border:1px dashed rgba(15,23,42,.22);
+  color:var(--muted);
+  font-weight:900;
+  text-align:center;
+  padding:10px 12px;
+}
+
+/* Texto dentro */
+.dock-spot span{
+  opacity:.9;
+  font-size:1rem;
+}
+
+/* Un “hueco” visual arriba para que el logo no tape el texto */
+.dock-spot::before{
+  content:"";
+  display:block;
+  width:1px;height:38px;
+}
+
+/* Responsive: en móvil se apila */
+@media (max-width:720px){
+  .logo-drop{min-height:380px;}
+  .logo-dock{
+    width:92%;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .dock-spot{height:110px;}
+}
+
+/* ================== ANIMACIONES ================== */
+@keyframes bob{0%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}100%{transform:translate(-50%,0)}}
+@keyframes nebula{0%{transform:translate(0,0) scale(1);opacity:.9;}100%{transform:translate(-2%,1%) scale(1.06);opacity:1;}}
+@keyframes noise{0%{background-position:0 0;}100%{background-position:6px 6px;}}
+
+/* Respeto a usuarios con reducción de movimiento */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition:none!important;scroll-behavior:auto!important;}
+  .typewriter::after{display:none;}
+}
+
+/* ================== RESPONSIVO GENERAL ================== */
+@media (max-width:1100px){
+  .info-cards{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .grid-3{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .evidence{grid-column:span 12;}
+  .contact-card{grid-column:span 6;}
+  .contact-card--wide{grid-column:span 12;}
+}
+
+@media (max-width:820px){
+  .info-cards{grid-template-columns:1fr;}
+  .grid-3{grid-template-columns:1fr;}
+  .examples-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .evidences-grid{grid-template-columns:1fr;gap:12px;}
+  .contact-card{grid-column:span 12;}
+  .hero{min-height:64dvh;}
+}
+
+/* ================== UTILIDADES ================== */
+.visually-hidden{
+  position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
