@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Semana 15 · Sistemas Inteligentes con Python | Cuaderno Digital</title>
+  <meta name="description" content="Semana 15: Sistemas Inteligentes con Python. Arquitectura, reglas IF THEN, lógica difusa, evidencias, conclusiones y contacto." />
+  <meta name="theme-color" content="#F6FFFB" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="theme-mint">
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <header class="topbar" role="navigation" aria-label="Barra superior">
+    <div class="container topbar__inner">
+      <a class="brand" href="#hero" aria-label="Ir al inicio">
+        <span class="brand__logos" aria-hidden="true">
+          <img src="./semana15_imagenes/logo_uncp.png" alt="UNCP" loading="eager" decoding="async" />
+          <img src="./semana15_imagenes/logo_fis.png"  alt="FIS"  loading="eager" decoding="async" />
+        </span>
+        <span class="brand__text">
+          <span class="brand__title">Cuaderno Digital</span>
+          <span class="brand__sub">Semana 15 · Sistemas Inteligentes con Python</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Secciones">
+        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav__pill" id="navPill">
+          <a class="nav__link is-active" data-link href="#introduccion">Introducción</a>
+          <a class="nav__link" data-link href="#practicas">Prácticas</a>
+          <a class="nav__link" data-link href="#conclusiones">Conclusiones</a>
+          <a class="nav__link" data-link href="#contacto">Contacto</a>
+          <span class="nav__indicator" aria-hidden="true"></span>
+        </div>
+      </nav>
+
+      <div class="actions" aria-label="Acciones rápidas">
+        <a class="btn btn--soft" target="_blank" rel="noopener"
+           href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana15.md">
+          Informe 15 (GitHub)
+        </a>
+        <a class="btn btn--primary" href="../../cuaderno.html" data-hardnav>
+          Volver al cuaderno
+        </a>
+      </div>
+    </div>
+
+    <div id="scrollProgress" class="topbar__progress" aria-hidden="true"></div>
+  </header>
+
+  <section id="hero" class="hero hero--mint" aria-label="Portada Semana 15">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="meteorLayer" id="meteorLayer"></div>
+      <div class="blob blob--a"></div>
+      <div class="blob blob--b"></div>
+      <div class="blob blob--c"></div>
+      <div class="mesh"></div>
+    </div>
+
+    <div class="container hero__grid">
+      <div class="hero__left">
+        <span class="kicker">
+          <span class="kdot" aria-hidden="true"></span>
+          Desarrollo Web · Python
+        </span>
+
+        <h1 class="hero__title">
+          <span id="typedTitle" class="hero__typed">Sistemas Inteligentes en Python</span>
+          <span class="caret" aria-hidden="true"></span>
+        </h1>
+
+        <p class="hero__lead">
+          Implementación de componentes típicos de un sistema inteligente: percepción, conocimiento, razonamiento,
+          aprendizaje, acción e interfaz. Se aplican reglas IF THEN y lógica difusa para producir recomendaciones
+          interpretables y salidas explicables.
+        </p>
+
+        <div class="chips" aria-label="Contenido principal">
+          <span class="chip chip--a">Reglas IF THEN</span>
+          <span class="chip chip--b">Lógica difusa</span>
+          <span class="chip chip--c">Inferencia</span>
+          <span class="chip chip--d">Explicabilidad</span>
+          <span class="chip chip--e">Python</span>
+        </div>
+
+        <div class="hero__cta" aria-label="Acciones principales">
+          <a class="btn btn--primary" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web/cuaderno_digital/blob/main/semana15.md">
+            Informe 15 (GitHub)
+          </a>
+          <a class="btn btn--soft" href="../../cuaderno.html" data-hardnav>
+            Volver al cuaderno
+          </a>
+        </div>
+
+        <div class="miniStats">
+          <div class="statCard reveal">
+            <span class="statBar" aria-hidden="true"></span>
+            <b>Objetivo</b>
+            <small>Modelar un flujo inteligente con entradas, inferencia y salida.</small>
+          </div>
+          <div class="statCard reveal">
+            <span class="statBar" aria-hidden="true"></span>
+            <b>Enfoque</b>
+            <small>Reglas y difuso para decisiones interpretables.</small>
+          </div>
+          <div class="statCard reveal">
+            <span class="statBar" aria-hidden="true"></span>
+            <b>Resultado</b>
+            <small>Prototipos documentados con evidencias y conclusiones.</small>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero__right reveal" aria-label="Panel Semana 15">
+        <div class="panel">
+          <div class="panel__head">
+            <span class="badge badge--soft">Semana 15</span>
+            <span class="badge">Sistemas Inteligentes</span>
+          </div>
+
+          <div class="stackGrid" id="stackGrid">
+            <figure class="stackItem from-left" style="--d:0ms">
+              <img src="./semana15_imagenes/logo_python.png" alt="Python" />
+              <figcaption>Python</figcaption>
+            </figure>
+
+            <figure class="stackItem from-bottom" style="--d:120ms">
+              <img src="./semana15_imagenes/logo_vscode.png" alt="VS Code" />
+              <figcaption>VS Code</figcaption>
+            </figure>
+
+            <figure class="stackItem from-right" style="--d:240ms">
+              <img src="./semana15_imagenes/logo_flask.png" alt="Flask" />
+              <figcaption>Flask</figcaption>
+            </figure>
+
+            <figure class="stackItem from-left" style="--d:360ms">
+              <img src="./semana15_imagenes/logo_mysql.png" alt="MySQL" />
+              <figcaption>MySQL</figcaption>
+            </figure>
+          </div>
+
+          <div class="route">
+            <div class="routeLine">
+              <span class="dot" aria-hidden="true"></span>
+              <div>
+                <b>Flujo general</b>
+                <small>Entrada · Inferencia · Explicación · Salida</small>
+              </div>
+            </div>
+
+            <div class="routeLine">
+              <span class="dot" aria-hidden="true"></span>
+              <div>
+                <b>Artefactos</b>
+                <small>Notas, evidencias y conclusiones de la semana</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel__foot">
+            <div class="note">
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <button class="scrollCue" type="button" data-scroll="#introduccion" aria-label="Ir a la introducción">↓</button>
+  </section>
+
+  <main id="content" class="content" role="main">
+
+    <section id="introduccion" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Introducción</h2>
+          <p class="sectionLead">
+            En la Semana 15 se revisan los fundamentos de los sistemas inteligentes y su implementación en Python,
+            enfocándose en modelos basados en reglas y lógica difusa. El objetivo es construir prototipos que generen
+            resultados interpretables y consistentes a partir de entradas definidas.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Alcance</h3>
+            <p>
+              Se desarrollan prácticas que modelan decisiones mediante reglas IF THEN y variables difusas, considerando
+              la estructura completa de un sistema inteligente: entrada, base de conocimiento, motor de inferencia,
+              salida y una interfaz que presente resultados.
+            </p>
+            <div class="pillList" aria-label="Temas principales">
+              <span class="pill">Base de reglas</span>
+              <span class="pill">Inferencia</span>
+              <span class="pill">Conjuntos difusos</span>
+              <span class="pill">Explicabilidad</span>
+              <span class="pill">Prototipado</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Objetivos</h3>
+            <ul class="bullets">
+              <li>Identificar componentes de arquitectura de sistemas inteligentes.</li>
+              <li>Diseñar reglas IF THEN para resolver un problema acotado.</li>
+              <li>Aplicar lógica difusa para manejar incertidumbre y gradualidad.</li>
+              <li>Presentar resultados con criterios claros y trazables.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="arquitectura" class="section section--alt">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Arquitectura</h2>
+          <p class="sectionLead">
+            La arquitectura define componentes para capturar datos, razonar, aprender y ejecutar acciones, con una
+            interfaz clara para el usuario. La presentación se organiza con espaciado amplio para mantener orden visual.
+          </p>
+        </header>
+
+        <div class="grid3">
+          <article class="card reveal">
+            <h3>Percepción</h3>
+            <p>Captura de entradas desde formularios, APIs o fuentes digitales, con validación y normalización básica.</p>
+            <div class="tags">
+              <span class="tag">Entrada</span>
+              <span class="tag">Validación</span>
+              <span class="tag">Preproceso</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Conocimiento</h3>
+            <p>Base de reglas, parámetros y estructuras del dominio que soportan inferencia coherente y trazable.</p>
+            <div class="tags">
+              <span class="tag">Reglas</span>
+              <span class="tag">Variables</span>
+              <span class="tag">Hechos</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Razonamiento</h3>
+            <p>Motor que aplica reglas IF THEN o inferencia difusa para producir conclusiones y una explicación breve.</p>
+            <div class="tags">
+              <span class="tag">Inferencia</span>
+              <span class="tag">Difuso</span>
+              <span class="tag">Salida</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Aprendizaje</h3>
+            <p>Ajuste de parámetros o reglas usando datos, manteniendo registros para evaluación y mejora continua.</p>
+            <div class="tags">
+              <span class="tag">Ajuste</span>
+              <span class="tag">Métricas</span>
+              <span class="tag">Mejora</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Acción</h3>
+            <p>Emisión del resultado hacia el usuario o un componente externo, priorizando claridad y consistencia.</p>
+            <div class="tags">
+              <span class="tag">Resultado</span>
+              <span class="tag">Notificación</span>
+              <span class="tag">Ejecución</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Interfaz</h3>
+            <p>UI para capturar la solicitud y mostrar resultados de forma clara, ordenada y con explicación breve.</p>
+            <div class="tags">
+              <span class="tag">Formulario</span>
+              <span class="tag">UI Web</span>
+              <span class="tag">Explicación</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="card card--soft reveal" style="margin-top:18px;">
+          <h3>Flujo de trabajo</h3>
+          <ol class="steps">
+            <li>Capturar entradas y preprocesar para asegurar formato y rango.</li>
+            <li>Aplicar reglas o inferencia difusa según el modelo definido.</li>
+            <li>Generar resultado y presentar explicación breve de la decisión.</li>
+            <li>Registrar comportamiento y ajustar parámetros cuando corresponda.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="practicas" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Prácticas</h2>
+          <p class="sectionLead">
+            Actividades orientadas a modelar decisiones con reglas IF THEN y lógica difusa, documentando entradas,
+            criterios, resultado y explicación.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Reglas IF THEN</h3>
+            <p>
+              Se define un conjunto de reglas determinísticas basadas en condiciones del dominio. El motor evalúa
+              condiciones y retorna una conclusión.
+            </p>
+            <div class="miniCallout">
+              <b>Buenas prácticas</b>
+              <div class="mono">Reglas completas, sin ambigüedad y con prioridades cuando aplique.</div>
+              <div class="mono">Validación de entradas antes de inferir.</div>
+              <div class="mono">Salida explicable: regla activada y motivo.</div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3>Lógica difusa</h3>
+            <p>
+              Se modela incertidumbre usando conjuntos difusos y reglas difusas. El resultado se obtiene por
+              defuzzificación y se interpreta según pertenencias dominantes.
+            </p>
+            <div class="miniCallout">
+              <b>Elementos clave</b>
+              <div class="mono">Variables lingüísticas y funciones de pertenencia.</div>
+              <div class="mono">Base de reglas difusas y método de inferencia.</div>
+              <div class="mono">Defuzzificación para un valor final.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidencias" class="section section--alt">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Evidencias</h2>
+          <p class="sectionLead">
+            Evidencias del proceso de implementación y ejecución.
+          </p>
+        </header>
+
+        <div class="evidenceList">
+          <article class="evRow reveal">
+            <div class="evMedia">
+              <img src="./semana15_imagenes/evid_01.png" alt="Evidencia 01" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evText">
+              <h3>Evidencia 01</h3>
+              <p>Preparación del entorno y verificación de ejecución del proyecto, confirmando herramientas y estructura de trabajo.</p>
+            </div>
+          </article>
+
+          <article class="evRow evRow--swap reveal">
+            <div class="evText">
+              <h3>Evidencia 02</h3>
+              <p>Implementación de una base de conocimiento inicial, con reglas y criterios definidos para soportar inferencia.</p>
+            </div>
+            <div class="evMedia">
+              <img src="./semana15_imagenes/evid_02.png" alt="Evidencia 02" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+          </article>
+
+          <article class="evRow reveal">
+            <div class="evMedia">
+              <img src="./semana15_imagenes/evid_03.png" alt="Evidencia 03" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evText">
+              <h3>Evidencia 03</h3>
+              <p>Prueba de inferencia con reglas IF THEN, verificando evaluación de condiciones, regla activada y salida final.</p>
+            </div>
+          </article>
+
+          <article class="evRow evRow--swap reveal">
+            <div class="evText">
+              <h3>Evidencia 04</h3>
+              <p>Modelado de variables difusas y funciones de pertenencia, estableciendo rangos y etiquetas lingüísticas.</p>
+            </div>
+            <div class="evMedia">
+              <img src="./semana15_imagenes/evid_04.png" alt="Evidencia 04" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+          </article>
+
+          <article class="evRow reveal">
+            <div class="evMedia">
+              <img src="./semana15_imagenes/evid_05.png" alt="Evidencia 05" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evText">
+              <h3>Evidencia 05</h3>
+              <p>Ejecución de inferencia difusa con reglas y defuzzificación, obteniendo un resultado final interpretado por pertenencias.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="evidenceGridHead">
+          <h3 class="evidenceGridTitle">Evidencias técnicas </h3>
+          <p class="evidenceGridLead">
+            Capturas complementarias del desarrollo y validación del sistema: configuración, ejecución, pruebas, resultados y verificación.
+          </p>
+        </div>
+
+        <div class="evidenceGrid">
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_06.png" alt="Evidencia 06" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 06</span>
+                <span class="evMini">Configuración</span>
+              </div>
+              <h4>Parámetros y preparación del modelo</h4>
+              <p>Definición de entradas, rangos y validaciones para asegurar inferencia estable y resultados consistentes.</p>
+            </div>
+          </article>
+
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_07.png" alt="Evidencia 07" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 07</span>
+                <span class="evMini">Reglas</span>
+              </div>
+              <h4>Base de reglas aplicada</h4>
+              <p>Reglas IF THEN estructuradas con criterios claros, manteniendo trazabilidad de decisión y salida explicable.</p>
+            </div>
+          </article>
+
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_08.png" alt="Evidencia 08" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 08</span>
+                <span class="evMini">Ejecución</span>
+              </div>
+              <h4>Prueba de ejecución del sistema</h4>
+              <p>Ejecución del prototipo con entradas controladas, verificando el comportamiento del motor de inferencia.</p>
+            </div>
+          </article>
+
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_09.png" alt="Evidencia 09" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 09</span>
+                <span class="evMini">Difuso</span>
+              </div>
+              <h4>Variables difusas y pertenencias</h4>
+              <p>Construcción de conjuntos difusos y pertenencias para representar gradualidad en el dominio del problema.</p>
+            </div>
+          </article>
+
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_10.png" alt="Evidencia 10" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 10</span>
+                <span class="evMini">Resultados</span>
+              </div>
+              <h4>Resultados de inferencia</h4>
+              <p>Salida final con valores obtenidos y verificación de coherencia según reglas aplicadas y criterios definidos.</p>
+            </div>
+          </article>
+
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_11.png" alt="Evidencia 11" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 11</span>
+                <span class="evMini">Verificación</span>
+              </div>
+              <h4>Pruebas y validación</h4>
+              <p>Verificación del comportamiento con casos de prueba, revisando consistencia, límites y respuestas esperadas.</p>
+            </div>
+          </article>
+
+          <article class="evCard reveal">
+            <div class="evCardMedia">
+              <img src="./semana15_imagenes/evid_12.png" alt="Evidencia 12" loading="lazy"
+                   onerror="this.src='./semana15_imagenes/placeholder.png';this.onerror=null;">
+            </div>
+            <div class="evCardBody">
+              <div class="evCardTop">
+                <span class="evPill">Evidencia 12</span>
+                <span class="evMini">Cierre</span>
+              </div>
+              <h4>Resultado final documentado</h4>
+              <p>Consolidación del prototipo, evidenciando ejecución correcta, registro de resultados y cierre de la práctica.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusiones" class="section">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Conclusiones</h2>
+          <p class="sectionLead">
+            Resultados obtenidos y aprendizajes clave al aplicar reglas IF THEN y lógica difusa en Python.
+          </p>
+        </header>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3>Resultados</h3>
+            <ul class="bullets">
+              <li>Arquitectura definida con componentes y flujo de trabajo trazable.</li>
+              <li>Reglas IF THEN implementadas con salida clara y verificable.</li>
+              <li>Modelo difuso aplicado para escenarios con gradualidad e incertidumbre.</li>
+              <li>Evidencias organizadas en formatos complementarios para lectura profesional.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Aprendizajes</h3>
+            <ul class="bullets">
+              <li>El enfoque basado en reglas facilita explicabilidad y control de decisiones.</li>
+              <li>La lógica difusa representa grados y evita decisiones rígidas.</li>
+              <li>La validación de entradas mejora consistencia en inferencias.</li>
+              <li>Documentar reglas y salidas fortalece trazabilidad del prototipo.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section section--alt">
+      <div class="container">
+        <header class="sectionHead">
+          <h2>Contacto</h2>
+          <p class="sectionLead">Datos para consultas académicas y seguimiento del cuaderno digital.</p>
+        </header>
+
+        <div class="contactGrid">
+          <a class="contactCard reveal" href="mailto:machaparionaangelyoelver@gmail.com" aria-label="Correo">
+            <div class="contactIcon" aria-hidden="true">✉️</div>
+            <div>
+              <b>Correo</b><br />
+              <small>machaparionaangelyoelver@gmail.com</small>
+            </div>
+          </a>
+
+          <a class="contactCard reveal" target="_blank" rel="noopener"
+             href="https://github.com/machaparionaangelyoelver-web" aria-label="GitHub">
+            <div class="contactIcon" aria-hidden="true">🐙</div>
+            <div>
+              <b>GitHub</b><br />
+              <small>github.com/machaparionaangelyoelver-web</small>
+            </div>
+          </a>
+
+          <div class="contactCard reveal" role="group" aria-label="Nombre">
+            <div class="contactIcon" aria-hidden="true">👤</div>
+            <div>
+              <b>Nombre</b><br />
+              <small>Angel Yoelver Macha Pariona</small>
+            </div>
+          </div>
+
+          <div class="contactCard reveal" role="group" aria-label="Ciudad">
+            <div class="contactIcon" aria-hidden="true">📍</div>
+            <div>
+              <b>Ciudad</b><br />
+              <small>Huancayo, Junín · Perú</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__mini" id="year"></div>
+      <div class="footer__mini">Semana 15 · Sistemas Inteligentes con Python</div>
+      <div class="footer__mini">UNCP · Facultad de Ingeniería de Sistemas</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+
+  <script>
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[data-hardnav]');
+      if(!a) return;
+      const href = a.getAttribute('href') || '';
+      if(!href || /^https?:\/\//i.test(href) || a.getAttribute('target') === '_blank') return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      window.location.assign(href);
+    }, true);
+  </script>
+</body>
+</html>
